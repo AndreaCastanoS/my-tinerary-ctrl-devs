@@ -1,0 +1,46 @@
+[
+  {
+    "id": "admin1",
+    "name": "Eric",
+    "lastName": "Rodriguez",
+    "age": 23,
+    "email": "feric.rodriguez@gmail.com",
+    "password": "Chau6789",
+    "code": "holachau",
+    "verified": true,
+    "logged": true
+  },
+  {
+    "id": "admin1",
+    "name": "Antonella",
+    "lastName": "Tortoza",
+    "age": 24,
+    "email": "anto.t@gmail.com",
+    "password": "holachau",
+    "code": "45da17q9",
+    "verified": true,
+    "logged": true
+  },
+  {
+    "id": "admin1",
+    "name": "Daniel",
+    "lastName": "Perez",
+    "age": 21,
+    "email": "danielp@gmail.com",
+    "password": "Chausi",
+    "code": "45da17q9",
+    "verified": true,
+    " logged": true
+  },
+  {
+    "id": "admin1",
+    "name": "Andres",
+    "lastName": "Ramirez",
+    "age": 26,
+    "email": "andrear@gmail.com",
+    "password": "Chauhola",
+    "code": "45da17q9",
+    " verified": true,
+    " logged": true
+  }
+]
