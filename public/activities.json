@@ -1,0 +1,122 @@
+[
+  {
+    "id": "It1",
+    "citiId": "city1",
+    "name": "River Seine Cruise",
+    "photo": "https://cdn.getyourguide.com/img/tour/cf879ee295abc8e4.jpeg/145.jpg",
+    "description": "Admire the iconic sights of Paris on a relaxing River Seine cruise. Enjoy audioguide commentary and learn about sites such as the Eiffel Tower and Notre Dame.",
+    "price":  15,
+    "duration": 1 ,
+    "userId": "user1"
+  },
+  {
+    "id": "It2",
+    "citiId": "city1",
+    "name": "Skip-the-Line Arc de Triomphe Rooftop",
+    "photo": "https://cdn.getyourguide.com/img/tour/58e6002464ffc.jpeg/98.jpg",
+    "description": "Come and visit the Arc de Triomphe at Place de l'Étoile. Skip the lines to reach the top of the Champs-Élysées and feast your eyes on breathtaking panoramas of the world-renowned City of Love.",
+    "price":  12,
+    "duration": 1 ,
+    "userId": "user2"
+  },
+  {
+    "id": "It3",
+    "citiId": "city2",
+    "name": "Colosseum, Roman Forum & Palatine Hill Priority Access Guide",
+    "photo": "https://cdn.getyourguide.com/img/tour/5d5ae224e9679.jpeg/98.jpg",
+    "description": "Enjoy priority access to the Colosseum, Roman Forum, and Palatine Hill. Dive into the past and walk in the footsteps of Roman emperors and gladiators, which your lively guide will bring back to life.",
+    "price":  38,
+    "duration":  3 ,
+    "userId": "user3"
+  },
+  {
+    "id": "It4",
+    "citiId": "city2",
+    "name": "Rome: Vatican Museums & Sistine Chapel Tour",
+    "photo": "https://cdn.getyourguide.com/img/tour/5e403a4ab023e.png/98.jpg#",
+    "description": "Join a guide with skip-the-line tickets to the Vatican Museums & Sistine Chapel. Then, explore St. Peter’s Basilica at your own pace.",
+    "price":  49,
+    "duration": 3,
+    "userId": "user4"
+  },
+  {
+    "id": "It5",
+    "citiId": "city5",
+    "name": "London: Warner Bros. Studio Tour with Transfers",
+    "photo": "https://cdn.getyourguide.com/img/tour/5f3690702520d.jpeg/98.jpg",
+    "description": "Take the bus from central London for this magical full-day tour of the Warner Brothers Studio. Go behind the scenes of the Harry Potter film sets to explore the enchanting props and costumes, and walk in the footsteps of your favorite characters..",
+    "price": 97,
+    "duration": 7,
+    "userId": "user1"
+  },
+  {
+    "id": "It6",
+    "citiId": "city5",
+    "name": "London: The Shard Entry Ticket",
+    "photo": "https://cdn.getyourguide.com/img/tour/611128400866e.jpeg/145.jpg",
+    "description": "It is located in the place where Belgrano raised the Argentine flag for the first time, on the banks of the Paraná River.",
+    "price": 32,
+    "duration": 1 ,
+    "userId": "user2"
+  },
+  {
+    "id": "It7",
+    "citiId": "city9",
+    "name": "Grand Canal Gondola",
+    "photo": "https://cdn.getyourguide.com/img/tour/0f02ada20b1678fe.jpeg/98.jpg",
+    "description": "Experience an enchanting gondola ride along the most beautiful part of the Grand Canal and its hidden waterways. Listen to an in-app commentary as you admire the views..",
+    "price": 27,
+    "duration": 45 ,
+    "userId": "user3"
+  },
+  {
+    "id": "It8",
+    "citiId": "city9",
+    "name": "Torcello & Burano Islands",
+    "photo": "https://cdn.getyourguide.com/img/tour/1500b2a5793aa521.jpeg/98.jpg",
+    "description": "Cruise to the islands of Murano, Torcello and Burano in the Venetian Lagoon. The most famous of the Venetian islands, they are known throughout the world for their picturesque scenery, handicrafts, and history.",
+    "price":  24,
+    "duration": 5 ,
+    "userId": "user4"
+  },
+  {
+    "id": "It9",
+    "citiId": "city11",
+    "name": "Van Gogh Museum Ticket",
+    "photo": "https://cdn.getyourguide.com/img/tour/57a213594ce6f.jpeg/145.jpg",
+    "description": "Don't miss out on the Van Gogh Museum. With these exciting tickets, see hundreds of paintings, drawings, and letters by the Dutch master himself. Gain entry at your selected time slot.",
+    "price": 21,
+    "duration":  1,
+    "userId": "user1"
+  },
+  {
+    "id": "It10",
+    "citiId": "city11",
+    "name": "Heineken Experience",
+    "photo": "https://cdn.getyourguide.com/img/tour/b10d5d4a331d1abc.jpeg/98.jpg",
+    "description": "Come and discover what lies behind the doors of the former Heineken brewery in Amsterdam, and learn everything there is to know about the world’s favorite beer.",
+    "price":  20,
+    "duration": 1,
+    "userId": "user2"
+  },
+  {
+    "id": "It11",
+    "citiId": "city12",
+    "name": "Flamenco Show",
+    "photo": "https://cdn.getyourguide.com/img/location/607816a5a026a.jpeg/99.web",
+    "description": "Feel the passion of flamenco music and dance in a legendary tablao in Madrid. Admire a unique show in a venue inspired by the Alhambra's Bermejas towers. Choose from a variety of culinary options to enhance your night.",
+    "price": 30,
+    "duration": 2 ,
+    "userId": "user3"
+  },
+  {
+    "id": "It12",
+    "citiId": "city12",
+    "name": "Bernabéu Stadium Tour",
+    "photo": "https://www.realmadrid.com/cs/Satellite?blobcol=urldata&blobheader=image%2Fjpeg&blobkey=id&blobtable=MungoBlobs&blobwhere=1203379744243&ssbinary=true",
+    "description": "Explore the history of the Real Madrid football team in the Bernabéu Stadium museum. Get access to exclusive areas, and learn all about Real Madrid's football prowess.",
+    "price":  14,
+    "duration": 2 ,
+    "userId": "user4"
+  }
+]
