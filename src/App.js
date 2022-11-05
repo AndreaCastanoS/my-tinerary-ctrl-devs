@@ -4,6 +4,7 @@ import "./index.css";
 import { Route, Routes } from "react-router-dom";
 import SignUp from "./pages/SignUp";
 import Cities from "./pages/Cities";
+import SignIn from "./pages/SignIn";
 /* import NotFound from "./pages/NotFound"; */
 
 function App() {
@@ -15,7 +16,8 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/cities" element={<Cities />} />
         {/* <Route path="/detailscities" element={<Details />} /> */}
-      </Routes>
+        <Route path="/signin" element={<SignIn/>} />
+       </Routes>
     </Main>
   );
 }
