@@ -2,6 +2,7 @@ import Main from "./layouts/Main";
 import Home from "./pages/Home";
 import "./index.css";
 import { Route, Routes } from "react-router-dom";
+/* import NotFound from "./pages/NotFound"; */
 
 function App() {
   return (
