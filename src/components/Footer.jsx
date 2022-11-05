@@ -26,8 +26,8 @@ export default function Footer() {
           <NavLink to="/signup" className='text-decoration list-none'>
             <li>Sign Up</li>
           </NavLink>
-          <NavLink to="/login" className='text-decoration list-none'>
-            <li>Log In</li>
+          <NavLink to="/signin" className='text-decoration list-none'>
+            <li>Sing In</li>
           </NavLink>
         </ul>
         </div>
