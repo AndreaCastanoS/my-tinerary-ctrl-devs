@@ -2,6 +2,7 @@ import Main from "./layouts/Main";
 import Home from "./pages/Home";
 import "./index.css";
 import { Route, Routes } from "react-router-dom";
+import SignUp from "./pages/SignUp";
 /* import NotFound from "./pages/NotFound"; */
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
       <Routes>
         <Route path="" element={<Home />} />
         <Route path="/index" element={<Home />} />
+        <Route path="/signup" element={<SignUp />} />
       </Routes>
     </Main>
   );
