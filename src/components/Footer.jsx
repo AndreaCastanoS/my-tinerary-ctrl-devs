@@ -14,7 +14,7 @@ export default function Footer() {
       
          </div>
          <ul className='text-decoration flex g-5 column '>
-          <NavLink to ="/home" className='text-decoration list-none '>
+          <NavLink to ="/index" className='text-decoration list-none '>
             <li >Home</li>
           </NavLink>
           <NavLink to="/cities" className='text-decoration list-none' >
