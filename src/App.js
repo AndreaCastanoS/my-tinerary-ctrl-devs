@@ -1,16 +1,16 @@
-import AutoToTop from "./components/AutoToTop";
-import Home1 from "./components/Home1";
-import Home2 from "./components/Home2";
-import "./index.css"
+import Main from "./layouts/Main";
+import Home from "./pages/Home";
+import "./index.css";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
-  
   return (
-    <>
-    <AutoToTop/>
-  <Home1/>
-  <Home2/>
-  </>
+    <Main>
+      <Routes>
+        <Route path="" element={<Home />} />
+        <Route path="/index" element={<Home />} />
+      </Routes>
+    </Main>
   );
 }
 
