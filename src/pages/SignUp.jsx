@@ -71,7 +71,7 @@ export default function SignUp() {
                   </div>
                   <div></div>
                   <div className="flex justify-around  p-1 wrap g-25">
-                    <NavLink to="/login" className="text-decoration list-none">
+                    <NavLink to="/signin" className="text-decoration list-none">
                       <h3>Login</h3>
                     </NavLink>
                     <button className="btn">Create Account</button>
