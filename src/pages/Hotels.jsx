@@ -50,7 +50,7 @@ export default function Hotels() {
               : item.name.toLowerCase().includes(search);
           })
           .map((item) => {
-            return <HotelsCard img={item.photo} name={item.name}></HotelsCard>;
+            return <HotelsCard id={item.id} key={item.id} img={item.photo} name={item.name}></HotelsCard>;
           })}
       </div>
       
