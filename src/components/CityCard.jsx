@@ -3,9 +3,10 @@ import { Link as NavLink } from "react-router-dom";
 export default function CityCard(props) {
   let { img } = props;
   let { name } = props;
+  let {id}=props
 
   return (
-    <NavLink to="/detailscities">
+    <NavLink to={`/cities/${id}`}>
     <div className="hero-section">
       <div>
         <div class="card">
