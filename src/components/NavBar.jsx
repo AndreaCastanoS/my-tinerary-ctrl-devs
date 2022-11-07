@@ -14,8 +14,12 @@ export default function NavBar() {
     setMostrar(!mostrar);
   };
   return (
-    <header className="flex justify-end p-2 g-15 ">
-      <img className="logo" src="" alt="" />
+   
+    <header className="navG">
+      <div className="logoN">
+      <img className="logo" src="https://imagizer.imageshack.com/img923/4377/CiuV47.png" alt="" />
+      </div>
+      <div className="btnN">
       <div>
         <button className="bt-nav " onClick={hide}>
           Home
@@ -54,7 +58,9 @@ export default function NavBar() {
         ) : (
           <></>
         )}
+        </div>
       </div>
     </header>
+   
   );
 }
