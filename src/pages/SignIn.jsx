@@ -22,20 +22,20 @@ export default function SignIn() {
   }
 
   return (
-    <div className="w-100 h-100 flex justify-center column align-center">
-      <div className="container">
+    <div className="w-100 h-100 flex justify-center column align-center p-5">
+      <div className="formSi p-5">
         <div>
           <div>
-            <div className="card ">
+            <div className="card1 ">
               <h1 className="text-center p-1">Sign In</h1>
-              <div>
+              <div className="p-2">
                 <form onSubmit={submitLogin} ref={form}>
-                  <div>
+                  <div >
                     <input
                       type="email"
                       className="form-control"
                       id="emailL"
-                      placeholder="emailL"
+                      placeholder="Email"
                       ref={emailL}
                     />
                   </div>
@@ -44,7 +44,7 @@ export default function SignIn() {
                       type="password"
                       className="form-control"
                       id="passwordL"
-                      placeholder="PasswordL"
+                      placeholder="Password"
                       ref={passwordL}
                     />
                   </div>

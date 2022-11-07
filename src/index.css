@@ -1154,10 +1154,14 @@ a:hover {
   color: #17C3B2;
   text-decoration: none;
 }
+
+
+
 .detail-footer{
   color: #f5f5f5;
 }
-.card {
+.card1 {
+
   border: 0.4rem solid #f8f9fa;
   top: 10%;
   height: 60%;
@@ -1168,7 +1172,7 @@ a:hover {
   padding: 17px 15px;
   margin-bottom: 1.3rem;
   border-radius: 10px;
-  border: 1.5px solid #da5767;
+  border: 1.5px solid #17C3B2
 }
 
 .btn {
@@ -1185,8 +1189,8 @@ a:hover {
 
 .btn {
   padding: 8px;
-  background: #da5767;
-  border: 2px solid #da5767;
+  background: white;
+  /* border: 2px solid #da5767; */
 }
 .btn-primary:hover {
   background-color: #df8c96;
@@ -1467,5 +1471,14 @@ button {
  
  button:hover {
   color: #111;
+ }
+
+ .formSing{
+  min-height: 50vh;
+ }
+
+ .btnSign{
+  background-color: #17C3B2;
+  padding: 15px;
  }
 
