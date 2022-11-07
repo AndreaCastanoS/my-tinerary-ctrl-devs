@@ -26,13 +26,13 @@ export default function SignUp() {
   }
 
   return (
-    <div className="w-100 h-100 flex justify-center column align-center">
+    <div className="formSi">
       <div className="container">
         <div>
           <div>
-            <div className="card ">
+            <div className="card1">
               <h1 className="text-center p-1">Sign Up</h1>
-              <div>
+              <div className="p-2">
                 <form onSubmit={submitInfo} ref={form}>
                   <div>
                     <input
@@ -72,7 +72,7 @@ export default function SignUp() {
                   <div></div>
                   <div className="flex justify-around  p-1 wrap g-25">
                     <NavLink to="/signin" className="text-decoration list-none">
-                      <h3>Login</h3>
+                      <button className="btn">SignIn</button>
                     </NavLink>
                     <button className="btn">Create Account</button>
                     <div>
