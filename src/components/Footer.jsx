@@ -8,7 +8,7 @@ export default function Footer() {
         <footer  className='flex column p-2 footer '>
             <div className='flex between'>
          <div className='flex column g-5'>
-            <h4>About Us</h4>
+            <h4 className='detail-footer'>About Us</h4>
             <a href="https://www.linkedin.com/in/andrea-casta%C3%B1o-222144231/" className='text-decoration'>Andrea Castaño</a> 
             <a href="https://www.linkedin.com/in/antonella-tortoza-771376198" className='text-decoration'>Antonella Tortoza</a> 
       
@@ -32,7 +32,7 @@ export default function Footer() {
         </ul>
         </div>
         <div className='text-center'>
-            <h4>My Tinerary Project 2022 - All rights reserved</h4>  
+            <h4 className='detail-footer'>My Tinerary Project 2022 - All rights reserved</h4>  
         </div>
 </footer>
     
