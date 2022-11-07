@@ -5,8 +5,11 @@ import { Route, Routes } from "react-router-dom";
 import SignUp from "./pages/SignUp";
 import Cities from "./pages/Cities";
 import SignIn from "./pages/SignIn";
+import Hotels from "./pages/Hotels";
+import NewHotel from "./pages/NewHotel";
 import NotFound from "./pages/NotFound";
 import CitiesDetails from "./pages/CitiesDetails";
+
 
 
 function App() {
@@ -17,6 +20,9 @@ function App() {
         <Route path="/index" element={<Home />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/cities" element={<Cities />} />
+        <Route path="/hotels" element={<Hotels />} />
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/newHotel" element={<NewHotel />} />
         <Route path="/cities/:id" element={<CitiesDetails />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/signin" element={<SignIn/>} />
