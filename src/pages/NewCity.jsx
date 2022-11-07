@@ -22,55 +22,64 @@ export default function NewCity() {
 
   return (
     <>
-      <div className="tittleNew flex p-1">
-        <h2 className="titulonewCity">Create New City</h2>
-      </div>
-
-      <div className="new">
-        <form className="new" onSubmit={newCity} ref={information}>
-          <label className="label">
-            Name of City
-            <input
+     
+      <div className="w-100 h-100 flex justify-center column align-center p-5">
+      <div className="p-1 div-new">
+        <div>
+          <div className="flex column justify-center">
+            <div className="card1 text-center">
+              <h1 className="text-center p-1">NEW CITY</h1>
+              <div className="p-2">
+               <form className="new column" onSubmit={newCity} ref={information}>
+                  <div >
+                  <input
+                  placeholder="Name of city"
               type="text"
               name="nameNEwCity"
-              className="input"
+              className="form-control"
               ref={nameNEwCity}
             ></input>
-          </label>
-
-          <label className="label">
-            Choose a city photos
-            <input
-              className="input"
+                  </div>
+                  <div>
+                  <input
+                  placeholder="photo"
+              className="      form-control"
               type="file"
               name="photoNewCity"
               accept="image/png, image/jpeg"
               multiple
               ref={photoNewCity}
             />
-          </label>
-
-          <label className="label">
-            zone
-            <input
-              className="input"
+                  </div>
+                  <div >
+                  <input
+                  placeholder="Zone of the city"
+              className=" form-control"
               type="text"
               name="zone"
               ref={zoneCity}
             ></input>
-          </label>
-          <label className="label">
-            Population
-            <input
-              className="input"
+                  </div>
+                  <div >
+                  <input
+                  placeholder="Population"
+              className="form-control"
               type="text"
               name="descrpition"
               ref={populationCity}
             ></input>
-          </label>
-          <button className="btn-newCity">CREATE A NEW CITY</button>
-        </form>
+                  </div>
+                  <div className="flex justify-around  p-1 wrap g-25">
+                    <button className="btn">CREATE A NEW CITY</button>
+                    
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+    </div>
     </>
   );
 }
