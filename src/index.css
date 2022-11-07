@@ -1201,13 +1201,13 @@ a:hover {
   background-color: rgb(7, 4, 4);
 }
 ::-webkit-scrollbar-thumb {
-  background: rgb(153, 13, 235);
+  background:#17C3B2;
   border: 4px solid rgb(0, 0, 0);
   border-radius: 12px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgb(166, 12, 212);
+  background: #17C3B2;
 }
 
 .buttonGoogle {
@@ -1309,96 +1309,9 @@ a {
   padding-bottom: 100px;
 }
 
-button {
-  position: relative;
-  padding: 20px;
-  outline: none;
-  border: 1px solid #303030;
-  background: #212121;
-  color: #ae00ff;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-size: 12px;
-  overflow: hidden;
-  transition: 0.2s;
-  border-radius: 20px;
-  cursor: pointer;
-  font-weight: bold;
-}
 
-button:hover {
-  box-shadow: 0 0 10px #ae00ff, 0 0 25px #001eff, 0 0 50px #ae00ff;
-  transition-delay: 0.1s;
-}
+ .bt-nav-c {
 
-button span {
-  position: absolute;
-}
-
-button span:nth-child(1) {
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, #ae00ff);
-}
-
-button:hover span:nth-child(1) {
-  left: 100%;
-  transition: 0.7s;
-}
-
-button span:nth-child(3) {
-  bottom: 0;
-  right: -100%;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, #001eff);
-}
-
-button:hover span:nth-child(3) {
-  right: 100%;
-  transition: 0.7s;
-  transition-delay: 0.35s;
-}
-
-button span:nth-child(2) {
-  top: -100%;
-  right: 0;
-  width: 2px;
-  height: 100%;
-  background: linear-gradient(180deg, transparent, #ae00ff);
-}
-
-button:hover span:nth-child(2) {
-  top: 100%;
-  transition: 0.7s;
-  transition-delay: 0.17s;
-}
-
-button span:nth-child(4) {
-  bottom: -100%;
-  left: 0;
-  width: 2px;
-  height: 20%;
-  background: linear-gradient(360deg, transparent, #001eff);
-}
-
-button:hover span:nth-child(4) {
-  bottom: 100%;
-  transition: 0.7s;
-  transition-delay: 0.52s;
-}
-
-button:active {
-  background: #ae00af;
-  background: linear-gradient(to top right, #ae00af, #001eff);
-  color: #bfbfbf;
-  box-shadow: 0 0 8px #ae00ff, 0 0 8px #001eff, 0 0 8px #ae00ff;
-  transition: 0.1s;
-}
-
-.bt-nav-c {
   text-align: end;
   padding: 10px;
   background-color: transparent;
@@ -1411,6 +1324,7 @@ button:active {
 .bt-nav-c:hover {
   text-decoration: underline;
 }
+
 
 .new {
   display: flex;
@@ -1457,3 +1371,94 @@ button:active {
   align-items: center;
   padding: 10px;
 }
+
+
+.card2 {
+  margin: 10px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  width: 300px;
+  height: 400px;
+  padding-bottom: 40px;
+}
+.card-header img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+ 
+}
+
+.card-body p {
+  font-size: 13px;
+
+}
+
+.container-card img{
+  object-fit: cover;
+  width: 100%;
+  height: 320px;
+}
+.container-card{
+  width: 80%;
+  padding: -5px;
+}
+.h1rojcard-title{
+  padding-top: 1rem;
+  font-weight: 700;
+  color: #dad8d8;
+  font-size: 3rem;
+}
+.text-deco{
+  width: 7rem;
+  height: 0.5rem;
+  background-color: #17C3B2;
+ margin-bottom: 10px;
+}
+.projcard-subtitle {
+  color: #7e7d7d;
+}
+button {
+  padding: 0.8em 1.8em;
+  border: 2px solid #17C3B2;
+  position: relative;
+  overflow: hidden;
+  background-color: transparent;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 16px;
+  transition: .3s;
+  z-index: 1;
+  font-family: inherit;
+  color: #17C3B2;
+ }
+ 
+ button::before {
+  content: '';
+  width: 0;
+  height: 300%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  background: #17C3B2;
+  transition: .5s ease;
+  display: block;
+  z-index: -1;
+ }
+ 
+ button:hover::before {
+  width: 105%;
+ }
+ 
+ button:hover {
+  color: #111;
+ }
+
