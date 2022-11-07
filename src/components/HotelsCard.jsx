@@ -1,23 +1,25 @@
 import React from "react";
 import { Link as NavLink } from "react-router-dom";
-export default function HCard(props) {
+
+export default function HotelsCard(props) {
   let { img } = props;
   let { name } = props;
+  let { id } = props;
 
   return (
-    <NavLink to="/detailscities">
-    <div className="hero-section">
-      <div>
-        <div class="card">
-          <div class="card__background">
-            <img className="content" src={img} alt={name}></img>
-          </div>
-          <div class="card__content">
-            <p class="card__category">{name}</p>
+    <NavLink to={`/hotels/${id}`}>
+      <div className="hero-section">
+        <div>
+          <div class="card">
+            <div class="card__background">
+              <img className="content" src={img} alt={name}></img>
+            </div>
+            <div class="card__content">
+              <p class="card__category">{name}</p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
     </NavLink>
   );
 }
