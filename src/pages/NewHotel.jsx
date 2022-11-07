@@ -23,56 +23,74 @@ export default function NewHotel() {
   }
 
   return (
-    <>
-      <div className="tittleNew flex p-1">
-        <h2 className="tituloNewHotel">
-          Create New Hotel
-        </h2>
+
+     
+    <div className="w-100 h-100 flex justify-center column align-center p-5">
+    <div className="p-1 div-new">
+      <div>
+        <div className="flex column justify-center">
+          <div className="card1 text-center">
+            <h1 className="text-center p-1">NEW HOTEL</h1>
+            <div className="p-2">
+             <form className="new column" onSubmit={newHotel} ref={information}>
+                <div >
+                <input
+                placeholder="Name of hotel"
+            type="text"
+            name="nameNewHotel"
+            className="form-control"
+            ref={nameNewHotel}
+          ></input>
+                </div>
+                <div>
+                <input
+                placeholder="photo"
+            className="      form-control"
+            type="file"
+            name="photoNewCity"
+            accept="image/png, image/jpeg"
+            multiple
+            ref={photoNewHotel}
+          />
+                </div>
+                <div >
+                <input
+                placeholder="Capacity"
+            className=" form-control"
+            type="text"
+            name="capacity"
+            ref={capacityNewHotel}
+          ></input>
+                </div>
+                <div >
+                <input
+                placeholder="City"
+            className=" form-control"
+            type="text"
+            name="city"
+            ref={city}
+          ></input>
+          </div>
+                <div >
+                <input
+                placeholder="Description"
+            className="form-control"
+            type="text"
+            name="descripition"
+            ref={descriptionNewHotel}
+          ></input>
+                </div>
+                <div className="flex justify-around  p-1 wrap g-25">
+                  <button className="btn">CREATE A NEW HOTEL</button>
+                  
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
-
-      <div className="new">
-        <form
-          className="new"
-          onSubmit={newHotel}
-          ref={information}
-        >
-          <label className="label">
-            Name of Hotel
-            <input type="text" name="nameNewHotel" className="input" ref={nameNewHotel}></input>
-          </label>
-
-          <label className="label">
-            Choose a hotel photos
-            <input
-            className="input"
-              type="file"
-              name="photoNewHotel"
-              accept="image/png, image/jpeg"
-              multiple
-              ref={photoNewHotel}
-            />
-          </label >
-
-          <label className="label">
-            Capacity
-            <input className="input" type="text" name="capacity" ref={capacityNewHotel}></input>
-          </label>
-          <label className="label">
-            Description
-            <input
-            className="input"
-              type="text"
-              name="descrpition"
-              ref={descriptionNewHotel}
-            ></input>
-          </label >
-          <label className="label">
-            Ciudad
-            <input  type="text" name="ciudad" ref={city}></input>
-          </label>
-          <button className="btn-newhotel">CREATE A NEW HOTEL</button>
-        </form>
-      </div>
-    </>
-  );
+    </div>
+  </div>
+  )
+   
 }
