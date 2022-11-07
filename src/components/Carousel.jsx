@@ -22,6 +22,7 @@ export default function Carousel() {
     );
     setId(idInterval);
     return clearInterval(id);
+    // eslint-disable-next-line
   }, [number]);
 
     useEffect(() => {
@@ -60,6 +61,7 @@ export default function Carousel() {
         return Math.floor(Math.random() * number)
     }
 
+    // eslint-disable-next-line
     setDetailActivities = activities.map(activity => {
         if (detailsActivities.length < 4 && !detailsActivities.includes(activity.photo)) {
             detailsActivities.push(activity.photo[aleatory(activity.photo.length - 1)])
@@ -68,6 +70,7 @@ export default function Carousel() {
     })
 
 
+    // eslint-disable-next-line
     setDetailHotels = hotels.map(hotel => {
         if (detailsHotels.length < 4 && !detailsHotels.includes(hotel.photo)) {
             detailsHotels.push(hotel.photo[aleatory(hotel.photo.length - 1)])
@@ -76,6 +79,8 @@ export default function Carousel() {
     })
 
     console.log(detailsHotels);
+    
+    // eslint-disable-next-line
     setDetailCities = cities.map(() => {
         let citiesAleatory = aleatory(cities.length - 1)
         if (detailsCities.length < 4 && !detailsCities.includes(cities.photo)) {
@@ -85,6 +90,8 @@ export default function Carousel() {
     })
 
     if (details.length < 4) {
+        
+    // eslint-disable-next-line
         setDetails = details.push(detailsActivities, detailsCities, detailsHotels)
     }
     console.log(details);
@@ -105,7 +112,7 @@ export default function Carousel() {
                         {
                             details[number].map((photo) => {
                                 return (
-                                    <img className='carousel'  src={photo} alt="photo" />
+                                    <img className='carousel'  src={photo} alt="photocity" />
                                 )
                             })
                         }

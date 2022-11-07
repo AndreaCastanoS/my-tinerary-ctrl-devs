@@ -983,7 +983,7 @@
 }
 
 .color-button {
-  color: #ff7987;
+  color: #17C3B2;
 }
 .border-transpartent {
   border-color: transparent;
@@ -1018,13 +1018,15 @@
   font-size: 75px;
   text-shadow: 5px 5px 3px rgb(0 0 0 / 71%);
   padding: 9px;
-  color: #d6bbaf;
+  color: #17C3B2;
 }
 .shadow1 {
   font-family: "Zilla Slab Highlight",cursive;
     color: #f5f5f5;
     text-align: center;
+    text-shadow: 5px 5px 3px rgb(0 0 0 / 71%);
     font-size: 4vmin;
+    padding: 20px;
 }
 .vh-80 {
   height: 80vh;
@@ -1053,7 +1055,7 @@
 
 .tittleCar {
   margin: 15px;
-  color: #d6bbaf;
+  color: #cac7c7;
   padding: 10px;
 }
 
@@ -1070,6 +1072,7 @@
     width: 80px;
     border-radius: 10px;
     border-color: #d6bbaf;
+    background-color:  #f5f5f5;;
     font-size: 12px;
     font-weight: 550;
   }
@@ -1106,15 +1109,16 @@
 }
 
 .buttonCar {
-  padding: 10px;
+  padding: 15px;
   font-size: 20px;
-  background-color: #d6bbaf;
-  border-radius: 12px;
+  color: white;
+  background-color: #17C3B2;
+  border-radius: 23px;
   font-weight: bold;
 }
 
 .footer {
-  background-color: #000000;
+  background-image: url("../public/img/footerbanner.jpg");
 }
 
 .g-5 {
@@ -1147,10 +1151,17 @@ a {
   color: #333;
 }
 a:hover {
-  color: #da5767;
+  color: #17C3B2;
   text-decoration: none;
 }
+
+
+
+.detail-footer{
+  color: #f5f5f5;
+}
 .card1 {
+
   border: 0.4rem solid #f8f9fa;
   top: 10%;
   height: 60%;
@@ -1430,7 +1441,7 @@ button {
   border: 2px solid #17C3B2;
   position: relative;
   overflow: hidden;
-  background-color: transparent;
+  background-color: whitesmoke;
   text-align: center;
   text-transform: uppercase;
   font-size: 16px;

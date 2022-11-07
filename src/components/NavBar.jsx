@@ -50,8 +50,8 @@ export default function NavBar() {
                 <h3 className="bt-nav-c">Sign Up</h3>
               </NavLink>
 
-              <NavLink to="/login" className="text-decoration">
-                <h3 className="bt-nav-c">Log In</h3>
+              <NavLink to="/signin" className="text-decoration">
+                <h3 className="bt-nav-c">Sign In</h3>
               </NavLink>
             </div>
           </>
