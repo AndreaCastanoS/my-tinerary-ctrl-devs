@@ -5,7 +5,9 @@ import { Route, Routes } from "react-router-dom";
 import SignUp from "./pages/SignUp";
 import Cities from "./pages/Cities";
 import SignIn from "./pages/SignIn";
-/* import NotFound from "./pages/NotFound"; */
+import NotFound from "./pages/NotFound";
+import CitiesDetails from "./pages/CitiesDetails";
+
 
 function App() {
   return (
@@ -15,7 +17,8 @@ function App() {
         <Route path="/index" element={<Home />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/cities" element={<Cities />} />
-        {/* <Route path="/detailscities" element={<Details />} /> */}
+        <Route path="/cities/:id" element={<CitiesDetails />} />
+        <Route path="*" element={<NotFound />} />
         <Route path="/signin" element={<SignIn/>} />
        </Routes>
     </Main>
