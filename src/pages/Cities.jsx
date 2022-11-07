@@ -63,7 +63,7 @@ export default function Cities() {
               : item.name.toLowerCase().includes(search);
           })
           .map((item) => {
-            return <CityCard img={item.photo} name={item.name}></CityCard>;
+            return <CityCard id={item.id} key={item.id} img={item.photo} name={item.name}></CityCard>;
           })}
       </div>
     </>
