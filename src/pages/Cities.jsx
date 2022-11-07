@@ -5,7 +5,11 @@ import CityCard from "../components/CityCard";
 export default function Cities() {
   let [cities, setCities] = useState([]);
   let [search, setSearch] = useState("");
-  let [checked, setChecked] = useState([]);
+//   let [checkbox, setCheckbox] = useState([]);
+  let categoriesZones = cities.map((event) => event.zone);
+  console.log(categoriesZones);
+  let categoriesZonesFilter = [...new Set(categoriesZones)];
+  console.log(categoriesZonesFilter);
 
   console.log(search);
 
@@ -14,44 +18,37 @@ export default function Cities() {
       .then((res) => res.json())
       .then((res) => setCities(res));
   }, []);
-  console.log(cities);
-
-  let checks = (e) => {
-    let auxArray = [...checked];
-    if (e.target.checked) {
-      auxArray.push(e.target.value);
-    } else {
-      auxArray = auxArray.filter((el) => el !== e.target.value);
-    }
-    setChecked(auxArray);
-    setChecked = cities.filter((element) => auxArray.includes(element.zone));
-
-    console.log(setChecked);
-  };
-
+ 
   return (
     <>
-      <div className="p-2">
-        <div className="flex column g-25">
-          <input
-            id="js-search"
-            className="form-control me-2"
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
-            onKeyUp={(e) => setSearch(e.target.value)}
-          />
-        </div>
-        <div >
-         
-          {Array.from(new Set(cities.map((city) => city.zone))).map((el) => {
-            return (
-              <label  key={el}>
-                <input onClick={checks} type="checkbox" value={el} />
-                {el}
-              </label>
-            );
-          })}
+      <div className="flex column g-25">
+        <input
+          id="js-search"
+          className="form-control me-2"
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+          onKeyUp={(e) => setSearch(e.target.value)}
+        />
+        <div>
+          <div className="flex g-25 wrap">
+            {categoriesZonesFilter.map((category) => {
+              return (
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value={category}
+                    id="inlineCheckbox1"
+                    // onChange={(e) => setCheckbox(e.target.value)}
+                  />
+                  <label class="form-check-label" for="inlineCheckbox1">
+                    {category}
+                  </label>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
 
