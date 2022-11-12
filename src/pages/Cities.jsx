@@ -1,34 +1,61 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import CityCard from "../components/CityCard";
+import axios from "axios";
+import { useRef } from "react";
+
 
 export default function Cities() {
   let [cities, setCities] = useState([]);
-  let [search, setSearch] = useState("");
-//   let [checkbox, setCheckbox] = useState([]);
-  let categoriesZones = cities.map((event) => event.zone);
-  console.log(categoriesZones);
-  let categoriesZonesFilter = [...new Set(categoriesZones)];
-  console.log(categoriesZonesFilter);
+  let [citiesFilter, setCitiesFilter] = useState([]);
+  let [checkbox, setCheckbox] = useState([]);
+  let searchId = useRef()
 
-  console.log(search);
+  
+  let categoriesZones = cities.map((event) => event.zone);
+  let categoriesZonesFilter = [...new Set(categoriesZones)];
 
   useEffect(() => {
-    fetch("./cities.json")
-      .then((res) => res.json())
-      .then((res) => setCities(res));
+    axios
+      .get("http://localhost:8000/api/cities")
+      .then((res) => setCities(res.data.response));
+
+    axios
+      .get("http://localhost:8000/api/cities")
+      .then((res) => setCitiesFilter(res.data.response));
   }, []);
- 
+
+  let filter = (evento) => {
+    console.log(evento);
+    let checks = checksFilter(evento);
+    let urlChecks = checks.map((check) => `zone=${check}`).join("&");
+
+    axios.get(`http://localhost:8000/api/cities?${urlChecks}&name=${searchId.current.value}`)
+      .then((res) => setCitiesFilter(res.data.response));
+  };
+
+  function checksFilter(event) {
+    let arrayCheck = [];
+    if (event.target.checked) {
+      arrayCheck = [...checkbox, event.target.value];
+    } else {
+      arrayCheck = checkbox.filter((e) => e !== event.target.value);
+    }
+    setCheckbox(arrayCheck);
+    return arrayCheck;
+  }
+
   return (
     <>
-      <div className="flex column g-25">
+      <div className="flex colnpm umn g-25">
         <input
           id="js-search"
           className="form-control me-2"
           type="search"
           placeholder="Search"
           aria-label="Search"
-          onKeyUp={(e) => setSearch(e.target.value)}
+          onKeyUp={filter}
+          ref={searchId}
         />
         <div>
           <div className="flex g-25 wrap">
@@ -39,10 +66,10 @@ export default function Cities() {
                     class="form-check-input"
                     type="checkbox"
                     value={category}
-                    id="inlineCheckbox1"
-                    // onChange={(e) => setCheckbox(e.target.value)}
+                    id={category}
+                    onChange={filter}
                   />
-                  <label class="form-check-label" for="inlineCheckbox1">
+                  <label class="form-check-label" for={category}>
                     {category}
                   </label>
                 </div>
@@ -51,17 +78,17 @@ export default function Cities() {
           </div>
         </div>
       </div>
-
       <div className="flex wrap w-100 justify-center align-center g-25 pb-3">
-        {cities
-          .filter((item) => {
-            return search.toLowerCase === ""
-              ? item
-              : item.name.toLowerCase().includes(search);
-          })
-          .map((item) => {
-            return <CityCard id={item.id} key={item.id} img={item.photo} name={item.name}></CityCard>;
-          })}
+        {citiesFilter.map((item) => {
+          return (
+            <CityCard
+              id={item.id}
+              key={item.id}
+              img={item.photo}
+              name={item.name}
+            ></CityCard>
+          );
+        })}
       </div>
     </>
   );
