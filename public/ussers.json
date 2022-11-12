@@ -1,0 +1,46 @@
+[
+  {
+    "id": "user1",
+    "name": "Ignacio",
+    "lastName": "Borraz",
+    "age": 32,
+    "email": "ignacioborraz@hotmail.com",
+    "password": "Hola1234",
+    "code": "hola",
+    "verified": true,
+    "logged": true
+  },
+  {
+    "id": "user2",
+    "name": "Antonella",
+    "lastName": "Tortoza",
+    "age": 20,
+    "email": "antonellatortoza@gmail.com",
+    "password": "Hola1234",
+    "code": "hola",
+    "verified": true,
+    "logged": true
+  },
+  {
+    "id": "user3",
+    "name": "Andrea",
+    "lastName": "Castaño",
+    "age": 25,
+    "email": "andreacastsalazar@gmail.com",
+    "password": "Hola1234",
+    "code": "hola",
+    "verified": true,
+    "logged": true
+  },
+  {
+    "id": "user4",
+    "name": "Alejandro",
+    "lastName": "Sanchez",
+    "age": 27,
+    "email": "alejandrosanchez@gmail.com",
+    "password": "Hola1234",
+    "code": "hola",
+    "verified": true,
+    "logged": true
+  }
+]
