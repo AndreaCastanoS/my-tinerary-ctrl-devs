@@ -3,41 +3,35 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Events from "../components/Events";
 import DetailsHotel from "./DetailsHotel";
+import axios from "axios";
 
 export default function HotelDetails() {
   let [hotels, setHotels] = useState([]);
   let { id } = useParams();
-  
-
 
   useEffect(() => {
-    fetch("/hotels.json")
-      .then((res) => res.json())
-      .then((res) => setHotels(res.find((e) => e.id === id)));
-
+    axios
+      .get(`http://localhost:8000/api/hotels/${id}`)
+      .then((res) => setHotels(res.data.response[0]))
+      
+      
 
     // eslint-disable-next-line
   }, []);
 
-
   console.log(id);
   return (
     <>
-    
-    <DetailsHotel
+      <DetailsHotel
         img={hotels.photo}
         name={hotels.name}
-        zone={hotels.capacity}
-       
+        capacity={hotels.capacity}
+        id={hotels._id}
       />
       <div className="p-2 flex column justify-center align-center">
-      <Events className="p-2" id={hotels.id}></Events>
-     <button>View Comments</button>
+        <Events className="p-2" idC={id}></Events>
+        <button>View Comments</button>
       </div>
-    
     </>
-     
- 
   );
 }
-

@@ -3,6 +3,7 @@ export default function DetailsHotel(props) {
   let { img } = props;
   let { name } = props;
   let { capacity } = props;
+  
 
   return (
     <div className=" w-100 flex column justify-center align-center p-2">
