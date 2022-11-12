@@ -3,24 +3,20 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Itinerary from "../components/Itinerary";
 import Details from "./Details";
+import axios from "axios";
 
 export default function CitiesDetails() {
   let [cities, setCities] = useState([]);
   let { id } = useParams();
   
-
+console.log(cities);
 
   useEffect(() => {
-    fetch("/cities.json")
-      .then((res) => res.json())
-      .then((res) => setCities(res.find((e) => e.id === id)));
-
-
+    axios.get(`http://localhost:8000/api/cities/${id}`)
+      .then((res) => setCities(res.data.response));
     // eslint-disable-next-line
   }, []);
 
-
-  console.log(id);
   return (
     <>
     <Details
@@ -30,7 +26,7 @@ export default function CitiesDetails() {
         population={cities.population}
       />
       <div className="p-2 flex column justify-center align-center">
-      <Itinerary className="p-2" id={cities.id}></Itinerary>
+      <Itinerary className="p-2" id={cities._id}></Itinerary>
      <button>View Comments</button>
       </div>
     
