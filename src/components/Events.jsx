@@ -1,7 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import CardShow from "./CardShow";
-import { useParams } from "react-router-dom";
 import axios from "axios";
 
 export default function Events(props) {
