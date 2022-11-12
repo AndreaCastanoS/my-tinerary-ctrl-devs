@@ -10,7 +10,6 @@ export default function NewHotel() {
   let nameNewHotel = useRef();
   let photoNewHotel = useRef();
   let capacityNewHotel = useRef();
-  let descriptionNewHotel = useRef();
   let city = useRef();
   
   function newHotel() {
