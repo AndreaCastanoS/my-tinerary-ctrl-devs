@@ -10,7 +10,7 @@ export default function Cities() {
   let [citiesFilter, setCitiesFilter] = useState([]);
   let [checkbox, setCheckbox] = useState([]);
   let searchId = useRef()
-
+console.log(citiesFilter._id);
   
   let categoriesZones = cities.map((event) => event.zone);
   let categoriesZonesFilter = [...new Set(categoriesZones)];
@@ -82,8 +82,8 @@ export default function Cities() {
         {citiesFilter.map((item) => {
           return (
             <CityCard
-              id={item.id}
-              key={item.id}
+              id={item._id}
+              key={item._id}
               img={item.photo}
               name={item.name}
             ></CityCard>
