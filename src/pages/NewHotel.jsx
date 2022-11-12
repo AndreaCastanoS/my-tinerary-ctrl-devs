@@ -1,25 +1,31 @@
-import React, { useRef } from "react";
+import React, { useRef, } from "react";
+import axios from "axios";
+
 
 export default function NewHotel() {
+  
+  
+  
   let information = useRef();
   let nameNewHotel = useRef();
   let photoNewHotel = useRef();
   let capacityNewHotel = useRef();
   let descriptionNewHotel = useRef();
   let city = useRef();
-
+  
   function newHotel() {
     let newHotel = {
-      id: nameNewHotel.current.value,
       name: nameNewHotel.current.value,
       photo: photoNewHotel.current.value,
       capacity: capacityNewHotel.current.value,
-      description: descriptionNewHotel.current.value,
-      adminId: "admn0",
+      cityId: "636d975f45f1e59ed7a377b7" ,
+      userId: "636d82abcedcaf6f80f42e70",
     };
-
-    localStorage.setItem("newHotel", JSON.stringify(newHotel));
+    
+    axios.post(`http://localhost:8000/api/hotels`, newHotel)
+   
     information.current.reset();
+    alert("The hotel was successfully created")
   }
 
   return (
@@ -40,17 +46,19 @@ export default function NewHotel() {
             name="nameNewHotel"
             className="form-control"
             ref={nameNewHotel}
+            required
           ></input>
                 </div>
                 <div>
                 <input
                 placeholder="photo"
             className="      form-control"
-            type="file"
+            type="text"
             name="photoNewCity"
             accept="image/png, image/jpeg"
             multiple
             ref={photoNewHotel}
+            required
           />
                 </div>
                 <div >
@@ -60,6 +68,7 @@ export default function NewHotel() {
             type="text"
             name="capacity"
             ref={capacityNewHotel}
+            required
           ></input>
                 </div>
                 <div >
@@ -69,17 +78,9 @@ export default function NewHotel() {
             type="text"
             name="city"
             ref={city}
+            required
           ></input>
           </div>
-                <div >
-                <input
-                placeholder="Description"
-            className="form-control"
-            type="text"
-            name="descripition"
-            ref={descriptionNewHotel}
-          ></input>
-                </div>
                 <div className="flex justify-around  p-1 wrap g-25">
                   <button className="btn">CREATE A NEW HOTEL</button>
                   
