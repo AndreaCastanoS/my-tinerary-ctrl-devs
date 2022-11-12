@@ -1,59 +1,67 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import HotelsCard from "../components/HotelsCard";
+import axios from "axios";
+import { useRef } from "react";
 
 export default function Hotels() {
   let [hotels, setHotels] = useState([]);
-  let [search, setSearch] = useState("");
-  
-  useEffect(() => {
-    fetch("./hotels.json")
-      .then((res) => res.json())
-      .then((res) => setHotels(res));
-  }, []);
-  console.log(hotels);
 
-  let select =(e)=>{
-    // eslint-disable-next-line 
-    let valor = e.target.value
-    console.log(valor)
-}
-   
-  
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8000/api/hotels`)
+      .then((res) => setHotels(res.data.response));
+  }, []);
+
+  const search = useRef();
+  const select = useRef();
+
+  let filter = () => {
+    if (select.current.value !== "asc" && select.current.value !== "desc") {
+      axios
+        .get(`http://localhost:8000/api/hotels?name=${search.current.value}`)
+        .then((res) => setHotels(res.data.response));
+    } else {
+      axios
+        .get(
+          `http://localhost:8000/api/hotels?order=${select.current.value}&name=${search.current.value}`
+        )
+        .then((res) => setHotels(res.data.response));
+    }
+  };
 
   return (
-    <>   
-       <div className="p-2 flex column justify-center" >
-      <div >
-        <input
-          id="js-search"
-          className="form-control me-2"
-          type="search"
-          placeholder="Search"
-          aria-label="Search"
-          onKeyUp={(e) => setSearch(e.target.value)}
-        />
-      </div>
+    <>
+      <div className="p-2 flex column justify-center">
+        <div>
+          <input
+            ref={search}
+            type="search"
+            className="search-input"
+            placeholder="Type Hotel Name"
+            onChange={filter}
+          />
+        </div>
 
-      <select onChange={select}>
-                <option>Select</option>
-                <option value='Ascend' >Ascend</option>
-                <option value='Descend'>Descend</option>
-            </select>
-            </div>
+        <select onChange={filter} ref={select}>
+          <option>Select</option>
+          <option value="asc">Ascend</option>
+          <option value="desc">Descend</option>
+        </select>
+      </div>
 
       <div className="flex wrap w-100 justify-center align-center g-25 pb-3">
-        {hotels
-          .filter((item) => {
-            return search.toLowerCase === ""
-              ? item
-              : item.name.toLowerCase().includes(search);
-          })
-          .map((item) => {
-            return <HotelsCard id={item.id} key={item.id} img={item.photo} name={item.name}></HotelsCard>;
-          })}
+        {hotels.map((item) => {
+          return (
+            <HotelsCard
+              id={item.id}
+              key={item.id}
+              img={item.photo}
+              name={item.name}
+            ></HotelsCard>
+          );
+        })}
       </div>
-      
     </>
   );
 }
