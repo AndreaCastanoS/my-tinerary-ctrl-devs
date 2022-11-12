@@ -1,21 +1,20 @@
-import React, { useEffect, useState } from 'react'
-import Btn from './Btn'
+import React, { useEffect, useState } from "react";
+import Btn from "./Btn";
 
 export default function Carousel() {
-    let [number, setNumber] = useState(1)
-    let [cities, setCities] = useState([])
-    let [hotels, setHotels] = useState([])
-    let [activities, setActivities] = useState([])
-    let [detailsCities, setDetailCities] = useState([])
-    let [detailsHotels, setDetailHotels] = useState([])
-    let [detailsActivities, setDetailActivities] = useState([])
-    let [details, setDetails] = useState([])
-    let [id, setId] = useState(0);
+  let [number, setNumber] = useState(1);
+  let [cities, setCities] = useState([]);
+  let [hotels, setHotels] = useState([]);
+  let [activities, setActivities] = useState([]);
+  let [detailsCities, setDetailCities] = useState([]);
+  let [detailsHotels, setDetailHotels] = useState([]);
+  let [detailsActivities, setDetailActivities] = useState([]);
+  let [details, setDetails] = useState([]);
+  let [id, setId] = useState(0);
   useEffect(() => {
     let idInterval = setInterval(
       () => {
-          next();
-      
+        next();
       },
 
       5000
@@ -40,8 +39,8 @@ export default function Carousel() {
     },
         [])
 
-    let prev = () => {
-        if (number !== 0) {
+  let prev = () => {
+    if (number !== 0) {
             setNumber(--number)
         } else {
             setNumber(details.length - 1)
@@ -58,10 +57,10 @@ export default function Carousel() {
     }
 
     function aleatory(number) {
-        return Math.floor(Math.random() * number)
-    }
+    return Math.floor(Math.random() * number);
+  }
 
-    // eslint-disable-next-line
+  // eslint-disable-next-line
     setDetailActivities = activities.map(activity => {
         if (detailsActivities.length < 4 && !detailsActivities.includes(activity.photo)) {
             detailsActivities.push(activity.photo[aleatory(activity.photo.length - 1)])
@@ -71,8 +70,8 @@ export default function Carousel() {
 
 
     // eslint-disable-next-line
-    setDetailHotels = hotels.map(hotel => {
-        if (detailsHotels.length < 4 && !detailsHotels.includes(hotel.photo)) {
+  setDetailHotels = hotels.map((hotel) => {
+    if (detailsHotels.length < 4 && !detailsHotels.includes(hotel.photo)) {
             detailsHotels.push(hotel.photo[aleatory(hotel.photo.length - 1)])
         }
 
@@ -90,7 +89,6 @@ export default function Carousel() {
     })
 
     if (details.length < 4) {
-        
     // eslint-disable-next-line
         setDetails = details.push(detailsActivities, detailsCities, detailsHotels)
     }
