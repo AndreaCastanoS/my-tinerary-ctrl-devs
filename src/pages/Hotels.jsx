@@ -8,8 +8,7 @@ export default function Hotels() {
   let [hotels, setHotels] = useState([]);
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:8000/api/hotels`)
+    axios.get(`http://localhost:8000/api/hotels`)
       .then((res) => setHotels(res.data.response));
   }, []);
 
@@ -17,16 +16,18 @@ export default function Hotels() {
   const select = useRef();
 
   let filter = () => {
-    if (select.current.value !== "asc" && select.current.value !== "desc") {
+    if(select.current.value !== "asc"  && select.current.value !== "desc"){
+    axios
+      .get(
+        `http://localhost:8000/api/hotels?name=${search.current.value}`
+      )
+      .then((res) => setHotels(res.data.response));
+    }else{
       axios
-        .get(`http://localhost:8000/api/hotels?name=${search.current.value}`)
-        .then((res) => setHotels(res.data.response));
-    } else {
-      axios
-        .get(
-          `http://localhost:8000/api/hotels?order=${select.current.value}&name=${search.current.value}`
+      .get(
+        `http://localhost:8000/api/hotels?order=${select.current.value}&name=${search.current.value}`
         )
-        .then((res) => setHotels(res.data.response));
+      .then((res) => setHotels(res.data.response));
     }
   };
 
@@ -37,7 +38,7 @@ export default function Hotels() {
           <input
             ref={search}
             type="search"
-            className="search-input"
+            className="form-control me-2"
             placeholder="Type Hotel Name"
             onChange={filter}
           />
@@ -54,8 +55,8 @@ export default function Hotels() {
         {hotels.map((item) => {
           return (
             <HotelsCard
-              id={item.id}
-              key={item.id}
+              id={item._id}
+              key={item._id}
               img={item.photo}
               name={item.name}
             ></HotelsCard>
