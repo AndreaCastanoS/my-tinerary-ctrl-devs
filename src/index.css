@@ -998,8 +998,12 @@
 }
 
 .bg-img {
-  background-image: url("https://cdn.discordapp.com/attachments/1036632616520126514/1038987617712230462/fondoC.png");
+  background-image: url("https://cdn.discordapp.com/attachments/1036632616520126514/1038987551349940374/fondoF.png");
   background-size: cover;
+}
+
+.pt-1{
+  padding-top: 1em;
 }
 
 .p-absolute {
@@ -1018,13 +1022,13 @@
   font-size: 75px;
   text-shadow: 5px 5px 3px rgb(0 0 0 / 71%);
   padding: 9px;
-  color: #17C3B2;
+  color:rgb(218, 212, 212);
 }
 .shadow1 {
   font-family: "Zilla Slab Highlight",cursive;
-    color: #f5f5f5;
+    color: #f9eeee;
     text-align: center;
-    text-shadow: 5px 5px 3px rgb(0 0 0 / 71%);
+    text-shadow: 3px 3px 3px rgb(0 0 0 / 71%);
     font-size: 4vmin;
     padding: 20px;
 }
@@ -1041,6 +1045,8 @@
 }
 
 .bt-nav {
+  color: white;
+  font-size: 15px;
   padding: 10px;
   margin: 2px;
 }
@@ -1172,8 +1178,23 @@ a:hover {
   padding: 17px 15px;
   margin-bottom: 1.3rem;
   border-radius: 10px;
-  border: 1.5px solid #17C3B2
+  border: 1.5px solid #17C3B2;
+  
 }
+.form-control1 {
+  background-color: #f8f9fa;
+  width: 10rem;
+  height: 20px;
+  border-radius: 8px;
+  border: 1.5px solid #17C3B2;
+  
+}
+
+.inp {
+  width: 100%;
+}
+
+
 
 .btn {
   border-radius: 5px;
@@ -1199,8 +1220,17 @@ a:hover {
 }
 
 .form-control {
-  width: 100%;
+  width: 80%;
+  display: flex;
+  align-items: center;
 }
+
+.form-sign {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
 .justify-around {
   justify-content: space-around;
 }
@@ -1209,11 +1239,11 @@ a:hover {
 }
 ::-webkit-scrollbar-track {
   box-shadow: inset 0 0 3px rgb(0, 0, 0);
-  background-color: rgb(7, 4, 4);
+  background-color: white;
 }
 ::-webkit-scrollbar-thumb {
   background:#17C3B2;
-  border: 4px solid rgb(0, 0, 0);
+  border: 4px solid white;
   border-radius: 12px;
 }
 
@@ -1323,17 +1353,21 @@ a {
 
  .bt-nav-c {
 
-  text-align: end;
-  padding: 10px;
-  background-color: transparent;
+  text-align: center;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  opacity: .5;
   border-color: transparent;
-  font-size: 15px;
+  font-size: 14px;
   color: rgb(8, 8, 8);
-  font-weight: bold;
+  width: 5rem;
+  
 }
 
 .bt-nav-c:hover {
-  text-decoration: underline;
+
+  color:#17C3B2;
+  background-color: #e7e2e2;
 }
 
 
@@ -1345,23 +1379,18 @@ a {
 }
 
 .logo {
-  width: 50px;
-  height: 50px;
+  height: 80px;
+  width: 140px;
 }
 
-.logoN {
-  display: flex;
-  align-items: center;
-  padding: 20px;
-}
 
 .navG {
   display: flex;
   width: 100%;
-  background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;
   flex-direction: row;
   justify-content: space-between;
-  height: 4rem;
+  z-index: 20;
+  background-image: url("../public/img/footerbanner.jpg");
 }
 
 .btnN {
@@ -1473,6 +1502,42 @@ button {
   min-width: 80%;
 }
 
+.btnDespl{
+  background-color: white;
+  opacity: .8;
+  border-radius: 6px;
+}
+
 .div-new{
   min-width: 60vw;
+}
+
+.form-check input[type="checkbox"]:checked {
+  accent-color: #17C3B2;
+  border: rgba(184, 183, 255, 255) !important;
+  box-shadow: 2px 2px 0px rgb(183, 183, 183) !important;
+}
+
+.form-check input[type="checkbox"]{
+  border: rgba(184, 183, 255, 255) !important;
+  box-shadow: 2px 2px 0px rgb(183, 183, 183) !important;
+}
+
+.form-check-label{
+  margin-left: 8px;
+}
+
+.city{
+  background-color: rgb(248, 250, 250);
+  align-items: center;
+}
+
+
+.bg-form{
+  background-color: white;
+opacity: .8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }

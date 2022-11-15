@@ -39,7 +39,7 @@ export default function NewCity() {
                         placeholder="Name of city"
                         type="text"
                         name="nameNewCity"
-                        className="form-control"
+                        className="form-control form-sign"
                         ref={nameNewCity}
                         required
                       />
@@ -47,7 +47,7 @@ export default function NewCity() {
                     <div>
                       <input
                         placeholder="URL photo"
-                        className="form-control"
+                        className="form-control form-sign"
                         type="text"
                         name="photoNewCity"
                         ref={photoNewCity}
@@ -57,7 +57,7 @@ export default function NewCity() {
                     <div>
                       <input
                         placeholder="Zone of the city"
-                        className=" form-control"
+                        className=" form-control form-sign"
                         type="text"
                         name="zone"
                         ref={zoneCity}
@@ -67,7 +67,7 @@ export default function NewCity() {
                     <div>
                       <input
                         placeholder="Population"
-                        className="form-control"
+                        className="form-control form-sign"
                         type="text"
                         name="descrpition"
                         ref={populationCity}

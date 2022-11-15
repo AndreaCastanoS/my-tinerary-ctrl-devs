@@ -26,25 +26,24 @@ export default function SignUp() {
   }
 
   return (
-    <div className="formSi">
-      <div className="container">
-        <div>
-          <div>
-            <div className="card1">
+    <div className="w-100 h-100 flex justify-center column align-center p-5 bgsing">
+       <img src="./img/map.png" className="p-absolute h-90" />
+        
+            <div className="card1 bg-form">
               <h1 className="text-center p-1">Sign Up</h1>
               <div className="p-2">
-                <form onSubmit={submitInfo} ref={form}>
+                <form onSubmit={submitInfo} ref={form} >
                   <div>
                     <input
                       type="text"
-                      className="form-control"
+                      className="form-control form-sign"
                       id="name"
                       placeholder="Name"
                       ref={name}
                     />
                     <input
                       type="text"
-                      className="form-control"
+                      className="form-control form-sign"
                       id="LastName"
                       placeholder="Last Name"
                       ref={lastName}
@@ -53,7 +52,7 @@ export default function SignUp() {
                   <div>
                     <input
                       type="email"
-                      className="form-control"
+                      className="form-control form-sign"
                       id="email"
                       placeholder="Email"
                       ref={email}
@@ -63,7 +62,7 @@ export default function SignUp() {
                   <div>
                     <input
                       type="password"
-                      className="form-control"
+                      className="form-control form-sign"
                       id="password"
                       placeholder="Password"
                       ref={password}
@@ -93,9 +92,7 @@ export default function SignUp() {
                 </form>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
+          
     </div>
   );
 }

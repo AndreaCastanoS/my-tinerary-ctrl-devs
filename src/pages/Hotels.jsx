@@ -44,8 +44,8 @@ export default function Hotels() {
           />
         </div>
 
-        <select onChange={filter} ref={select}>
-          <option>Select</option>
+        <select onChange={filter} ref={select} className="form-control1">
+          <option>Select Order</option>
           <option value="asc">Ascend</option>
           <option value="desc">Descend</option>
         </select>

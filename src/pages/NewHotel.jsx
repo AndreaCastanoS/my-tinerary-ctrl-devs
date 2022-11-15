@@ -53,7 +53,7 @@ export default function NewHotel() {
                       placeholder="Name of hotel"
                       type="text"
                       name="nameNewHotel"
-                      className="form-control"
+                      className="form-control form-sign"
                       ref={nameNewHotel}
                       required
                     ></input>
@@ -61,7 +61,7 @@ export default function NewHotel() {
                   <div>
                     <input
                       placeholder="Photo 1"
-                      className="form-control"
+                      className="form-control form-sign"
                       type="text"
                       name="photo1"
                       accept="image/png, image/jpeg"
@@ -73,7 +73,7 @@ export default function NewHotel() {
                   <div>
                     <input
                       placeholder="Photo 2"
-                      className="form-control"
+                      className="form-control form-sign"
                       type="text"
                       name="photo2"
                       accept="image/png, image/jpeg"
@@ -85,7 +85,7 @@ export default function NewHotel() {
                   <div>
                     <input
                       placeholder="Photo 3"
-                      className="form-control"
+                      className="form-control form-sign"
                       type="text"
                       name="photo3"
                       accept="image/png, image/jpeg"
@@ -97,7 +97,7 @@ export default function NewHotel() {
                   <div>
                     <input
                       placeholder="Capacity"
-                      className=" form-control"
+                      className=" form-control form-sign"
                       type="text"
                       name="capacity"
                       ref={capacityNewHotel}
@@ -105,7 +105,7 @@ export default function NewHotel() {
                     ></input>
                   </div>
                   <div>
-                    <select ref={cityId} className="form-control" id= "cityId">
+                    <select ref={cityId} className="form-control form-sign" id= "cityId">
                       <option>Select the city</option>
                       {citiesSelect.map(city=>  <option key = {city._id} value = {city._id}>{city.name} </option>)}
                     </select>

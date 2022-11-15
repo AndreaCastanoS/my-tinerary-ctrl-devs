@@ -22,18 +22,17 @@ export default function SignIn() {
   }
 
   return (
-    <div className="w-100 h-100 flex justify-center column align-center p-5">
-      <div className="formSi p-5">
-        <div>
-          <div>
-            <div className="card1 ">
+    
+    <div className="w-100 min-h-100 flex justify-center column align-center p-5 bgsing">
+       <img src="./img/map.png" className="p-absolute h-90" />
+            <div className="card1 bg-form ">
               <h1 className="text-center p-1">Sign In</h1>
               <div className="p-2">
                 <form onSubmit={submitLogin} ref={form}>
                   <div >
                     <input
                       type="email"
-                      className="form-control"
+                      className="form-control form-sign"
                       id="emailL"
                       placeholder="Email"
                       ref={emailL}
@@ -42,7 +41,7 @@ export default function SignIn() {
                   <div>
                     <input
                       type="password"
-                      className="form-control"
+                      className="form-control form-sign"
                       id="passwordL"
                       placeholder="Password"
                       ref={passwordL}
@@ -69,9 +68,7 @@ export default function SignIn() {
                 </form>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
+         
     </div>
   );
 }
