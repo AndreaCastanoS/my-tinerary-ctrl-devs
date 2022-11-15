@@ -3,13 +3,14 @@ import { useEffect, useState } from "react";
 import CardItinerary from "./CardItinerary";
 import { useParams } from "react-router-dom";
 import axios from "axios"
+import apiUrl from "../url";
 export default function Itinerary() {
   let { id } = useParams();
   let [count, setCount] = useState(0);
   let [activities, setActivities] = useState([]);
 
   useEffect(() => {
-    axios.get(`http://localhost:8000/api/itineraries?cityId=${id}`)
+    axios.get(`${apiUrl}api/itineraries?cityId=${id}`)
     .then((res) => setActivities(res.data.response));
     
     // eslint-disable-next-line

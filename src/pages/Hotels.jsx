@@ -3,12 +3,13 @@ import { useEffect, useState } from "react";
 import HotelsCard from "../components/HotelsCard";
 import axios from "axios";
 import { useRef } from "react";
+import apiUrl from "../url";
 
 export default function Hotels() {
   let [hotels, setHotels] = useState([]);
 
   useEffect(() => {
-    axios.get(`http://localhost:8000/api/hotels`)
+    axios.get(`${apiUrl}api/hotels`)
       .then((res) => setHotels(res.data.response));
   }, []);
 
@@ -19,13 +20,13 @@ export default function Hotels() {
     if(select.current.value !== "asc"  && select.current.value !== "desc"){
     axios
       .get(
-        `http://localhost:8000/api/hotels?name=${search.current.value}`
+        `${apiUrl}api/hotels?name=${search.current.value}`
       )
       .then((res) => setHotels(res.data.response));
     }else{
       axios
       .get(
-        `http://localhost:8000/api/hotels?order=${select.current.value}&name=${search.current.value}`
+        `${apiUrl}api/hotels?order=${select.current.value}&name=${search.current.value}`
         )
       .then((res) => setHotels(res.data.response));
     }

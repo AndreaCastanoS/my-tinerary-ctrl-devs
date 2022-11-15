@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import CityCard from "../components/CityCard";
 import axios from "axios";
 import { useRef } from "react";
+import apiUrl from "../url";
 
 export default function Cities() {
   let [cities, setCities] = useState([]);
@@ -16,11 +17,11 @@ export default function Cities() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/cities")
+      .get(`${apiUrl}api/cities`)
       .then((res) => setCities(res.data.response));
 
     axios
-      .get("http://localhost:8000/api/cities")
+      .get(`${apiUrl}api/cities`)
       .then((res) => setCitiesFilter(res.data.response));
   }, []);
 
@@ -30,9 +31,7 @@ export default function Cities() {
     let urlChecks = checks.map((check) => `zone=${check}`).join("&");
 
     axios
-      .get(
-        `http://localhost:8000/api/cities?${urlChecks}&name=${searchId.current.value}`
-      )
+      .get(`${apiUrl}api/cities?${urlChecks}&name=${searchId.current.value}`)
       .then((res) => setCitiesFilter(res.data.response));
   };
 

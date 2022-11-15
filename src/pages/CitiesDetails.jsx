@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import Itinerary from "../components/Itinerary";
 import Details from "./Details";
 import axios from "axios";
+import apiUrl from "../url";
 
 export default function CitiesDetails() {
   let [cities, setCities] = useState([]);
@@ -12,7 +13,7 @@ export default function CitiesDetails() {
 console.log(cities);
 
   useEffect(() => {
-    axios.get(`http://localhost:8000/api/cities/${id}`)
+    axios.get(`${apiUrl}api/cities/${id}`)
       .then((res) => setCities(res.data.response));
     // eslint-disable-next-line
   }, []);
