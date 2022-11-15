@@ -1,5 +1,6 @@
 import React, { useRef , useEffect, useState} from "react";
 import axios from "axios";
+import apiUrl from "../url";
 
 export default function NewHotel() {
   let information = useRef();
@@ -14,7 +15,7 @@ export default function NewHotel() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/cities")
+      .get(`${apiUrl}api/cities`)
       .then((res) => setCitiesSelect(res.data.response));
   }, []);
 
@@ -29,7 +30,7 @@ export default function NewHotel() {
       userId: "636d82abcedcaf6f80f42e70",
     };
 
-    axios.post(`http://localhost:8000/api/hotels`, newHotel);
+    axios.post(`${apiUrl}api/hotels`, newHotel);
 
     information.current.reset();
     alert("The hotel was successfully created");

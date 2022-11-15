@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import Events from "../components/Events";
 import DetailsHotel from "./DetailsHotel";
 import axios from "axios";
+import apiUrl from "../url";
 
 export default function HotelDetails() {
   let [hotels, setHotels] = useState([]);
@@ -11,7 +12,7 @@ export default function HotelDetails() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/api/hotels/${id}`)
+      .get(`${apiUrl}api/hotels/${id}`)
       .then((res) => setHotels(res.data.response[0]))
       
       

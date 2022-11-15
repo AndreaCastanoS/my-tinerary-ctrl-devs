@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import CardShow from "./CardShow";
 import axios from "axios";
+import apiUrl from "../url";
 
 export default function Events(props) {
   let { idC } = props;
@@ -9,7 +10,7 @@ export default function Events(props) {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/api/shows?hotelId=${idC}`)
+      .get(`${apiUrl}api/shows?hotelId=${idC}`)
       .then((res) => setHotelsShow(res.data.response));
 
     // eslint-disable-next-line

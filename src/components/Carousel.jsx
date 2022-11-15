@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Btn from "./Btn";
 import axios from "axios";
+import apiUrl from "../url";
 
 export default function Carousel() {
   let [number, setNumber] = useState(1);
@@ -27,15 +28,15 @@ export default function Carousel() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/cities")
+      .get(`${apiUrl}api/cities`)
       .then((res) => setCities(res.data.response));
 
     axios
-      .get(`http://localhost:8000/api/hotels`)
+      .get(`${apiUrl}api/hotels`)
       .then((res) => setHotels(res.data.response));
 
     axios
-      .get(`http://localhost:8000/api/itineraries`)
+      .get(`${apiUrl}api/itineraries`)
       .then((res) => setActivities(res.data.response));
   }, []);
 

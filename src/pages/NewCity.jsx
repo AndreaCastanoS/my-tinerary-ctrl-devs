@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import axios from "axios";
+import apiUrl from "../url";
 export default function NewCity() {
   let information = useRef();
   let nameNewCity = useRef();
@@ -15,7 +16,7 @@ export default function NewCity() {
       population: populationCity.current.value,
       userId: "636d82abcedcaf6f80f42e71",
     };
-   axios.post("http://localhost:8000/api/cities", newCity)
+   axios.post(`${apiUrl}api/cities`, newCity)
     information.current.reset();
     alert("the city was created successfully")
   }
