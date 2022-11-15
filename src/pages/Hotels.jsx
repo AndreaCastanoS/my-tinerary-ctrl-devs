@@ -33,12 +33,12 @@ export default function Hotels() {
 
   return (
     <>
-      <div className="p-2 flex column justify-center">
+      <div className="p-2 flex column justify-center align-center">
         <div>
           <input
             ref={search}
             type="search"
-            className="form-control me-2"
+            className="form-control me-2 form-search"
             placeholder="Type Hotel Name"
             onChange={filter}
           />
