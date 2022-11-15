@@ -17,18 +17,21 @@ export default function NavBar() {
    
     <header className="navG">
       
-      <img className="logo" src="./img/logo.png" alt="logo" />
+      <img className="logo" src="../img/logo.png" alt="logo" />
      
       <div className="btnN g-25">
       <div>
-      <NavLink to="/index" className="text-decoration">
+
         <h3 className="bt-nav " onClick={hide}>
-          Home <img src="./img/desplegable.png" width="12px"  />
+          Home <img src="../img/desplegable.png" width="12px"  alt="img-flecha"/>
         </h3>
-        </NavLink>
+       
         {mostrarOcultar ? (
           <>
             <div className="flex column justify-center align-center p-absolute btnDespl">
+            <NavLink to="/index" className="text-decoration">
+                <h3 className="bt-nav-c">Home</h3>
+              </NavLink>
               <NavLink to="/cities" className="text-decoration">
                 <h3 className="bt-nav-c">Cities</h3>
               </NavLink>
@@ -44,7 +47,7 @@ export default function NavBar() {
       </div>
       <div>
         <h3 className="bt-nav" onClick={cualquierNombre}>
-          Users <img src="./img/desplegable.png" width="12px"  />
+          Users <img src="../img/desplegable.png" width="12px" alt="img-flecha" />
         </h3>
         {mostrar ? (
           <>

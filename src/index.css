@@ -1059,11 +1059,6 @@
   margin: 5px;
 }
 
-.tittleCar {
-  margin: 15px;
-  color: #cac7c7;
-  padding: 10px;
-}
 
 @media screen and (max-width: 768px) {
   .shadow {
@@ -1115,11 +1110,11 @@
 }
 
 .buttonCar {
-  padding: 15px;
-  font-size: 20px;
+  padding: 1.3rem;
+  font-size: 25px;
   color: white;
-  background-color: #17C3B2;
-  border-radius: 23px;
+  background-color: #383838;
+  border-radius: 30px;
   font-weight: bold;
 }
 
@@ -1157,7 +1152,7 @@ a {
   color: #333;
 }
 a:hover {
-  color: #17C3B2;
+  color: #01344f;
   text-decoration: none;
 }
 
@@ -1178,17 +1173,18 @@ a:hover {
   padding: 17px 15px;
   margin-bottom: 1.3rem;
   border-radius: 10px;
-  border: 1.5px solid #17C3B2;
+  border: 1.5px solid #d8ddf5;
   
 }
 .form-control1 {
   background-color: #f8f9fa;
-  width: 10rem;
-  height: 20px;
+  width: 20vw;
+  height: 30px;
   border-radius: 8px;
-  border: 1.5px solid #17C3B2;
+  border: 1.5px solid #d8ddf5;
   
 }
+
 
 .inp {
   width: 100%;
@@ -1212,11 +1208,6 @@ a:hover {
   padding: 8px;
   background: white;
   /* border: 2px solid #da5767; */
-}
-.btn-primary:hover {
-  background-color: #df8c96;
-  border-color: #df8c96;
-  transition: 0.3s;
 }
 
 .form-control {
@@ -1242,27 +1233,16 @@ a:hover {
   background-color: white;
 }
 ::-webkit-scrollbar-thumb {
-  background:#17C3B2;
-  border: 4px solid white;
+  background:#01344f;
+  border: 2px solid #fcfdfd;
   border-radius: 12px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #17C3B2;
+  background: #01344f;
 }
 
-.buttonGoogle {
-  border-radius: 10px;
-  padding: 8px;
-  border-color: transparent;
-  font-size: 12px;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-.buttonGoogle img {
-  width: 16%;
-}
+
 
 .card {
   margin: 10px;
@@ -1366,8 +1346,8 @@ a {
 
 .bt-nav-c:hover {
 
-  color:#17C3B2;
-  background-color: #e7e2e2;
+  color:#052b3f;
+  background-color: #c0bebe;
 }
 
 
@@ -1379,8 +1359,9 @@ a {
 }
 
 .logo {
-  height: 80px;
-  width: 140px;
+ 
+  width: 170px;
+  padding: 5px;
 }
 
 
@@ -1452,22 +1433,23 @@ a {
 .projcard-subtitle {
   color: #7e7d7d;
 }
-button {
+.button {
   padding: 0.8em 1.8em;
-  border: 2px solid #17C3B2;
+  color: white;
+  border: 1px solid #ffffff;
   position: relative;
   overflow: hidden;
-  background-color: whitesmoke;
+  background-color: transparent;
   text-align: center;
   text-transform: uppercase;
   font-size: 16px;
   transition: .3s;
   z-index: 1;
   font-family: inherit;
-  color: #17C3B2;
+
  }
  
- button::before {
+ .button::before {
   content: '';
   width: 0;
   height: 300%;
@@ -1475,18 +1457,19 @@ button {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) rotate(45deg);
-  background: #17C3B2;
-  transition: .5s ease;
+  background: #ffffff;
+
+  transition: all .5s ease;
   display: block;
   z-index: -1;
  }
  
- button:hover::before {
+ .button:hover::before {
   width: 105%;
  }
  
- button:hover {
-  color: #111;
+ .button:hover {
+  color: rgb(0, 0, 0);
  }
 
  .formSing{
@@ -1504,7 +1487,7 @@ button {
 
 .btnDespl{
   background-color: white;
-  opacity: .8;
+  opacity: .9;
   border-radius: 6px;
 }
 
@@ -1513,7 +1496,7 @@ button {
 }
 
 .form-check input[type="checkbox"]:checked {
-  accent-color: #17C3B2;
+  accent-color: #000000;
   border: rgba(184, 183, 255, 255) !important;
   box-shadow: 2px 2px 0px rgb(183, 183, 183) !important;
 }
@@ -1527,10 +1510,7 @@ button {
   margin-left: 8px;
 }
 
-.city{
-  background-color: rgb(248, 250, 250);
-  align-items: center;
-}
+
 
 
 .bg-form{
@@ -1541,3 +1521,52 @@ opacity: .8;
   align-items: center;
   justify-content: center;
 }
+
+.sign-up{
+  color: #000000;
+  text-decoration: underline;
+}
+.btn-form{
+  color: #000000;
+  width: 160px;
+  text-align: center;
+  border-radius: 10px;
+  padding: 8px;
+  border-color: white;
+  font-size: 12px;
+  gap: 4px;
+
+}
+.btn-form:hover{
+  background-color: #a8a7a79c;
+}
+
+.buttonGoogle img {
+  width: 16%;
+}
+
+
+.container-header img{
+  width: 100%;
+    min-height: 70vh;
+    background-size: cover;
+    background-position: 50%}
+
+    .tittle-find{
+      padding: 10px;
+      padding-top: 3rem;
+      font-weight: 700;
+      color: #dad8d8;
+      font-size: 3rem
+    }
+    .pb-2{
+      padding-bottom: 2rem;
+    }
+    .form-search{
+      width: 30vw;
+    }
+    .form-select{
+      width: 20vw;
+
+    }
+    

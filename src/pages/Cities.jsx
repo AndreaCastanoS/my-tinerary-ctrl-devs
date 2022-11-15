@@ -48,12 +48,18 @@ export default function Cities() {
   }
 
   return (
-    <div className="flex justify-center column city">
+    <div className="flex justify-center column main-full">
+      <div className="container-header">
+        <img src="./img/mytinerary.jpg" className="img-city" alt="map img" />
+      </div>
+
+      <h2 className="tittle-find text-center">FIND YOUR NEW ADVENTURE!</h2>
+
       <div className=" g-25 flex column align-center pt-1 ">
         <input
-          className="form-control "
+          className="form-control form-search"
           type="search"
-          placeholder="Search"
+          placeholder="Search your destination..."
           aria-label="Search"
           onKeyUp={filter}
           ref={searchId}
@@ -64,7 +70,6 @@ export default function Cities() {
             return (
               <div class="form-check form-check-inline">
                 <input
-                 
                   class="form-check-input"
                   type="checkbox"
                   value={category}

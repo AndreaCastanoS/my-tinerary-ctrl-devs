@@ -19,12 +19,14 @@ console.log(cities);
 
   return (
     <>
+
     <Details
         img={cities.photo}
         name={cities.name}
         zone={cities.zone}
         population={cities.population}
       />
+  
       <div className="p-2 flex column justify-center align-center">
       <Itinerary className="p-2" id={cities._id}></Itinerary>
      <button>View Comments</button>
