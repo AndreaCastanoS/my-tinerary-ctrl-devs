@@ -1,68 +1,100 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import CityCard from "../components/CityCard";
+import axios from "axios";
+import { useRef } from "react";
+import apiUrl from "../url";
 
 export default function Cities() {
   let [cities, setCities] = useState([]);
-  let [search, setSearch] = useState("");
-//   let [checkbox, setCheckbox] = useState([]);
-  let categoriesZones = cities.map((event) => event.zone);
-  console.log(categoriesZones);
-  let categoriesZonesFilter = [...new Set(categoriesZones)];
-  console.log(categoriesZonesFilter);
+  let [citiesFilter, setCitiesFilter] = useState([]);
+  let [checkbox, setCheckbox] = useState([]);
+  let searchId = useRef();
+  console.log(citiesFilter._id);
 
-  console.log(search);
+  let categoriesZones = cities.map((event) => event.zone);
+  let categoriesZonesFilter = [...new Set(categoriesZones)];
 
   useEffect(() => {
-    fetch("./cities.json")
-      .then((res) => res.json())
-      .then((res) => setCities(res));
+    axios
+      .get(`${apiUrl}api/cities`)
+      .then((res) => setCities(res.data.response));
+
+    axios
+      .get(`${apiUrl}api/cities`)
+      .then((res) => setCitiesFilter(res.data.response));
   }, []);
- 
+
+  let filter = (evento) => {
+    console.log(evento);
+    let checks = checksFilter(evento);
+    let urlChecks = checks.map((check) => `zone=${check}`).join("&");
+
+    axios
+      .get(`${apiUrl}api/cities?${urlChecks}&name=${searchId.current.value}`)
+      .then((res) => setCitiesFilter(res.data.response));
+  };
+
+  function checksFilter(event) {
+    let arrayCheck = [];
+    if (event.target.checked) {
+      arrayCheck = [...checkbox, event.target.value];
+    } else {
+      arrayCheck = checkbox.filter((e) => e !== event.target.value);
+    }
+    setCheckbox(arrayCheck);
+    return arrayCheck;
+  }
+
   return (
-    <>
-      <div className="flex column g-25">
-        <input
-          id="js-search"
-          className="form-control me-2"
-          type="search"
-          placeholder="Search"
-          aria-label="Search"
-          onKeyUp={(e) => setSearch(e.target.value)}
-        />
-        <div>
-          <div className="flex g-25 wrap">
-            {categoriesZonesFilter.map((category) => {
-              return (
-                <div class="form-check form-check-inline">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value={category}
-                    id="inlineCheckbox1"
-                    // onChange={(e) => setCheckbox(e.target.value)}
-                  />
-                  <label class="form-check-label" for="inlineCheckbox1">
-                    {category}
-                  </label>
-                </div>
-              );
-            })}
-          </div>
-        </div>
+    <div className="flex justify-center column main-full">
+      <div className="container-header">
+        <img src="./img/mytinerary.jpg" className="img-city" alt="map img" />
       </div>
 
-      <div className="flex wrap w-100 justify-center align-center g-25 pb-3">
-        {cities
-          .filter((item) => {
-            return search.toLowerCase === ""
-              ? item
-              : item.name.toLowerCase().includes(search);
-          })
-          .map((item) => {
-            return <CityCard id={item.id} key={item.id} img={item.photo} name={item.name}></CityCard>;
+      <h2 className="tittle-find text-center">FIND YOUR NEW ADVENTURE!</h2>
+
+      <div className=" g-25 flex column align-center pt-1 ">
+        <input
+          className="form-control form-search"
+          type="search"
+          placeholder="Search your destination..."
+          aria-label="Search"
+          onKeyUp={filter}
+          ref={searchId}
+        />
+
+        <div className="flex g-25 wrap checks">
+          {categoriesZonesFilter.map((category) => {
+            return (
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value={category}
+                  id={category}
+                  onChange={filter}
+                />
+                <label class="form-check-label" for={category}>
+                  {category}
+                </label>
+              </div>
+            );
           })}
+        </div>
       </div>
-    </>
+      <div className="flex wrap w-100 justify-center align-center g-25 pb-3">
+        {citiesFilter.map((item) => {
+          return (
+            <CityCard
+              id={item._id}
+              key={item._id}
+              img={item.photo}
+              name={item.name}
+            ></CityCard>
+          );
+        })}
+      </div>
+    </div>
   );
 }

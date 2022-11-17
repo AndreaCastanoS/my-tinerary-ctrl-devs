@@ -1,6 +1,6 @@
 import React from "react";
 import CallToAction from "../components/CallToAction";
-import NavBar from "../components/NavBar";
+
 
 export default function Home1() {
   return (

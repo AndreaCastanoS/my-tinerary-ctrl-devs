@@ -2,16 +2,17 @@ import React from "react";
 import { useEffect, useState } from "react";
 import CardItinerary from "./CardItinerary";
 import { useParams } from "react-router-dom";
-
+import axios from "axios"
+import apiUrl from "../url";
 export default function Itinerary() {
   let { id } = useParams();
   let [count, setCount] = useState(0);
   let [activities, setActivities] = useState([]);
 
   useEffect(() => {
-    fetch("/activities.json")
-      .then((res) => res.json())
-      .then((res) => setActivities(res.filter((e) => e.citiId === id)));
+    axios.get(`${apiUrl}api/itineraries?cityId=${id}`)
+    .then((res) => setActivities(res.data.response));
+    
     // eslint-disable-next-line
   }, []);
   console.log(activities);
@@ -29,7 +30,7 @@ export default function Itinerary() {
     <div className="flex j-center wrap ">
       {activities.map((item) => (
         <CardItinerary
-          key={item.id}
+          key={item._id}
           name={item.name}
           photo={item.photo[count]}
           description={item.description}

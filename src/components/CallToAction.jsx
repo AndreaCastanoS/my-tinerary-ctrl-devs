@@ -6,7 +6,7 @@ export default function CallToAction(props) {
   console.log(rute);
   return (
     <NavLink to={rute}>
-      <button className="bt-CallToAction">{text}</button>
+      <button className="bt-CallToAction button">{text}</button>
     </NavLink>
   );
 }
