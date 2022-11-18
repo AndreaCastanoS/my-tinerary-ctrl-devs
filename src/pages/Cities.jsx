@@ -1,38 +1,37 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import CityCard from "../components/CityCard";
-import axios from "axios";
 import { useRef } from "react";
-import apiUrl from "../url";
+import citiesActions from "../redux/actions/citiesActions";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Cities() {
-  let [cities, setCities] = useState([]);
-  let [citiesFilter, setCitiesFilter] = useState([]);
+  const dispatch = useDispatch();
+  const { getCities, getCitiesFilter } = citiesActions;
+  const { cities, categories } = useSelector((state) => state.cities);
+  const { zone, value } = useSelector((store) => store.cities);
+
   let [checkbox, setCheckbox] = useState([]);
   let searchId = useRef();
-  console.log(citiesFilter._id);
-
-  let categoriesZones = cities.map((event) => event.zone);
-  let categoriesZonesFilter = [...new Set(categoriesZones)];
 
   useEffect(() => {
-    axios
-      .get(`${apiUrl}api/cities`)
-      .then((res) => setCities(res.data.response));
+    if (cities.length === 0) {
+      dispatch(getCities());
+    }
 
-    axios
-      .get(`${apiUrl}api/cities`)
-      .then((res) => setCitiesFilter(res.data.response));
+    // eslint-disable-next-line
   }, []);
+
+  console.log(zone);
+  console.log(value);
 
   let filter = (evento) => {
     console.log(evento);
     let checks = checksFilter(evento);
+    console.log(checks);
+    let text = searchId.current.value;
     let urlChecks = checks.map((check) => `zone=${check}`).join("&");
-
-    axios
-      .get(`${apiUrl}api/cities?${urlChecks}&name=${searchId.current.value}`)
-      .then((res) => setCitiesFilter(res.data.response));
+    dispatch(getCitiesFilter({ zone: urlChecks, value: text }));
   };
 
   function checksFilter(event) {
@@ -65,7 +64,7 @@ export default function Cities() {
         />
 
         <div className="flex g-25 wrap checks">
-          {categoriesZonesFilter.map((category) => {
+          {categories?.map((category) => {
             return (
               <div class="form-check form-check-inline">
                 <input
@@ -84,7 +83,7 @@ export default function Cities() {
         </div>
       </div>
       <div className="flex wrap w-100 justify-center align-center g-25 pb-3">
-        {citiesFilter.map((item) => {
+        {cities?.map((item) => {
           return (
             <CityCard
               id={item._id}
