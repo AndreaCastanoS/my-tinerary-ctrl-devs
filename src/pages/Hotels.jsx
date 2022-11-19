@@ -1,34 +1,35 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import HotelsCard from "../components/HotelsCard";
-import axios from "axios";
 import { useRef } from "react";
-import apiUrl from "../url";
+import hotelsActions from "../redux/actions/hotelsActions";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Hotels() {
-  let [hotels, setHotels] = useState([]);
-
+  const dispatch = useDispatch();
+  const { getHotels, getHotelsFilter, getHotelsSelect } = hotelsActions;
+  const { hotels } = useSelector((state) => state.hotels);
+  const { order, name } = useSelector((state) => state.hotels);
+  console.log(order);
+  console.log(name);
   useEffect(() => {
-    axios.get(`${apiUrl}api/hotels`)
-      .then((res) => setHotels(res.data.response));
+    if (hotels.length === 0) {
+      dispatch(getHotels());
+    }
+    // eslint-disable-next-line
   }, []);
 
   const search = useRef();
   const select = useRef();
 
   let filter = () => {
-    if(select.current.value !== "asc"  && select.current.value !== "desc"){
-    axios
-      .get(
-        `${apiUrl}api/hotels?name=${search.current.value}`
-      )
-      .then((res) => setHotels(res.data.response));
-    }else{
-      axios
-      .get(
-        `${apiUrl}api/hotels?order=${select.current.value}&name=${search.current.value}`
-        )
-      .then((res) => setHotels(res.data.response));
+    let text = search.current.value;
+    let selectFil = select.current.value;
+
+    if (selectFil !== "asc" && selectFil !== "desc") {
+      dispatch(getHotelsFilter({ name: text }));
+    } else {
+      dispatch(getHotelsSelect({ order: selectFil, name: text }));
     }
   };
 
