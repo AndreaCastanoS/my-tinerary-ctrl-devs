@@ -1,8 +1,13 @@
 import React, { useRef , useEffect, useState} from "react";
 import axios from "axios";
 import apiUrl from "../url";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function NewHotel() {
+  const notify = () => {
+    toast();
+  };
   let information = useRef();
   let nameNewHotel = useRef();
   let photo1 = useRef();
@@ -21,7 +26,8 @@ export default function NewHotel() {
 
 
 
-  function newHotel() {
+  async function newHotel(event) {
+    event.preventDefault();
     let newHotel = {
       name: nameNewHotel.current.value,
       photo: [photo1.current.value, photo2.current.value, photo3.current.value],
@@ -29,11 +35,21 @@ export default function NewHotel() {
       cityId: cityId.current.value,
       userId: "636d82abcedcaf6f80f42e70",
     };
+   try{
+    let res = await axios.post(`${apiUrl}api/hotels`, newHotel);
 
-    axios.post(`${apiUrl}api/hotels`, newHotel);
-
-    information.current.reset();
-    alert("The hotel was successfully created");
+    if(res.data.success){
+    toast.success("The hotel was successfully created",{
+      position: toast.POSITION.TOP_RIGHT,
+    });
+  }else{
+    toast.error(res.data.message.join("&"), {
+      position: toast.POSITION.TOP_RIGHT,
+  });
+}
+   }catch(error){
+    console.log(error);
+   }
   }
 
   return (
@@ -56,7 +72,7 @@ export default function NewHotel() {
                       name="nameNewHotel"
                       className="form-control form-sign"
                       ref={nameNewHotel}
-                      required
+                      
                     ></input>
                   </div>
                   <div>
@@ -68,7 +84,7 @@ export default function NewHotel() {
                       accept="image/png, image/jpeg"
                       multiple
                       ref={photo1}
-                      required
+                      
                     />
                   </div>
                   <div>
@@ -80,7 +96,7 @@ export default function NewHotel() {
                       accept="image/png, image/jpeg"
                       multiple
                       ref={photo2}
-                      required
+                     
                     />
                   </div>
                   <div>
@@ -92,7 +108,7 @@ export default function NewHotel() {
                       accept="image/png, image/jpeg"
                       multiple
                       ref={photo3}
-                      required
+                    
                     />
                   </div>
                   <div>
@@ -102,7 +118,7 @@ export default function NewHotel() {
                       type="text"
                       name="capacity"
                       ref={capacityNewHotel}
-                      required
+                      
                     ></input>
                   </div>
                   <div>
@@ -112,8 +128,13 @@ export default function NewHotel() {
                     </select>
                   </div>
                   <div className="flex justify-around  p-1 wrap g-25">
-                    <button className="btn">CREATE A NEW HOTEL</button>
+                    <input 
+                     type="submit"
+                     onClick={notify}
+                     required
+                     className="btn" value = "CREATE A NEW HOTEL" />
                   </div>
+                  <ToastContainer />
                 </form>
               </div>
             </div>
