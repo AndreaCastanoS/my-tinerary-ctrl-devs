@@ -1,14 +1,21 @@
 import React, { useRef } from "react";
 import axios from "axios";
 import apiUrl from "../url";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 export default function NewCity() {
+  const notify = () => {
+    toast();
+  };
+
   let information = useRef();
   let nameNewCity = useRef();
   let photoNewCity = useRef();
   let zoneCity = useRef();
   let populationCity = useRef();
 
-  function newCity() {
+  async function newCity(event) {
+    event.preventDefault();
     let newCity = {
       name: nameNewCity.current.value,
       zone: zoneCity.current.value,
@@ -16,9 +23,22 @@ export default function NewCity() {
       population: populationCity.current.value,
       userId: "636d82abcedcaf6f80f42e71",
     };
-   axios.post(`${apiUrl}api/cities`, newCity)
-    information.current.reset();
-    alert("the city was created successfully")
+    try {
+      let res = await axios.post(`${apiUrl}api/cities`, newCity);
+      console.log(res);
+
+      if (res.data.success) {
+        toast.success("the city was created successfully", {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+      } else {
+        toast.error(res.data.message.join("&"), {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
@@ -42,7 +62,6 @@ export default function NewCity() {
                         name="nameNewCity"
                         className="form-control form-sign"
                         ref={nameNewCity}
-                        required
                       />
                     </div>
                     <div>
@@ -52,7 +71,6 @@ export default function NewCity() {
                         type="text"
                         name="photoNewCity"
                         ref={photoNewCity}
-                        required
                       />
                     </div>
                     <div>
@@ -62,7 +80,6 @@ export default function NewCity() {
                         type="text"
                         name="zone"
                         ref={zoneCity}
-                        required
                       />
                     </div>
                     <div>
@@ -70,14 +87,20 @@ export default function NewCity() {
                         placeholder="Population"
                         className="form-control form-sign"
                         type="text"
-                        name="descrpition"
+                        name="populate"
                         ref={populationCity}
-                        required
                       />
                     </div>
                     <div className="flex justify-around  p-1 wrap g-25">
-                      <button className="btn">CREATE A NEW CITY</button>
+                      <input
+                        type="submit"
+                        onClick={notify}
+                        className="btn"
+                        required
+                        value="CREATE A NEW CITY"
+                      />
                     </div>
+                    <ToastContainer />
                   </form>
                 </div>
               </div>
