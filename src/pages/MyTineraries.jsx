@@ -21,11 +21,11 @@ export default function MyTineraries() {
   const notify = () => {
     toast();
   };
-
+  let userId = "636d82abcedcaf6f80f42e72"
   useEffect(() => {
-
+    
     axios
-      .get(`${apiUrl}api/itineraries`)
+      .get(`${apiUrl}api/itineraries?userId=${userId}`)
       .then((res) => setTineraries(res.data.response));
     // eslint-disable-next-line
   }, []);
@@ -56,7 +56,7 @@ export default function MyTineraries() {
             });
             setTimeout(function () {
               window.location.replace("");
-            }, 1500);
+            }, );
           }
         }
         return (
