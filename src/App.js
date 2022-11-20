@@ -11,6 +11,7 @@ import NotFound from "./pages/NotFound";
 import CitiesDetails from "./pages/CitiesDetails";
 import HotelDetails from "./pages/HotelDetails"
 import NewCity from "./pages/NewCity";
+import MyCities from "./pages/MyCities.jsx"
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path="/hotels/:id" element={<HotelDetails />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/signin" element={<SignIn/>} />
+        <Route path="/mycities" element={<MyCities/>} />
        </Routes>
     </Main>
   );
