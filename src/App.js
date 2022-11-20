@@ -14,6 +14,8 @@ import NewCity from "./pages/NewCity";
 import MyHotels from "./pages/MyHotels";
 import MyCities from "./pages/MyCities.jsx"
 import MyShows from "./pages/MyShows.jsx"
+import MyTineraries from "./pages/MyTineraries.jsx"
+
 
 function App() {
   return (
@@ -34,6 +36,7 @@ function App() {
         <Route path="/myhotels" element={<MyHotels/>} />
         <Route path="/mycities" element={<MyCities/>} />
         <Route path="/myshows" element={<MyShows/>} />
+        <Route path="/mytineraries" element={<MyTineraries/>} />
        </Routes>
     </Main>
   );
