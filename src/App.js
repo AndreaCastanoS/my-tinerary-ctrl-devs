@@ -13,7 +13,7 @@ import HotelDetails from "./pages/HotelDetails"
 import NewCity from "./pages/NewCity";
 import MyHotels from "./pages/MyHotels";
 import MyCities from "./pages/MyCities.jsx"
-
+import MyTineraries from "./pages/MyTineraries.jsx"
 
 function App() {
   return (
@@ -33,6 +33,7 @@ function App() {
         <Route path="/signin" element={<SignIn/>} />
         <Route path="/myhotels" element={<MyHotels/>} />
         <Route path="/mycities" element={<MyCities/>} />
+        <Route path="/mytineraries" element={<MyTineraries/>} />
        </Routes>
     </Main>
   );
