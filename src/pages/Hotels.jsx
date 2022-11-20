@@ -35,8 +35,13 @@ export default function Hotels() {
 
   return (
     <>
-      <div className="p-2 flex column justify-center align-center">
-        <div>
+      <div className= "flex justify-center column main-full">
+      <div className="container-header">
+        <img src="./img/hotel.jpg" className="img-city" alt="map img" />
+      </div>
+      <h2 className="tittle-find text-center">!ENJOY OUR HOTELS!</h2>
+
+        <div className=" g-25 flex column align-center pt-1 ">
           <input
             ref={search}
             type="search"
@@ -44,13 +49,15 @@ export default function Hotels() {
             placeholder="Type Hotel Name"
             onChange={filter}
           />
-        </div>
-
-        <select onChange={filter} ref={select} className="form-control1">
+        
+   <div className="flex g-25 wrap checks">
+        <select onChange={filter} ref={select} className="form-control1 ">
           <option>Select Order</option>
           <option value="asc">Ascend</option>
           <option value="desc">Descend</option>
         </select>
+        </div>
+        </div>
       </div>
 
       <div className="flex wrap w-100 justify-center align-center g-25 pb-3">

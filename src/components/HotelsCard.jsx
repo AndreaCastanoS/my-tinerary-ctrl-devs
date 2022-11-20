@@ -10,12 +10,12 @@ export default function HotelsCard(props) {
     <NavLink to={`/hotels/${id}`}>
       <div className="hero-section">
         <div>
-          <div class="card">
-            <div class="card__background">
+          <div className="card">
+            <div className="card__background">
               <img className="content" src={img} alt={name}></img>
             </div>
-            <div class="card__content">
-              <p class="card__category">{name}</p>
+            <div className="card__content">
+              <p className="card__category">{name}</p>
             </div>
           </div>
         </div>
