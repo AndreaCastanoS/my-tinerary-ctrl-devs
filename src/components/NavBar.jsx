@@ -16,27 +16,23 @@ export default function NavBar() {
   return (
    
     <header className="navG">
-      
       <img className="logo" src="../img/logo.png" alt="logo" />
-     
       <div className="btnN g-25">
       <div>
-
         <h3 className="bt-nav " onClick={hide}>
           Home <img src="../img/desplegable.png" width="12px"  alt="img-flecha"/>
         </h3>
-       
         {mostrarOcultar ? (
           <>
             <div className="flex column justify-center align-center p-absolute btnDespl">
             <NavLink to="/index" className="text-decoration">
-                <h3 className="bt-nav-c">Home</h3>
+                <h3 className=" bt-nav-c bt-nav-1">Home</h3>
               </NavLink>
               <NavLink to="/cities" className="text-decoration">
-                <h3 className="bt-nav-c">Cities</h3>
+                <h3 className="bt-nav-c bt-nav-c1">Cities</h3>
               </NavLink>
               <NavLink to="/hotels" className="text-decoration">
-                <h3 className="bt-nav-c">Hotels</h3>
+                <h3 className="bt-nav-c bt-nav-c1">Hotels</h3>
               </NavLink>
               
             </div>
