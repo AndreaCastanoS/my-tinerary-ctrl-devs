@@ -1572,3 +1572,11 @@ a {
 .align-end{
   align-items: flex-end;
 }
+.margin-none{
+  margin: 0;
+}
+
+.btn:hover{
+background-color: #000000;
+color: #c0bebe;
+}
