@@ -1,12 +1,14 @@
 import React from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import CardMyShows from "../components/CardMyShows";
 import { useDispatch, useSelector } from "react-redux";
 import myShowsActions from "../redux/actions/myShowsActions";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { NavLink } from "react-router-dom";
 
 export default function MyShows() {
+  let [reload, setReaload] = useState(false);
   const dispatch = useDispatch();
   const { getMyShows, deleteMyShows } = myShowsActions;
   const { shows } = useSelector((state) => state.myshows);
@@ -21,7 +23,7 @@ export default function MyShows() {
     dispatch(getMyShows({ id: userId }));
 
     // eslint-disable-next-line
-  }, []);
+  }, [reload]);
 
   return (
     <div className="flex justify-center column main-full">
@@ -37,19 +39,19 @@ export default function MyShows() {
               toast.success("the show was deleted successfully", {
                 position: toast.POSITION.TOP_RIGHT,
               });
-              setTimeout(function () {
-                window.location.replace("");
-              }, 1500);
             }
+            setReaload(!reload);
           }
+
           return (
             <CardMyShows
+              id={item._id}
               key={item._id}
               name={item.name}
               photo={item.photo}
               description={item.description}
-              price ={item.price}
-              onClick={deleteFunc}
+              price={item.price}
+              onClick={() => deleteFunc(item._id)}
             ></CardMyShows>
           );
         })}

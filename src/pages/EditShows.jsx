@@ -4,56 +4,55 @@ import apiUrl from "../url";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useParams } from "react-router-dom";
+import { Link as NavLink } from "react-router-dom";
 
-export default function EditHotel() {
-  let [hotels, setHotels] = useState([]);
-  let [citiesSelect, setCitiesSelect] = useState([]);
+export default function EditShows() {
+  let [shows, setShows] = useState([]);
   let { id } = useParams();
   const notify = () => {
     toast();
   };
   let information = useRef();
   let nameNewHotel = useRef();
-  let photo1 = useRef();
-  let photo2 = useRef();
-  let photo3 = useRef();
-  let capacityNewHotel = useRef();
-  let cityId = useRef();
+  let hotelId = useRef();
+  let name = useRef();
+  let description = useRef();
+  let photo = useRef();
+  let price = useRef();
+  let date = useRef();
 
   const onInputChange = (e) => {
-    setHotels({ ...hotels, [e.target.name]: e.target.value });
+    setShows({ ...shows, [e.target.placeholder]: e.target.value });
   };
 
   useEffect(() => {
     axios
-      .get(`${apiUrl}api/cities`)
-      .then((res) => setCitiesSelect(res.data.response));
-  }, []);
-  useEffect(() => {
-    axios
-      .get(`${apiUrl}api/hotels/${id}`)
-      .then((res) => setHotels(res.data.response[0]));
+      .get(`${apiUrl}api/shows/${id}`)
+      .then((res) => setShows(res.data.response));
   }, []);
 
-  console.log(hotels);
+  console.log(shows);
 
   async function newHotel(event) {
     event.preventDefault();
     let newHotel = {
+      hotelId: shows.hotelId,
       name: nameNewHotel.current.value,
-      photo: [photo1.current.value, photo2.current.value, photo3.current.value],
-      capacity: capacityNewHotel.current.value,
-      cityId: hotels.cityId,
+      description: description.current.value,
+      photo: photo.current.value,
+      price: price.current.value,
+      date: date.current.value,
       userId: "636d82abcedcaf6f80f42e70",
     };
     try {
-      let res = await axios.patch(`${apiUrl}api/hotels/${id}`, newHotel);
+      let res = await axios.put(`${apiUrl}api/shows/${id}`, newHotel);
       console.log(res);
 
       if (res.data.success) {
-        toast.success("The hotel has  been successfully modified", {
+        toast.success("The show has  been successfully modified", {
           position: toast.POSITION.TOP_RIGHT,
         });
+        
       } else {
         toast.error(res.data.message.join("&"), {
           position: toast.POSITION.TOP_RIGHT,
@@ -63,7 +62,6 @@ export default function EditHotel() {
       console.log(error);
     }
   }
-  console.log(hotels);
 
   return (
     <div className="w-100 h-100 flex justify-center column align-center p-5">
@@ -71,7 +69,7 @@ export default function EditHotel() {
         <div>
           <div className="flex column justify-center">
             <div className="card1 text-center">
-              <h1 className="text-center p-1">EDIT HOTEL</h1>
+              <h1 className="text-center p-1">EDIT SHOW</h1>
               <div className="p-2">
                 <form
                   className="new column"
@@ -80,10 +78,10 @@ export default function EditHotel() {
                 >
                   <div>
                     <input
-                      placeholder={"Name the hotel"}
-                      defaultValue={hotels.name}
+                      placeholder={"name"}
+                      defaultValue={shows.name}
                       type="text"
-                      name={"name"}
+                      name="nameNewHotel"
                       className="form-control form-sign"
                       ref={nameNewHotel}
                       onChange={(e) => onInputChange(e)}
@@ -91,65 +89,49 @@ export default function EditHotel() {
                   </div>
                   <div>
                     <input
-                      placeholder={"URL Photo 1"}
-                      defaultValue={hotels.photo&&hotels.photo[0]}
+                      placeholder={"description"}
+                      defaultValue={shows.description}
                       className="form-control form-sign"
                       type="text"
-                      name={"photo"}
-                      ref={photo1}
+                      name={"description"}
+                      ref={description}
                       onChange={(e) => onInputChange(e)}
                     />
                   </div>
                   <div>
                     <input
-                      defaultValue={hotels.photo&&hotels.photo[1]}
-                      placeholder={"URL Photo 2"}
-                      className="form-control form-sign"
-                      type="text"
-                      name={"photo"}
-                      accept="image/png, image/jpeg"
-                      multiple
-                      ref={photo2}
-                      onChange={(e) => onInputChange(e)}
-                    />
-                  </div>
-                  <div>
-                    <input
-                      defaultValue={hotels.photo&&hotels.photo[2]}
-                      placeholder={"URL Photo 3"}
+                      defaultValue={shows.photo}
+                      placeholder={"Photo"}
                       className="form-control form-sign"
                       type="text"
                       name={"photo"}
                       accept="image/png, image/jpeg"
                       multiple
-                      ref={photo3}
+                      ref={photo}
                       onChange={(e) => onInputChange(e)}
                     />
                   </div>
                   <div>
                     <input
-                      defaultValue={hotels.capacity}
-                      placeholder={"Capacity"}
+                      defaultValue={shows.price}
+                      placeholder={"price"}
+                      className="form-control form-sign"
+                      type="text"
+                      name={"price"}
+                      ref={price}
+                      onChange={(e) => onInputChange(e)}
+                    />
+                  </div>
+                  <div>
+                    <input
+                      defaultValue={shows.date}
+                      placeholder={"Date"}
                       className=" form-control form-sign"
                       type="text"
-                      name={"capacity"}
-                      ref={capacityNewHotel}
+                      name={"Date"}
+                      ref={date}
                       onChange={(e) => onInputChange(e)}
                     ></input>
-                  </div>
-                  <div>
-                    <select
-                      ref={cityId}
-                      className="form-control form-sign"
-                      id="cityId"
-                    >
-                      <option>Select the city</option>
-                      {citiesSelect.map((city) => (
-                        <option key={city._id} defaultValue={city._id}>
-                          {city.name}{" "}
-                        </option>
-                      ))}
-                    </select>
                   </div>
                   <div className="flex justify-around  p-1 wrap g-25">
                     <input
@@ -157,8 +139,11 @@ export default function EditHotel() {
                       onClick={notify}
                       required
                       className="btn"
-                      value="EDIT HOTEL"
+                      value="EDIT SHOW"
                     />
+                    <NavLink className="w-100 margin-none flex justify-end" to="/myshows">
+                    <button className="back">Back my shows</button>
+                    </NavLink>
                   </div>
                   <ToastContainer />
                 </form>
