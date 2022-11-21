@@ -8,7 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { NavLink } from "react-router-dom";
 
 export default function MyShows() {
-  let [reload, setReaload] = useState(false);
+  let [reload, setReload] = useState(false);
   const dispatch = useDispatch();
   const { getMyShows, deleteMyShows } = myShowsActions;
   const { shows } = useSelector((state) => state.myshows);
@@ -31,7 +31,7 @@ export default function MyShows() {
         <img src="./img/showimagen.jpg" className="img-mycity" alt="map img" />
       </div>
       <h2 className="tittle-find text-center">MY SHOWS</h2>
-      <ToastContainer autoClose={8000} />
+      <ToastContainer autoClose={1000} />
       <div className="flex wrap w-100 justify-center align-center g-25 pb-3">
         {shows.shows?.map((item) => {
           function deleteFunc() {
@@ -40,7 +40,7 @@ export default function MyShows() {
                 position: toast.POSITION.TOP_RIGHT,
               });
             }
-            setReaload(!reload);
+            setReload(!reload);
           }
 
           return (
