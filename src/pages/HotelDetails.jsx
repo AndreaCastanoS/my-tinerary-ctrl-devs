@@ -8,6 +8,7 @@ import apiUrl from "../url";
 
 export default function HotelDetails() {
   let [hotels, setHotels] = useState([]);
+  let[filter, setFilter] = useState([])
   let { id } = useParams();
 
   useEffect(() => {
@@ -15,6 +16,10 @@ export default function HotelDetails() {
       .get(`${apiUrl}api/hotels/${id}`)
       .then((res) => setHotels(res.data.response[0]))
       
+      axios
+      .get(`${apiUrl}api/hotels/${id}`)
+      .then((res) => setFilter(res.data.response.find((x)=>x._id === id)))
+
       
 
     // eslint-disable-next-line
