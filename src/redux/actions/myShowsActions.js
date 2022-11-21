@@ -12,33 +12,25 @@ const getMyShows = createAsyncThunk("getMyShows", async ({ id }) => {
     return {
       shows: res.data.response,
     };
-  } catch (error) {
+  } catch (error) { 
     console.log(error);
     return {
       payload: "Error",
     };
   }
 });
-const deleteMyShows = createAsyncThunk("deleteMyShows", async ({ idShow }) => {
+const deleteMyShows = createAsyncThunk("deleteMyShows", async ({ idShow}) => {
   let url = `${apiUrl}api/shows/${idShow}`;
   try {
     const res = await axios.delete(url);
     console.log(res);
-    if(res.data){
-        return{
-      success: true,
-      res: res.data.message,
-        };
-      }else{
-        return{success: false, res: res.data.message}
-      }
-  
+    return res.data.id;
   } catch (error) {
-    console.log(error);
-    return {
-      success:false, res: "ocurrio un error"
-
-    };
+    if (error.response) {
+      throw error.response.data.message.join("\n");
+    } else {
+      throw error;
+    }
   }
 });
 

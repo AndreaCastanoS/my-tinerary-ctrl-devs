@@ -19,7 +19,7 @@ export default function MyHotelsCard(props) {
           </div>
           <div className="flex justify-end w-100 g-25">
             <div>
-            <NavLink to={`/hotels/${id}`} className="margin-none">
+            <NavLink to={`/hotels/${id}`} >
               <button className="delete border-none">View more</button>
             </NavLink>
             </div>
@@ -28,11 +28,11 @@ export default function MyHotelsCard(props) {
               <button onClick={onClick}>Delete</button>
               <img src="./img/delete.png" width="15" alt="img" />
             </div>
-            <NavLink to={`/edithotel/${id}`}>
-            <div className="delete">
+            <NavLink to={`/edithotel/${id}`} className=" delete margin-none">
+            
               <button>Edit</button>
               <img src="./img/edit.png" width="15" alt="img" />
-            </div>
+            
             </NavLink>
           </div>
         </div>

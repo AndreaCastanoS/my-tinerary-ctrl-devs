@@ -23,13 +23,14 @@ const myShowsReducers = createReducer(initialState, (builder) => {
     })
     .addCase(deleteMyShows.fulfilled, (state, action) => 
     {
+      
+     let newShow = state.shows.filter(show => show._id !== action.payload)
+      return{...state, messagge: "", shows: newShow}
+        
+    
       console.log(action.payload);
  
-      return {
-        ...state,
-        ...action.payload,
-                        
-      };
+  
     })
 });
 
