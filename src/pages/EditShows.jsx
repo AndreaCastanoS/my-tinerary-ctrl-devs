@@ -45,7 +45,7 @@ export default function EditShows() {
       userId: "636d82abcedcaf6f80f42e70",
     };
     try {
-      let res = await axios.put(`${apiUrl}api/shows/${id}`, newHotel);
+      let res = await axios.patch(`${apiUrl}api/shows/${id}`, newHotel);
       console.log(res);
 
       if (res.data.success) {
