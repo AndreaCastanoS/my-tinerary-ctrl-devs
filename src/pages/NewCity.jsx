@@ -1,18 +1,18 @@
 import React, { useRef } from "react";
 import axios from "axios";
 import apiUrl from "../url";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 export default function NewCity() {
-  const notify = () => {
-    toast();
-  };
+
 
   let information = useRef();
   let nameNewCity = useRef();
   let photoNewCity = useRef();
   let zoneCity = useRef();
   let populationCity = useRef();
+  let navegation = useNavigate();
 
   async function newCity(event) {
     event.preventDefault();
@@ -28,16 +28,28 @@ export default function NewCity() {
       console.log(res);
 
       if (res.data.success) {
-        toast.success("the city was created successfully", {
-          position: toast.POSITION.TOP_RIGHT,
+        Swal.fire({
+          icon: "success",
+          title: res.data.message,
+          showConfirmButton: true,
+          iconColor: "#01344f",
+          confirmButtonColor: "#01344f",
+          confirmButtonText: 'See my city <i class="fa fa-arrow-right"></i>',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            navegation(`/cities/${res.data.response._id}`);
+          }
         });
-      } else {
-        toast.error(res.data.message.join("&"), {
-          position: toast.POSITION.TOP_RIGHT,
-        });
-      }
+      } 
+      
     } catch (error) {
-      console.log(error);
+      Swal.fire({
+        icon: "warning",
+        confirmButtonColor: "#01344f",
+        iconColor: "#01344f",
+        title: error.response.data.message.join("<br/>"),
+        showConfirmButton: true,
+      });
     }
   }
 
@@ -94,13 +106,11 @@ export default function NewCity() {
                     <div className="flex justify-around  p-1 wrap g-25">
                       <input
                         type="submit"
-                        onClick={notify}
                         className="btn"
                         required
                         value="CREATE A NEW CITY"
                       />
                     </div>
-                    <ToastContainer />
                   </form>
                 </div>
               </div>
