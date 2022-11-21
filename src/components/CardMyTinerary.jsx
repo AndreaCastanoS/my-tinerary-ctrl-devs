@@ -1,7 +1,8 @@
 import React from "react";
+import { Link as NavLink } from "react-router-dom";
 
 export default function CardMyTinerary(props) {
-  let { name, price, description, photo, duration, onClick } = props;
+  let { name, price, description, photo, duration, onClick, id } = props;
   return (
     <div className="card2">
       <div className="card-header">
@@ -18,16 +19,15 @@ export default function CardMyTinerary(props) {
         </h5>
       </div>
       <div className="flex justify-center w-100 g-25">
-      <div className="delete">
-        <button onClick={onClick}>Delete</button>
-        <img src="./img/delete.png" width="15" alt="img" />
+        <div className="delete">
+          <button onClick={onClick}>Delete</button>
+          <img src="./img/delete.png" width="15" alt="img" />
+        </div>
+        <NavLink className="delete margin-none" to={`/mytineraries/${id}`}>
+          <button>Edit</button>
+          <img src="./img/edit.png" width="15" alt="img" />
+        </NavLink>
       </div>
-      <div className="delete">
-        <button>Edit</button>
-        <img src="./img/edit.png" width="15" alt="img" />
-      </div>
-      </div>
-   
     </div>
   );
 }

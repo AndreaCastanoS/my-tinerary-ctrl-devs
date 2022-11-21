@@ -16,6 +16,7 @@ import MyCities from "./pages/MyCities.jsx"
 import MyShows from "./pages/MyShows.jsx"
 import MyTineraries from "./pages/MyTineraries.jsx"
 import EditMyCity from "./pages/EditMyCity"
+import EditMyTinerary from "./pages/EditMyTinerary";
 
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
         <Route path="/mycities" element={<MyCities/>} />
         <Route path="/myshows" element={<MyShows/>} />
         <Route path="/mycities/:id" element={<EditMyCity/>} />
+        <Route path="/mytineraries/:id" element={<EditMyTinerary/>} />
         <Route path="/mytineraries" element={<MyTineraries/>} />
        </Routes>
     </Main>

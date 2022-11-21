@@ -154,7 +154,6 @@
 .card-body {
   padding: 1rem;
   min-height: 200px;
-
 }
 
 .card-header {
@@ -1552,13 +1551,26 @@ a {
   display: flex;
   justify-content: space-around;
 }
+.back {
+  border: none;
+  text-decoration: underline;
+  height: 26px;
+  width: 140px;
+  text-align: center;
+  background-color: transparent;
+}
+.back:hover {
+ background-color: #c0bebe;
+  color: black;
+
+}
 .delete button {
   background-color: transparent;
   border: none;
 }
 
-.delete:hover{
- border: solid 2px black;
+.delete:hover {
+  border: solid 2px black;
 }
 
 .img-mycity {
@@ -1569,14 +1581,14 @@ a {
   align-items: center;
 }
 
-.align-end{
+.align-end {
   align-items: flex-end;
 }
-.margin-none{
+.margin-none {
   margin: 0;
 }
 
-.btn:hover{
-background-color: #000000;
-color: #c0bebe;
+.btn:hover {
+  background-color: #000000;
+  color: #c0bebe;
 }
