@@ -41,6 +41,7 @@ export default function NewCity() {
           }
         });
       } 
+      
     } catch (error) {
       Swal.fire({
         icon: "warning",
