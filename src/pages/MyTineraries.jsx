@@ -47,7 +47,7 @@ export default function MyTineraries() {
       <img src="./img/itinerary.jpg" className="img-mycity" alt="map img" />
     </div>
     <h2 className="tittle-find text-center ">MY TINERARIES</h2>
-    <ToastContainer autoClose={8000} />
+    <ToastContainer autoClose={50000} />
     <div className="flex wrap w-100 justify-center align-center p-3 g-25 pb-3">
       {tineraries?.map((item) => {
         function deleteFunc() {
