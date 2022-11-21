@@ -2,6 +2,8 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import apiUrl from "../../url";
 
+
+
 const getCities = createAsyncThunk("getCities", async () => {
   try {
     const res = await axios.get(`${apiUrl}api/cities`);
