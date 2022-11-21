@@ -3,6 +3,9 @@ import axios from "axios";
 import apiUrl from "../url";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
+/* import withReactContent from 'sweetalert2-react-content'; */
 
 export default function NewHotel() {
   const notify = () => {
@@ -15,6 +18,7 @@ export default function NewHotel() {
   let photo3 = useRef();
   let capacityNewHotel = useRef();
   let cityId = useRef();
+  let navegation = useNavigate()
   
   let [citiesSelect, setCitiesSelect] = useState([])
 
@@ -37,19 +41,31 @@ export default function NewHotel() {
     };
    try{
     let res = await axios.post(`${apiUrl}api/hotels`, newHotel);
+    console.log(res);
 
-    if(res.data.success){
-    toast.success("The hotel was successfully created",{
-      position: toast.POSITION.TOP_RIGHT,
+    if (res.data.success) {
+      Swal.fire({
+        icon: "success",
+        title: res.data.message,
+        showConfirmButton: true,
+        iconColor: "#01344f",
+        confirmButtonColor: "#01344f",
+        confirmButtonText: 'See my hotels <i class="fa fa-arrow-right"></i>',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navegation(`/hotels/${res.data.response._id}`);
+        }
+      });
+    } 
+  } catch (error) {
+    Swal.fire({
+      icon: "warning",
+      confirmButtonColor: "#01344f",
+      iconColor: "#01344f",
+      title: error.response.data.message.join("<br/>"),
+      showConfirmButton: true,
     });
-  }else{
-    toast.error(res.data.message.join("&"), {
-      position: toast.POSITION.TOP_RIGHT,
-  });
-}
-   }catch(error){
-    console.log(error);
-   }
+  }
   }
 
   return (
