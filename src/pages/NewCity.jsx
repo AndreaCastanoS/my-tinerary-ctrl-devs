@@ -40,6 +40,7 @@ export default function NewCity() {
             navegation(`/cities/${res.data.response._id}`);
           }
         });
+        
       } 
       
     } catch (error) {
