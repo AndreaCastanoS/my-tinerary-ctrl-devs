@@ -8,31 +8,31 @@ import { Link as NavLink } from "react-router-dom";
 
 export default function EditHotel() {
   let [hotels, setHotels] = useState([]);
-  let [citiesSelect, setCitiesSelect] = useState([]);
+ /*  let [citiesSelect, setCitiesSelect] = useState *//* ([]); */
   let { id } = useParams();
   const notify = () => {
     toast();
   };
+  
+  /*   useEffect(() => {
+    axios
+    .get(`${apiUrl}api/cities`)
+    .then((res) => setCitiesSelect(res.data.response));
+  }, []); */
+  useEffect(() => {
+    axios
+    .get(`${apiUrl}api/hotels/${id}`)
+    .then((res) => setHotels(res.data.response[0]));
+  }, []);
+  console.log(hotels);
+  
   let information = useRef();
   let nameNewHotel = useRef();
   let photo1 = useRef();
   let photo2 = useRef();
   let photo3 = useRef();
   let capacityNewHotel = useRef();
-  let cityId = useRef();
-
-  useEffect(() => {
-    axios
-      .get(`${apiUrl}api/cities`)
-      .then((res) => setCitiesSelect(res.data.response));
-  }, []);
-  useEffect(() => {
-    axios
-      .get(`${apiUrl}api/hotels/${id}`)
-      .then((res) => setHotels(res.data.response[0]));
-  }, []);
-
-  console.log(hotels);
+ /*  let cityId = useRef(); */
 
   async function newHotel(event) {
     event.preventDefault();
@@ -41,7 +41,8 @@ export default function EditHotel() {
       photo: [photo1.current.value, photo2.current.value, photo3.current.value],
       capacity: capacityNewHotel.current.value,
       cityId: hotels.cityId,
-      userId: "636d82abcedcaf6f80f42e70",
+      userId: "636d82abcedcaf6f80f42e71",
+      
     };
     try {
       let res = await axios.patch(`${apiUrl}api/hotels/${id}`, newHotel);

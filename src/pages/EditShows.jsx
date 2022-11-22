@@ -42,7 +42,7 @@ export default function EditShows() {
       photo: photo.current.value,
       price: price.current.value,
       date: date.current.value,
-      userId: "636d82abcedcaf6f80f42e70",
+      userId: "636d8755f23e35d46c4c0862",
     };
     try {
       let res = await axios.patch(`${apiUrl}api/shows/${id}`, newHotel);
