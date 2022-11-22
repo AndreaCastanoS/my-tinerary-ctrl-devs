@@ -1048,7 +1048,6 @@
 .bt-nav {
   color: white;
   font-size: 15px;
-  margin: 2px;
 }
 
 .carousel {
@@ -1327,7 +1326,6 @@ a {
   border-color: transparent;
   font-size: 14px;
   color: rgb(8, 8, 8);
-  width: 5rem;
 }
 
 .bt-nav-c:hover {
@@ -1591,4 +1589,13 @@ a {
 .btn:hover {
   background-color: #000000;
   color: #c0bebe;
+}
+
+.bt-nav-c1{
+width: 4rem;
+}
+.swal2-popup {
+  font-size: 12px !important;
+  font-family: Georgia, serif;
+
 }
