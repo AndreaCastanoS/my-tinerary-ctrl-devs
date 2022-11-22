@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import MyHotelsCard from "../components/MyHotelsCard";
 import { useDispatch, useSelector } from "react-redux";
 import myHotelsAction from "../redux/actions/myHotelsAction";
@@ -13,6 +13,7 @@ export default function MyHotels() {
   console.log(hotels);
   // eslint-disable-next-line
   const { id, idHotel } = useSelector((state) => state.myhotels);
+  let [reload, setReload] = useState(false)
 // eslint-disable-next-line
   const notify = () => {
     toast();
@@ -22,7 +23,7 @@ export default function MyHotels() {
     let userId = "636d82abcedcaf6f80f42e71";
     dispatch(getMyHotels({ id: userId }));
     // eslint-disable-next-line
-  }, []);
+  }, [reload]);
 
   return (
     <div className="flex justify-center column main-full">
@@ -38,10 +39,8 @@ export default function MyHotels() {
               toast.success("the hotel was deleted successfully", {
                 position: toast.POSITION.TOP_RIGHT,
               });
-              setTimeout(function () {
-                window.location.replace("");
-              }, 1500);
             }
+            setReload(!reload)
           }
           return (
             <MyHotelsCard
