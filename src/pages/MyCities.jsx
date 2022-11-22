@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import MyCityCard from "../components/MyCityCard";
 import { useDispatch, useSelector } from "react-redux";
 import mycitiesActions from "../redux/actions/mycitiesActions";
@@ -7,6 +7,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function Cities() {
+  let [reload, setReload] = useState(false);
   const dispatch = useDispatch();
   const { getMyCities, deleteMyCities } = mycitiesActions;
   const { cities } = useSelector((state) => state.mycities);
@@ -21,7 +22,7 @@ export default function Cities() {
     let userId = "636d82abcedcaf6f80f42e71";
     dispatch(getMyCities({ id: userId }));
     // eslint-disable-next-line
-  }, []);
+  }, [reload]);
 
   return (
     <div className="flex justify-center column main-full">
@@ -37,9 +38,7 @@ export default function Cities() {
               toast.success("the city was deleted successfully", {
                 position: toast.POSITION.TOP_RIGHT,
               });
-              setTimeout(function () {
-                window.location.replace("");
-              }, 1500);
+              setReload(!reload)
             }
           }
           return (

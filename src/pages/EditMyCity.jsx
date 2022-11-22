@@ -5,6 +5,7 @@ import apiUrl from "../url";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useParams } from "react-router-dom";
+import { Link as NavLink } from "react-router-dom";
 
 export default function EditMyCity() {
   let [cities, setCities] = useState([]);
@@ -126,6 +127,9 @@ export default function EditMyCity() {
                         value="EDIT CITY"
                       />
                     </div>
+                    <NavLink className="w-100 margin-none flex justify-end" to="/mycities">
+                    <button className="back">Back my cities</button>
+                    </NavLink>
                     <ToastContainer />
                   </form>
                 </div>

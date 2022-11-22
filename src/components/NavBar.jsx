@@ -30,13 +30,13 @@ export default function NavBar() {
           <>
             <div className="flex column justify-center align-center p-absolute btnDespl">
             <NavLink to="/index" className="text-decoration">
-                <h3 className="bt-nav-c">Home</h3>
+                <h3 className="bt-nav-c bt-nav-c1">Home</h3>
               </NavLink>
               <NavLink to="/cities" className="text-decoration">
-                <h3 className="bt-nav-c">Cities</h3>
+                <h3 className="bt-nav-c bt-nav-c1">Cities</h3>
               </NavLink>
               <NavLink to="/hotels" className="text-decoration">
-                <h3 className="bt-nav-c">Hotels</h3>
+                <h3 className="bt-nav-c bt-nav-c1">Hotels</h3>
               </NavLink>
               
             </div>
