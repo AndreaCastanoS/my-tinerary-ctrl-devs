@@ -4,6 +4,7 @@ import apiUrl from "../url";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useParams } from "react-router-dom";
+import { Link as NavLink } from "react-router-dom";
 
 export default function EditHotel() {
   let [hotels, setHotels] = useState([]);
@@ -19,10 +20,6 @@ export default function EditHotel() {
   let photo3 = useRef();
   let capacityNewHotel = useRef();
   let cityId = useRef();
-
-  const onInputChange = (e) => {
-    setHotels({ ...hotels, [e.target.name]: e.target.value });
-  };
 
   useEffect(() => {
     axios
@@ -80,77 +77,59 @@ export default function EditHotel() {
                 >
                   <div>
                     <input
-                      placeholder={"Name the hotel"}
+                      placeholder="Name the hotel"
                       defaultValue={hotels.name}
                       type="text"
-                      name={"name"}
+                      name="name"
                       className="form-control form-sign"
                       ref={nameNewHotel}
-                      onChange={(e) => onInputChange(e)}
                     ></input>
                   </div>
                   <div>
                     <input
-                      placeholder={"URL Photo 1"}
-                      defaultValue={hotels.photo&&hotels.photo[0]}
+                      placeholder="URL Photo 1"
+                      defaultValue={hotels.photo && hotels.photo[0]}
                       className="form-control form-sign"
                       type="text"
-                      name={"photo"}
+                      name="photo"
                       ref={photo1}
-                      onChange={(e) => onInputChange(e)}
                     />
                   </div>
                   <div>
                     <input
-                      defaultValue={hotels.photo&&hotels.photo[1]}
-                      placeholder={"URL Photo 2"}
+                      defaultValue={hotels.photo && hotels.photo[1]}
+                      placeholder="URL Photo 2"
                       className="form-control form-sign"
                       type="text"
-                      name={"photo"}
+                      name="photo"
                       accept="image/png, image/jpeg"
                       multiple
                       ref={photo2}
-                      onChange={(e) => onInputChange(e)}
                     />
                   </div>
                   <div>
                     <input
-                      defaultValue={hotels.photo&&hotels.photo[2]}
-                      placeholder={"URL Photo 3"}
+                      defaultValue={hotels.photo && hotels.photo[2]}
+                      placeholder="URL Photo 3"
                       className="form-control form-sign"
                       type="text"
-                      name={"photo"}
+                      name="photo"
                       accept="image/png, image/jpeg"
                       multiple
                       ref={photo3}
-                      onChange={(e) => onInputChange(e)}
                     />
                   </div>
                   <div>
                     <input
                       defaultValue={hotels.capacity}
-                      placeholder={"Capacity"}
+                      placeholder="Capacity"
                       className=" form-control form-sign"
                       type="text"
-                      name={"capacity"}
+                      name="capacity"
                       ref={capacityNewHotel}
-                      onChange={(e) => onInputChange(e)}
                     ></input>
                   </div>
-                  <div>
-                    <select
-                      ref={cityId}
-                      className="form-control form-sign"
-                      id="cityId"
-                    >
-                      <option>Select the city</option>
-                      {citiesSelect.map((city) => (
-                        <option key={city._id} defaultValue={city._id}>
-                          {city.name}{" "}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
+
                   <div className="flex justify-around  p-1 wrap g-25">
                     <input
                       type="submit"
@@ -159,6 +138,9 @@ export default function EditHotel() {
                       className="btn"
                       value="EDIT HOTEL"
                     />
+                      <NavLink className="w-100 margin-none flex justify-end" to="/myhotels">
+                    <button className="back">Back my hotels</button>
+                    </NavLink>
                   </div>
                   <ToastContainer />
                 </form>
