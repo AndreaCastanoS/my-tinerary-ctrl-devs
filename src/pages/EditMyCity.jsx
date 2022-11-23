@@ -1,18 +1,36 @@
-import React, { useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import apiUrl from "../url";
-import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
-/* import withReactContent from "sweetalert2-react-content"; */
-export default function NewCity() {
+// eslint-disable-next-line
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useParams } from "react-router-dom";
+import { Link as NavLink } from "react-router-dom";
 
+export default function EditMyCity() {
+  let [cities, setCities] = useState([]);
+
+  const onInputChange = (e) => {
+    setCities({ ...cities, [e.target.placeholder]: e.target.value });
+  };
+  let { id } = useParams();
+  console.log(id);
+  const notify = () => {
+    toast();
+  };
+
+  useEffect(() => {
+    axios
+      .get(`${apiUrl}api/cities/${id}`)
+      .then((res) => setCities(res.data.response));
+    // eslint-disable-next-line
+  }, []);
 
   let information = useRef();
   let nameNewCity = useRef();
   let photoNewCity = useRef();
   let zoneCity = useRef();
   let populationCity = useRef();
-  let navegation = useNavigate();
 
   async function newCity(event) {
     event.preventDefault();
@@ -23,34 +41,22 @@ export default function NewCity() {
       population: populationCity.current.value,
       userId: "636d82abcedcaf6f80f42e71",
     };
+
     try {
-      let res = await axios.post(`${apiUrl}api/cities`, newCity);
+      let res = await axios.put(`${apiUrl}api/cities/${id}`, newCity);
       console.log(res);
 
       if (res.data.success) {
-        Swal.fire({
-          icon: "success",
-          title: res.data.message,
-          showConfirmButton: true,
-          iconColor: "#01344f",
-          confirmButtonColor: "#01344f",
-          confirmButtonText: 'See my city <i class="fa fa-arrow-right"></i>',
-        }).then((result) => {
-          if (result.isConfirmed) {
-            navegation(`/cities/${res.data.response._id}`);
-          }
+        toast.success("the city was successfully modified", {
+          position: toast.POSITION.TOP_RIGHT,
         });
-        
-      } 
-      
+      } else {
+        toast.error(res.data.message.join("&"), {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+      }
     } catch (error) {
-      Swal.fire({
-        icon: "warning",
-        confirmButtonColor: "#01344f",
-        iconColor: "#01344f",
-        title: error.response.data.message.join("<br/>"),
-        showConfirmButton: true,
-      });
+      console.log(error);
     }
   }
 
@@ -61,7 +67,7 @@ export default function NewCity() {
           <div>
             <div className="flex column justify-center">
               <div className="card1 text-center">
-                <h1 className="text-center p-1">NEW CITY</h1>
+                <h1 className="text-center p-1">EDIT CITY</h1>
                 <div className="p-2">
                   <form
                     className="new column"
@@ -70,48 +76,61 @@ export default function NewCity() {
                   >
                     <div>
                       <input
-                        placeholder="Name of city"
+                        value={cities.name}
+                        placeholder={"name"}
                         type="text"
-                        name="nameNewCity"
+                        name={"nameNewCity"}
                         className="form-control form-sign"
                         ref={nameNewCity}
+                        onChange={(e) => onInputChange(e)}
                       />
                     </div>
                     <div>
                       <input
-                        placeholder="URL photo"
+                        value={cities.photo}
+                        placeholder={"photo"}
                         className="form-control form-sign"
                         type="text"
-                        name="photoNewCity"
+                        name={"photoNewCity"}
                         ref={photoNewCity}
+                        onChange={(e) => onInputChange(e)}
                       />
                     </div>
                     <div>
                       <input
-                        placeholder="Zone of the city"
-                        className=" form-control form-sign"
-                        type="text"
-                        name="zone"
-                        ref={zoneCity}
-                      />
-                    </div>
-                    <div>
-                      <input
-                        placeholder="Population"
+                        value={cities.zone}
+                        placeholder={"zone"}
                         className="form-control form-sign"
                         type="text"
-                        name="populate"
+                        name={"zone"}
+                        ref={zoneCity}
+                        onChange={(e) => onInputChange(e)}
+                      />
+                    </div>
+                    <div>
+                      <input
+                        value={cities.population}
+                        placeholder={"population"}
+                        className="form-control form-sign"
+                        type="text"
+                        name={"populate"}
                         ref={populationCity}
+                        onChange={(e) => onInputChange(e)}
                       />
                     </div>
                     <div className="flex justify-around  p-1 wrap g-25">
                       <input
                         type="submit"
+                        onClick={notify}
                         className="btn"
                         required
-                        value="CREATE A NEW CITY"
+                        value="EDIT CITY"
                       />
                     </div>
+                    <NavLink className="w-100 margin-none flex justify-end" to="/mycities">
+                    <button className="back">Back my cities</button>
+                    </NavLink>
+                    <ToastContainer />
                   </form>
                 </div>
               </div>

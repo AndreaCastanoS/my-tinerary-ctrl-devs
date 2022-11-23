@@ -11,6 +11,17 @@ import NotFound from "./pages/NotFound";
 import CitiesDetails from "./pages/CitiesDetails";
 import HotelDetails from "./pages/HotelDetails"
 import NewCity from "./pages/NewCity";
+import MyHotels from "./pages/MyHotels";
+import MyCities from "./pages/MyCities.jsx"
+import MyShows from "./pages/MyShows.jsx"
+import MyTineraries from "./pages/MyTineraries.jsx"
+import EditHotel from "./pages/EditHotel.jsx"
+import EditMyCity from "./pages/EditMyCity"
+import EditMyTinerary from "./pages/EditMyTinerary";
+import EditShows from "./pages/EditShows"
+
+
+
 
 function App() {
   return (
@@ -28,6 +39,14 @@ function App() {
         <Route path="/hotels/:id" element={<HotelDetails />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/signin" element={<SignIn/>} />
+        <Route path="/myhotels" element={<MyHotels/>} />
+        <Route path="/mycities" element={<MyCities/>} />
+        <Route path="/myshows" element={<MyShows/>} />
+        <Route path="/mycities/:id" element={<EditMyCity/>} />
+        <Route path="/mytineraries/:id" element={<EditMyTinerary/>} />
+        <Route path="/mytineraries" element={<MyTineraries/>} />
+        <Route path="/edithotel/:id" element={<EditHotel/>} />
+        <Route path="/editshows/:id" element={<EditShows/>} />
        </Routes>
     </Main>
   );

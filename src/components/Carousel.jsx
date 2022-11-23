@@ -80,7 +80,7 @@ export default function Carousel() {
     }
   });
 
-  console.log(detailsHotels);
+
 
   // eslint-disable-next-line
   setDetailCities = cities.map(() => {
@@ -94,7 +94,7 @@ export default function Carousel() {
     // eslint-disable-next-line
     setDetails = details.push(detailsActivities, detailsCities, detailsHotels);
   }
-  console.log(details);
+
 
   return (
     <div className="flex justify-center column ">

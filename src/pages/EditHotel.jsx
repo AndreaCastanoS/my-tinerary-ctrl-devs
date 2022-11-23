@@ -1,34 +1,38 @@
-import React, { useRef , useEffect, useState} from "react";
+import React, { useRef, useEffect, useState } from "react";
 import axios from "axios";
 import apiUrl from "../url";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useNavigate } from 'react-router-dom';
-import Swal from 'sweetalert2';
-/* import withReactContent from 'sweetalert2-react-content'; */
+import { useParams } from "react-router-dom";
+import { Link as NavLink } from "react-router-dom";
 
-export default function NewHotel() {
+export default function EditHotel() {
+  let [hotels, setHotels] = useState([]);
+ /*  let [citiesSelect, setCitiesSelect] = useState *//* ([]); */
+  let { id } = useParams();
   const notify = () => {
     toast();
   };
+  
+  /*   useEffect(() => {
+    axios
+    .get(`${apiUrl}api/cities`)
+    .then((res) => setCitiesSelect(res.data.response));
+  }, []); */
+  useEffect(() => {
+    axios
+    .get(`${apiUrl}api/hotels/${id}`)
+    .then((res) => setHotels(res.data.response[0]));
+  }, []);
+  console.log(hotels);
+  
   let information = useRef();
   let nameNewHotel = useRef();
   let photo1 = useRef();
   let photo2 = useRef();
   let photo3 = useRef();
   let capacityNewHotel = useRef();
-  let cityId = useRef();
-  let navegation = useNavigate()
-  
-  let [citiesSelect, setCitiesSelect] = useState([])
-
-  useEffect(() => {
-    axios
-      .get(`${apiUrl}api/cities`)
-      .then((res) => setCitiesSelect(res.data.response));
-  }, []);
-
-
+ /*  let cityId = useRef(); */
 
   async function newHotel(event) {
     event.preventDefault();
@@ -36,37 +40,28 @@ export default function NewHotel() {
       name: nameNewHotel.current.value,
       photo: [photo1.current.value, photo2.current.value, photo3.current.value],
       capacity: capacityNewHotel.current.value,
-      cityId: cityId.current.value,
-      userId: "636d82abcedcaf6f80f42e70",
+      cityId: hotels.cityId,
+      userId: "636d82abcedcaf6f80f42e71",
+      
     };
-   try{
-    let res = await axios.post(`${apiUrl}api/hotels`, newHotel);
-    console.log(res);
+    try {
+      let res = await axios.patch(`${apiUrl}api/hotels/${id}`, newHotel);
+      console.log(res);
 
-    if (res.data.success) {
-      Swal.fire({
-        icon: "success",
-        title: res.data.message,
-        showConfirmButton: true,
-        iconColor: "#01344f",
-        confirmButtonColor: "#01344f",
-        confirmButtonText: 'See my hotels <i class="fa fa-arrow-right"></i>',
-      }).then((result) => {
-        if (result.isConfirmed) {
-          navegation(`/hotels/${res.data.response._id}`);
-        }
-      });
-    } 
-  } catch (error) {
-    Swal.fire({
-      icon: "warning",
-      confirmButtonColor: "#01344f",
-      iconColor: "#01344f",
-      title: error.response.data.message.join("<br/>"),
-      showConfirmButton: true,
-    });
+      if (res.data.success) {
+        toast.success("The hotel has  been successfully modified", {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+      } else {
+        toast.error(res.data.message.join("&"), {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
-  }
+  console.log(hotels);
 
   return (
     <div className="w-100 h-100 flex justify-center column align-center p-5">
@@ -74,7 +69,7 @@ export default function NewHotel() {
         <div>
           <div className="flex column justify-center">
             <div className="card1 text-center">
-              <h1 className="text-center p-1">NEW HOTEL</h1>
+              <h1 className="text-center p-1">EDIT HOTEL</h1>
               <div className="p-2">
                 <form
                   className="new column"
@@ -83,72 +78,70 @@ export default function NewHotel() {
                 >
                   <div>
                     <input
-                      placeholder="Name of hotel"
+                      placeholder="Name the hotel"
+                      defaultValue={hotels.name}
                       type="text"
-                      name="nameNewHotel"
+                      name="name"
                       className="form-control form-sign"
                       ref={nameNewHotel}
-                      
                     ></input>
                   </div>
                   <div>
                     <input
-                      placeholder="Photo 1"
+                      placeholder="URL Photo 1"
+                      defaultValue={hotels.photo && hotels.photo[0]}
                       className="form-control form-sign"
                       type="text"
-                      name="photo1"
-                      accept="image/png, image/jpeg"
-                      multiple
+                      name="photo"
                       ref={photo1}
-                      
                     />
                   </div>
                   <div>
                     <input
-                      placeholder="Photo 2"
+                      defaultValue={hotels.photo && hotels.photo[1]}
+                      placeholder="URL Photo 2"
                       className="form-control form-sign"
                       type="text"
-                      name="photo2"
+                      name="photo"
                       accept="image/png, image/jpeg"
                       multiple
                       ref={photo2}
-                     
                     />
                   </div>
                   <div>
                     <input
-                      placeholder="Photo 3"
+                      defaultValue={hotels.photo && hotels.photo[2]}
+                      placeholder="URL Photo 3"
                       className="form-control form-sign"
                       type="text"
-                      name="photo3"
+                      name="photo"
                       accept="image/png, image/jpeg"
                       multiple
                       ref={photo3}
-                    
                     />
                   </div>
                   <div>
                     <input
+                      defaultValue={hotels.capacity}
                       placeholder="Capacity"
                       className=" form-control form-sign"
                       type="text"
                       name="capacity"
                       ref={capacityNewHotel}
-                      
                     ></input>
                   </div>
-                  <div>
-                    <select ref={cityId} className="form-control form-sign" id= "cityId">
-                      <option>Select the city</option>
-                      {citiesSelect.map(city=>  <option key = {city._id} value = {city._id}>{city.name} </option>)}
-                    </select>
-                  </div>
+
                   <div className="flex justify-around  p-1 wrap g-25">
-                    <input 
-                     type="submit"
-                     onClick={notify}
-                     required
-                     className="btn" value = "CREATE A NEW HOTEL" />
+                    <input
+                      type="submit"
+                      onClick={notify}
+                      required
+                      className="btn"
+                      value="EDIT HOTEL"
+                    />
+                      <NavLink className="w-100 margin-none flex justify-end" to="/myhotels">
+                    <button className="back">Back my hotels</button>
+                    </NavLink>
                   </div>
                   <ToastContainer />
                 </form>
