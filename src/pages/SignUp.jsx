@@ -1,5 +1,5 @@
 import React from "react";
-import { Link as NavLink } from "react-router-dom";
+import { Link as NavLink, useHref } from "react-router-dom";
 import { useRef } from "react";
 import Swal from "sweetalert2";
 import axios from "axios";
@@ -37,6 +37,7 @@ export default function SignUp() {
         Swal.fire({
           icon: "success",
           title: res.data.message,
+          text: `MyTinerary sent a notification to your email ${newUser.mail}, open the Gmail app and tap Verify my account prompt to verify its you`,
           showConfirmButton: true,
           iconColor: "#01344f",
           confirmButtonColor: "#01344f",
