@@ -11,6 +11,7 @@ export default function MyHotels() {
   const { getMyHotels, deleteMyHotels } = myHotelsAction;
   const { hotels} = useSelector((state) => state.myhotels);
   console.log(hotels);
+  const { idUser} = useSelector((state) => state.user);
   // eslint-disable-next-line
   const { id, idHotel } = useSelector((state) => state.myhotels);
   let [reload, setReload] = useState(false)
@@ -20,7 +21,7 @@ export default function MyHotels() {
   };
 
   useEffect(() => {
-    let userId = "636d82abcedcaf6f80f42e71";
+    let userId = idUser;
     dispatch(getMyHotels({ id: userId }));
     // eslint-disable-next-line
   }, [reload]);

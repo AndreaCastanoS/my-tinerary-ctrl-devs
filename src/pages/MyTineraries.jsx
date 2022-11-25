@@ -16,6 +16,7 @@ export default function MyTineraries() {
     let [reload, setReload] = useState(false);
     const dispatch = useDispatch();
     const { deleteMyTinerary, getMyTineraries } = mytinerariesActions;
+    const { idUser} = useSelector((state) => state.user);
       // eslint-disable-next-line
     const { idTinerary, tineraries } = useSelector((state) => state.mytineraries);
   // eslint-disable-next-line
@@ -26,7 +27,7 @@ export default function MyTineraries() {
 
 
   useEffect(() => {
-    let userId = "636d82abcedcaf6f80f42e72"
+    let userId = idUser
       dispatch(getMyTineraries({idTinerary: userId}));
     // eslint-disable-next-line
   }, [reload]);

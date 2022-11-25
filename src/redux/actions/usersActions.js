@@ -6,7 +6,7 @@ const enter = createAsyncThunk('enter', async (datos) => { //datos son el objeto
     let url = `${apiUrl}api/auth/sign-in`
     try {
         let user = await axios.post(url,datos)
-        console.log(user)
+         console.log(user)
         return {
             success: true,
             response: user.data.response, 
@@ -42,11 +42,30 @@ const reEnter = createAsyncThunk('reEnter', async (token) => {
         }
     }
 })
+const signOff = createAsyncThunk('signOff', async(token) => {
+    let url = `${apiUrl}api/auth/sign-out`
+    let headers = {headers: {'Authorization': `Bearer ${token}`}}
+    try {
+        let user = await axios.post(url,null,headers)
+        //console.log(user.data)
+        return {
+            success: true,
+            response: user.data.message
+        }
+    } catch (error) {
+        console.log(error.response)
+        return {
+            success: false,
+            response: error.response.data.message
+        }
+    }
+})
 
 
 const usersActions= {
  enter,
- reEnter
+ reEnter,
+ signOff
 }
 
 export default usersActions
