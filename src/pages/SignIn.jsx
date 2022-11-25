@@ -2,8 +2,6 @@ import React from "react";
 import { Link as NavLink } from "react-router-dom";
 import { useRef } from "react";
 import Swal from "sweetalert2";
-/* import axios from "axios";
-import apiUrl from "../url"; */
 import { useNavigate } from 'react-router-dom';
 import usersActions from "../redux/actions/usersActions";
 import { useDispatch } from "react-redux";
@@ -25,7 +23,7 @@ export default function SignIn() {
     };
     try {
       let res = await dispatch(enter (datos));
-      console.log(res.payload.response);
+      console.log(res.payload);
       if (res.payload.success) {
         Swal.fire({
           icon: "success",
@@ -50,13 +48,6 @@ export default function SignIn() {
       }
     } catch (error) {
       console.log(error);
-    /*   Swal.fire({
-        icon: "error",
-        confirmButtonColor: "#01344f",
-        iconColor: "#01344f",
-        title: error.message,
-        showConfirmButton: true,
-      }); */
     }
   }
 

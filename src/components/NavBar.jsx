@@ -1,10 +1,12 @@
 import React from "react";
 import { useState } from "react";
 import { Link as NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function NavBar() {
   let [mostrarOcultar, setMostrarOcultar] = useState(false);
   let [mostrar, setMostrar] = useState(false);
+  let user = useSelector((store) => store.user);
   let hide = () => {
     setMostrarOcultar(!mostrarOcultar);
     setMostrar(false)
@@ -13,6 +15,43 @@ export default function NavBar() {
     setMostrar(!mostrar);
     setMostrarOcultar(false)
   };
+
+ 
+  const userPages = [
+    {
+      name: "My Shows",
+      route: "/myshows",
+   
+    },
+    {
+      name: "My Tineraries",
+      route: "/mytineraries",
+     
+    },
+  ];
+  // const adminPages = [
+  //   {
+  //     name: "New City",
+  //     route: "/newcity",
+      
+  //   },
+  //   {
+  //     name: "New Hotel",
+  //     route: "/newHotel",
+      
+  //   },
+  //   {
+  //     name: "My Cities",
+  //     route: "/mycities",
+      
+  //   },
+  //   {
+  //     name: "My Hotels",
+  //     route: "/myhotels",
+      
+  //   },
+  // ];
+
   return (
    
     <header className="navG">
@@ -33,12 +72,23 @@ export default function NavBar() {
                 <h3 className="bt-nav-c bt-nav-c1">Home</h3>
               </NavLink>
               <NavLink to="/cities" className="text-decoration">
-                <h3 className="bt-nav-c bt-nav-c1">Cities</h3>
+                <h3 className="bt-nav-c ">Cities</h3>
               </NavLink>
               <NavLink to="/hotels" className="text-decoration">
-                <h3 className="bt-nav-c bt-nav-c1">Hotels</h3>
+                <h3 className="bt-nav-c ">Hotels</h3>
               </NavLink>
-              
+              {(user.role === "user" || user.role === "admin") &&
+              userPages.map((route) => (
+              <NavLink to={route.route}  className="text-decoration" key={route.name}>
+               <h3 className="bt-nav-c ">{route.name}</h3>
+              </NavLink>
+            ))
+            }
+             {/* {adminPages.map((route) => (
+              <NavLink to={route.route}  className="text-decoration" key={route.name}>
+               <h3 className="bt-nav-c ">{route.name}</h3>
+              </NavLink>
+            ))} */}
             </div>
           </>
         ) : (
@@ -58,12 +108,6 @@ export default function NavBar() {
 
               <NavLink to="/signin" className="text-decoration">
                 <h3 className="bt-nav-c">Sign In</h3>
-              </NavLink>
-              <NavLink to="/newcity" className="text-decoration">
-                <h3 className="bt-nav-c">New City</h3>
-              </NavLink>
-              <NavLink to="/newHotel" className="text-decoration">
-                <h3 className="bt-nav-c">New Hotel</h3>
               </NavLink>
             </div>
           </>

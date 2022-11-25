@@ -22,9 +22,31 @@ const enter = createAsyncThunk('enter', async (datos) => { //datos son el objeto
     }
 })
 
+const reEnter = createAsyncThunk('reEnter', async (token) => {
+    let url = `${apiUrl}api/auth/token`
+    let headers = {headers: {'Authorization': `Bearer ${token}`}}
+    try {
+        let user = await axios.post(url,null,headers)
+        console.log(user)
+        return {
+                success: true,
+                response: user.data.response,
+                token:token,
+            }
+        
+    } catch (error) {
+        console.log(error.response)
+        return {
+            success: false,
+            response: error.response.data.message
+        }
+    }
+})
+
 
 const usersActions= {
  enter,
+ reEnter
 }
 
 export default usersActions
