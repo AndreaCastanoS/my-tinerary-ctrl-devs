@@ -34,7 +34,7 @@ function App() {
     if (token) {
       dispatch(reEnter(token.token.user));
     }
-        // eslint-disable-next-line
+    // eslint-disable-next-line
   }, []);
 
   return (
@@ -45,16 +45,26 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/cities" element={<Cities />} />
         <Route path="/hotels" element={<Hotels />} />
-        <Route path="/newHotel" element={<NewHotel />} />
-        <Route path="/newcity" element={<NewCity />} />
         <Route path="/cities/:id" element={<CitiesDetails />} />
         <Route path="/hotels/:id" element={<HotelDetails />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/signin" element={<SignIn />} />
-        <Route path="/myhotels" element={<MyHotels />} />
-        <Route path="/mycities" element={<MyCities />} />
-        <Route path="/mycities/:id" element={<EditMyCity />} />
-        <Route path="/edithotel/:id" element={<EditHotel />} />
+
+        <Route
+          element={
+            <ProtectedRoute
+              isAllowed={user.role === "user" || user.role === "admin"}
+              redirect="/signin"
+            />
+          }
+        >
+          <Route path="/newHotel" element={<NewHotel />} />
+          <Route path="/newcity" element={<NewCity />} />
+          <Route path="/myhotels" element={<MyHotels />} />
+          <Route path="/mycities" element={<MyCities />} />
+          <Route path="/mycities/:id" element={<EditMyCity />} />
+          <Route path="/edithotel/:id" element={<EditHotel />} />
+        </Route>
         <Route
           element={
             <ProtectedRoute
