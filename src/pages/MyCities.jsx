@@ -11,6 +11,7 @@ export default function Cities() {
   const dispatch = useDispatch();
   const { getMyCities, deleteMyCities } = mycitiesActions;
   const { cities } = useSelector((state) => state.mycities);
+  const { idUser} = useSelector((state) => state.user);
   // eslint-disable-next-line
   const { id, idCity } = useSelector((state) => state.mycities);
 // eslint-disable-next-line
@@ -19,7 +20,7 @@ export default function Cities() {
   };
 
   useEffect(() => {
-    let userId = "636d82abcedcaf6f80f42e71";
+    let userId = idUser;
     dispatch(getMyCities({ id: userId }));
     // eslint-disable-next-line
   }, [reload]);

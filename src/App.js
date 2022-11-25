@@ -42,7 +42,7 @@ function App() {
       <Routes>
         <Route path="" element={<Home />} />
         <Route path="/index" element={<Home />} />
-        <Route path="/signup" element={<SignUp />} />
+        <Route path="/signup"  element={<SignUp  role="user"/>} />
         <Route path="/cities" element={<Cities />} />
         <Route path="/hotels" element={<Hotels />} />
         <Route path="/cities/:id" element={<CitiesDetails />} />
@@ -53,7 +53,7 @@ function App() {
         <Route
           element={
             <ProtectedRoute
-              isAllowed={user.role === "user" || user.role === "admin"}
+              isAllowed={user.role === "admin"}
               redirect="/signin"
             />
           }
@@ -68,8 +68,7 @@ function App() {
         <Route
           element={
             <ProtectedRoute
-              isAllowed={user.role === "user" || user.role === "admin"}
-              redirect="/signin"
+              isAllowed={user.role === "user"}
             />
           }
         >

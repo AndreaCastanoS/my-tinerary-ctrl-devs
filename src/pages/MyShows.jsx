@@ -5,21 +5,23 @@ import { useDispatch, useSelector } from "react-redux";
 import myShowsActions from "../redux/actions/myShowsActions";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { NavLink } from "react-router-dom";
+
 
 export default function MyShows() {
   let [reload, setReload] = useState(false);
   const dispatch = useDispatch();
   const { getMyShows, deleteMyShows } = myShowsActions;
   const { shows } = useSelector((state) => state.myshows);
+   // eslint-disable-next-line
   const { id, idShow } = useSelector((state) => state.myshows);
-
+   const { idUser} = useSelector((state) => state.user);
+ // eslint-disable-next-line
   const notify = () => {
     toast();
   };
 
   useEffect(() => {
-    let userId = "636d8755f23e35d46c4c0862";
+    let userId = idUser;
     dispatch(getMyShows({ id: userId }));
 
     // eslint-disable-next-line

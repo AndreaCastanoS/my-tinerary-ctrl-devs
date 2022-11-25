@@ -1,11 +1,16 @@
 import React from "react";
 import { useState } from "react";
 import { Link as NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import usersActions from "../redux/actions/usersActions";
+import Swal from "sweetalert2";
 
 export default function NavBar() {
   let [mostrarOcultar, setMostrarOcultar] = useState(false);
   let [mostrar, setMostrar] = useState(false);
+  let dispatch = useDispatch();
+  const { signOff } = usersActions;
+  const { photo, name,token } = useSelector((state) => state.user);
   let user = useSelector((store) => store.user);
   let hide = () => {
     setMostrarOcultar(!mostrarOcultar);
@@ -15,6 +20,23 @@ export default function NavBar() {
     setMostrar(!mostrar);
     setMostrarOcultar(false);
   };
+
+     function signout () {
+      Swal.fire({
+        icon: "question",
+        title: "Would do you like close your session?",
+        showConfirmButton: true,
+        iconColor: "#01344f",
+        confirmButtonColor: "#01344f",
+        confirmButtonText: 'Yes',
+        showCancelButton: true,
+
+      }).then((result) => {
+        if (result.isConfirmed) {
+          dispatch(signOff(token))
+        } 
+      })
+    }
 
   const userPages = [
     {
@@ -44,17 +66,26 @@ export default function NavBar() {
       route: "/myhotels",
     },
   ];
+  const noLogged = [
+    {
+      name: "Sign Up",
+      route: "/signup",
+    },
+    {
+      name: "Sign In",
+      route: "/signin",
+    },
+  ];
 
   return (
-    <header className="navG">
+    <header className="navG  flex justify-between p-1">
       <img className="logo" src="../img/logo.png" alt="logo" />
-
-      <div className="btnN g-25">
+      <div className="btnN g-25 ">
         <div>
-          <h3 className="bt-nav " onClick={hide}>
-            Home{" "}
-            <img src="../img/desplegable.png" width="12px" alt="img-flecha" />
-          </h3>
+          <h4 className="bt-nav" onClick={hide}>
+            Home
+            <img src="../img/desplegable.png" width="14px" alt="img-flecha" />
+          </h4>
 
           {mostrarOcultar ? (
             <>
@@ -68,7 +99,7 @@ export default function NavBar() {
                 <NavLink to="/hotels" className="text-decoration">
                   <h3 className="bt-nav-c ">Hotels</h3>
                 </NavLink>
-                {(user.role === "user" || user.role === "admin") &&
+                {user.role === "user" &&
                   userPages.map((route) => (
                     <NavLink
                       to={route.route}
@@ -78,7 +109,7 @@ export default function NavBar() {
                       <h3 className="bt-nav-c ">{route.name}</h3>
                     </NavLink>
                   ))}
-                {(user.role === "user" || user.role === "admin") &&
+                {user.role === "admin" &&
                   adminPages.map((route) => (
                     <NavLink
                       to={route.route}
@@ -95,20 +126,48 @@ export default function NavBar() {
           )}
         </div>
         <div>
-          <h3 className="bt-nav" onClick={cualquierNombre}>
-            Users{" "}
-            <img src="../img/desplegable.png" width="12px" alt="img-flecha" />
-          </h3>
+          {(user.role === "admin" || user.role === "user") && (
+            <h3
+              className="bt-nav flex column justify-center align-center g-5"
+              onClick={cualquierNombre}
+            >
+              <img src={photo} className="photo-user" alt="img-user" />
+              {name}
+            </h3>
+          )}
+          {user.role !== "admin" && user.role !== "user" && (
+            <h3 className="bt-nav" onClick={cualquierNombre}>
+              <img
+                src="../img/user.png"
+                className="photo-user"
+                alt="img-user"
+              />
+            </h3>
+          )}
           {mostrar ? (
             <>
               <div className="flex column justify-center align-center p-absolute btnDespl">
-                <NavLink to="/signup" className="text-decoration">
-                  <h3 className="bt-nav-c">Sign Up</h3>
-                </NavLink>
-
-                <NavLink to="/signin" className="text-decoration">
-                  <h3 className="bt-nav-c">Sign In</h3>
-                </NavLink>
+                {(user.role === "admin" || user.role === "user") && (
+                  <>
+                    <NavLink to="/myprofile" className="text-decoration">
+                      <h3 className="bt-nav-c ">My Profile</h3>
+                    </NavLink>
+                    <div to="/signin" className="text-decoration">
+                    <h3 className="bt-nav-c " onClick={signout} >  Sign Off</h3>
+                     </div>
+                  </>
+                )}
+                {user.role !== "admin" &&
+                  user.role !== "user" &&
+                  noLogged.map((route) => (
+                    <NavLink
+                      to={route.route}
+                      className="text-decoration"
+                      key={route.name}
+                    >
+                      <h3 className="bt-nav-c ">{route.name}</h3>
+                    </NavLink>
+                  ))}
               </div>
             </>
           ) : (

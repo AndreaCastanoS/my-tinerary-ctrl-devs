@@ -5,7 +5,8 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import apiUrl from "../url";
 
-export default function SignUp() {
+export default function SignUp(props) {
+  let {role} = props
   let name = useRef();
   let lastName = useRef();
   let photo = useRef();
@@ -22,7 +23,7 @@ export default function SignUp() {
     let newUser = {
       name: name.current.value,
       lastName: lastName.current.value,
-      role: "admin",
+      role,
       photo: photo.current.value,
       age: age.current.value,
       mail: mail.current.value,

@@ -30,6 +30,9 @@
   align-items: center;
   justify-content: center;
 }
+.g-100{
+  gap: 300px;
+}
 
 .justify-end {
   justify-content: end;
@@ -793,7 +796,6 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
   padding: 0.5rem 1rem;
 }
 
@@ -1346,10 +1348,8 @@ a {
 }
 
 .navG {
-  display: flex;
   width: 100%;
   flex-direction: row;
-  justify-content: space-between;
   z-index: 20;
   background-image: url("../public/img/footerbanner.jpg");
 }
@@ -1598,4 +1598,11 @@ width: 4rem;
   font-size: 12px !important;
   font-family: Georgia, serif;
 
+}
+
+.photo-user{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+ 
 }
