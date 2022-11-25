@@ -15,7 +15,7 @@ const getCities = createAsyncThunk("getCities", async () => {
 });
 const getCitiesFilter = createAsyncThunk(
   "getCitiesFilter",
-  async ({ zone, value }) => {
+  async ({ zone, value , checks}) => {
     let url = `${apiUrl}api/cities?${zone}&name=${value}`;
 
     try {
@@ -25,6 +25,7 @@ const getCitiesFilter = createAsyncThunk(
         cities: res.data.response,
         zone,
         value,
+        checks,
       };
     } catch (error) {
       console.log(error);

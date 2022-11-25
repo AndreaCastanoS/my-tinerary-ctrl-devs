@@ -4,6 +4,7 @@ import myHotelsReducers from "./myHotelsReducers";
 import mycitiesReducers from "./mycitiesReducers";
 import myShowsReducers from "./myShowsReducers";
 import mytinerariesReducers from "./mytinerariesReducers"
+import usersReducers from "./usersReducers"
 
 const rootReducer = {
     cities: citiesReducers,
@@ -12,6 +13,7 @@ const rootReducer = {
     mycities: mycitiesReducers,
     myshows: myShowsReducers,
     mytineraries: mytinerariesReducers,
+    user: usersReducers,
 }
 
 export default rootReducer;

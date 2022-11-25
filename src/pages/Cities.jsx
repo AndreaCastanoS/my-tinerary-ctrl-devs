@@ -9,13 +9,24 @@ export default function Cities() {
   const dispatch = useDispatch();
   const { getCities, getCitiesFilter } = citiesActions;
   const { cities, categories } = useSelector((state) => state.cities);
-  const { zone, value } = useSelector((store) => store.cities);
+  const { zone, value, checks } = useSelector((store) => store.cities);
 
   let [checkbox, setCheckbox] = useState([]);
   let searchId = useRef();
+  let che = useRef();
+
 
   useEffect(() => {
-    if (cities.length === 0) {
+    if (zone || value) {
+      dispatch(getCitiesFilter({ zone, value, checks }));
+      searchId.current.value = value
+      if(checks){
+        checks.forEach(e=>{
+          let input = Array.from(che.current).find(input => input.value === e)
+          input.checked = true
+        })
+      }
+    } else {
       dispatch(getCities());
     }
 
@@ -31,13 +42,13 @@ export default function Cities() {
     console.log(checks);
     let text = searchId.current.value;
     let urlChecks = checks.map((check) => `zone=${check}`).join("&");
-    dispatch(getCitiesFilter({ zone: urlChecks, value: text }));
+    dispatch(getCitiesFilter({ zone: urlChecks, value: text, checks }));
   };
 
   function checksFilter(event) {
     let arrayCheck = [];
     if (event.target.checked) {
-      arrayCheck = [...checkbox, event.target.value];
+      arrayCheck = [...checks, event.target.value];
     } else {
       arrayCheck = checkbox.filter((e) => e !== event.target.value);
     }
@@ -63,7 +74,7 @@ export default function Cities() {
           ref={searchId}
         />
 
-        <div className="flex g-25 wrap checks">
+        <form ref={che} className="flex g-25 wrap checks">
           {categories?.map((category) => {
             return (
               <div class="form-check form-check-inline">
@@ -80,7 +91,7 @@ export default function Cities() {
               </div>
             );
           })}
-        </div>
+        </form>
       </div>
       <div className="flex wrap w-100 justify-center align-center g-25 pb-3">
         {cities?.map((item) => {

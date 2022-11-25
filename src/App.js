@@ -19,11 +19,27 @@ import EditHotel from "./pages/EditHotel.jsx"
 import EditMyCity from "./pages/EditMyCity"
 import EditMyTinerary from "./pages/EditMyTinerary";
 import EditShows from "./pages/EditShows"
-
-
-
+import { useSelector,useDispatch } from 'react-redux'
+import usersActions from './redux/actions/usersActions'
+import { useEffect } from 'react'
 
 function App() {
+/*   let { online } = useSelector(store => store.user)
+  let dispatch = useDispatch()
+  let { reingresar } = usersActions
+
+  useEffect(() => {
+    let token = JSON.parse(localStorage.getItem('token'))
+    console.log(token?.token.user)
+    if (token) {
+      dispatch(reingresar(token.token.user))
+    }
+  },[])
+ */
+/* 
+  <Route path="/nuevo-perfil" element={online ? <Carousel /> : <NewMentor />} />
+  <Route path="/ingresar" element={online ? <Carousel /> : <Login />} /> */
+
   return (
     <Main>
       <Routes>
@@ -33,7 +49,7 @@ function App() {
         <Route path="/cities" element={<Cities />} />
         <Route path="/hotels" element={<Hotels />} />
         <Route path="/signin" element={<SignIn />} />
-        <Route path="/newHotel" element={<NewHotel />} />
+        <Route path="/newHotel" element= {<NewHotel />} />
         <Route path="/newcity" element={<NewCity />} />
         <Route path="/cities/:id" element={<CitiesDetails />} />
         <Route path="/hotels/:id" element={<HotelDetails />} />
