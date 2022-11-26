@@ -23,6 +23,7 @@ import { useSelector, useDispatch } from "react-redux";
 import usersActions from "./redux/actions/usersActions";
 import { useEffect } from "react";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Profile from "./pages/Profile";
 
 function App() {
   let user = useSelector((store) => store.user);
@@ -42,13 +43,23 @@ function App() {
       <Routes>
         <Route path="" element={<Home />} />
         <Route path="/index" element={<Home />} />
-        <Route path="/signup"  element={<SignUp  role="user"/>} />
+        <Route path="/signup" element={<SignUp role="user" />} />
         <Route path="/cities" element={<Cities />} />
         <Route path="/hotels" element={<Hotels />} />
         <Route path="/cities/:id" element={<CitiesDetails />} />
         <Route path="/hotels/:id" element={<HotelDetails />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/signin" element={<SignIn />} />
+        <Route
+          element={
+            <ProtectedRoute
+              isAllowed={user.role === "admin" || user.role === "user"}
+              redirect="/profile"
+            />
+          }
+        >
+          <Route path="/profile" element={<Profile />} />
+        </Route>
 
         <Route
           element={
@@ -65,13 +76,7 @@ function App() {
           <Route path="/mycities/:id" element={<EditMyCity />} />
           <Route path="/edithotel/:id" element={<EditHotel />} />
         </Route>
-        <Route
-          element={
-            <ProtectedRoute
-              isAllowed={user.role === "user"}
-            />
-          }
-        >
+        <Route element={<ProtectedRoute isAllowed={user.role === "user"} />}>
           <Route path="/mytineraries" element={<MyTineraries />} />
           <Route path="/mytineraries/:id" element={<EditMyTinerary />} />
           <Route path="/myshows" element={<MyShows />} />
