@@ -149,7 +149,7 @@ export default function NavBar() {
               <div className="flex column justify-center align-center p-absolute btnDespl">
                 {(user.role === "admin" || user.role === "user") && (
                   <>
-                    <NavLink to="/myprofile" className="text-decoration">
+                    <NavLink to="/profile" className="text-decoration">
                       <h3 className="bt-nav-c ">My Profile</h3>
                     </NavLink>
                     <div to="/signin" className="text-decoration">
