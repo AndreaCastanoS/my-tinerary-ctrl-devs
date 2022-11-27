@@ -6,16 +6,17 @@ import myShowsActions from "../redux/actions/myShowsActions";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-
 export default function MyShows() {
-  let [reload, setReload] = useState(false);
+  /*  let [reload, setReload] = useState(false) */
   const dispatch = useDispatch();
   const { getMyShows, deleteMyShows } = myShowsActions;
   const { shows } = useSelector((state) => state.myshows);
-   // eslint-disable-next-line
+  // eslint-disable-next-line
   const { id, idShow } = useSelector((state) => state.myshows);
-   const { idUser} = useSelector((state) => state.user);
- // eslint-disable-next-line
+  const { idUser, token } = useSelector((state) => state.user);
+  console.log(token);
+
+  // eslint-disable-next-line
   const notify = () => {
     toast();
   };
@@ -25,7 +26,7 @@ export default function MyShows() {
     dispatch(getMyShows({ id: userId }));
 
     // eslint-disable-next-line
-  }, [reload]);
+  }, [/* reload */]);
 
   return (
     <div className="flex justify-center column main-full">
@@ -37,12 +38,12 @@ export default function MyShows() {
       <div className="flex wrap w-100 justify-center align-center g-25 pb-3">
         {shows.shows?.map((item) => {
           function deleteFunc() {
-            if (dispatch(deleteMyShows({ idShow: item._id }))) {
+            if (dispatch(deleteMyShows({ idShow: item._id, token }))) {
               toast.success("the show was deleted successfully", {
                 position: toast.POSITION.TOP_RIGHT,
               });
             }
-            setReload(!reload);
+            /* setReload(!reload) */
           }
 
           return (

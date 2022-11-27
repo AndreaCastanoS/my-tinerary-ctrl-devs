@@ -19,12 +19,23 @@ const getMyShows = createAsyncThunk("getMyShows", async ({ id }) => {
     };
   }
 });
-const deleteMyShows = createAsyncThunk("deleteMyShows", async ({ idShow}) => {
-  let url = `${apiUrl}api/shows/${idShow}`;
+const deleteMyShows = createAsyncThunk("deleteMyShows", async ({ idShow,  token }) => {
+  let headers = { headers: { Authorization: `Bearer ${token}` } }
+  let url = (`${apiUrl}api/shows/${idShow}`);
   try {
-    const res = await axios.delete(url);
+    const res = await axios.delete(url, headers);
     console.log(res);
-    return res.data.id;
+    if (res.data._id) {
+      return {
+        success: false,
+        response: res.data,
+      };
+    } else {
+      return {
+        success: true,
+        res: res.data.message,
+      };
+    }
   } catch (error) {
     if (error.response) {
       throw error.response.data.message.join("\n");
