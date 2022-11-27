@@ -7,14 +7,14 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function MyShows() {
-  /*  let [reload, setReload] = useState(false) */
+   let [reload, setReload] = useState(false)
   const dispatch = useDispatch();
   const { getMyShows, deleteMyShows } = myShowsActions;
   const { shows } = useSelector((state) => state.myshows);
   // eslint-disable-next-line
   const { id, idShow } = useSelector((state) => state.myshows);
   const { idUser, token } = useSelector((state) => state.user);
-  console.log(token);
+  
 
   // eslint-disable-next-line
   const notify = () => {
@@ -26,7 +26,7 @@ export default function MyShows() {
     dispatch(getMyShows({ id: userId }));
 
     // eslint-disable-next-line
-  }, [/* reload */]);
+  }, [reload]);
 
   return (
     <div className="flex justify-center column main-full">
@@ -43,7 +43,7 @@ export default function MyShows() {
                 position: toast.POSITION.TOP_RIGHT,
               });
             }
-            /* setReload(!reload) */
+            setReload(!reload)
           }
 
           return (

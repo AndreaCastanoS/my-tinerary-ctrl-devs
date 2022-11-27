@@ -5,9 +5,11 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { useSelector } from "react-redux";
 /* import withReactContent from 'sweetalert2-react-content'; */
 
 export default function NewHotel() {
+  const { idUser, token } = useSelector((state) => state.user);
   const notify = () => {
     toast();
   };
@@ -37,10 +39,11 @@ export default function NewHotel() {
       photo: [photo1.current.value, photo2.current.value, photo3.current.value],
       capacity: capacityNewHotel.current.value,
       cityId: cityId.current.value,
-      userId: "636d82abcedcaf6f80f42e70",
+      userId: idUser,
     };
+    let headers = { headers: { Authorization: `Bearer ${token}` } };
    try{
-    let res = await axios.post(`${apiUrl}api/hotels`, newHotel);
+    let res = await axios.post(`${apiUrl}api/hotels`, newHotel, headers);
     console.log(res);
 
     if (res.data.success) {
