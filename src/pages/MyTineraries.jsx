@@ -1,34 +1,28 @@
 import React from "react";
-import { useEffect, useState  } from "react"
-import CardMyTinerary from "../components/CardMyTinerary"
-// import apiUrl from "../url";
-// import axios from "axios";
+import { useEffect, useState } from "react";
+import CardMyTinerary from "../components/CardMyTinerary";
 import { useDispatch, useSelector } from "react-redux";
 import mytinerariesActions from "../redux/actions/mytinerariesActions";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-
-
 export default function MyTineraries() {
-    // let [tineraries, setTineraries] = useState([]);
-    let [count, setCount] = useState(0);
-    let [reload, setReload] = useState(false);
-    const dispatch = useDispatch();
-    const { deleteMyTinerary, getMyTineraries } = mytinerariesActions;
-    const { idUser} = useSelector((state) => state.user);
-      // eslint-disable-next-line
-    const { idTinerary, tineraries } = useSelector((state) => state.mytineraries);
+  const { idUser, token } = useSelector((state) => state.user);
+  let [count, setCount] = useState(0);
+  let [reload, setReload] = useState(false);
+  const dispatch = useDispatch();
+  const { deleteMyTinerary, getMyTineraries } = mytinerariesActions;
+
+  // eslint-disable-next-line
+  const { idTinerary, tineraries } = useSelector((state) => state.mytineraries);
   // eslint-disable-next-line
   const notify = () => {
     toast();
   };
- 
-
 
   useEffect(() => {
-    let userId = idUser
-      dispatch(getMyTineraries({idTinerary: userId}));
+
+    dispatch(getMyTineraries({ idTinerary: idUser }));
     // eslint-disable-next-line
   }, [reload]);
 
@@ -41,37 +35,37 @@ export default function MyTineraries() {
     };
   }, [count]);
 
-
   return (
     <div className="flex justify-center column main-full">
-    <div className="container-header">
-      <img src="./img/itinerary.jpg" className="img-mycity" alt="map img" />
-    </div>
-    <h2 className="tittle-find text-center ">MY TINERARIES</h2>
-    <ToastContainer autoClose={50000} />
-    <div className="flex wrap w-100 justify-center align-center p-3 g-25 pb-3">
-      {tineraries?.map((item) => {
-        function deleteFunc() {
-          if (dispatch(deleteMyTinerary({ idTinerary: item._id }))) {
-            toast.success("the city was deleted successfully", {
-              position: toast.POSITION.TOP_RIGHT,
-            });
+      <div className="container-header">
+        <img src="./img/itinerary.jpg" className="img-mycity" alt="map img" />
+      </div>
+      <h2 className="tittle-find text-center ">MY TINERARIES</h2>
+      <ToastContainer autoClose={50000} />
+      <div className="flex wrap w-100 justify-center align-center p-3 g-25 pb-3">
+        {tineraries?.map((item) => {
+          function deleteFunc() {
+            if (dispatch(deleteMyTinerary({ idTinerary: item._id, token }))) {
+              toast.success("the tinerary was deleted successfully", {
+                position: toast.POSITION.TOP_RIGHT,
+              });
+            }
+            setReload(!reload);
           }
-          setReload(!reload)
-        }
-        return (
-          <CardMyTinerary
-          id={item._id}
-          key={item._id}
-          name={item.name}
-          photo={item.photo[count]}
-          description={item.description}
-          price={item.price} duration={item.duration}
-          onClick={deleteFunc}
-          ></CardMyTinerary>
-        );
-      })}
+          return (
+            <CardMyTinerary
+              id={item._id}
+              key={item._id}
+              name={item.name}
+              photo={item.photo[count]}
+              description={item.description}
+              price={item.price}
+              duration={item.duration}
+              onClick={deleteFunc}
+            ></CardMyTinerary>
+          );
+        })}
+      </div>
     </div>
-  </div>
-  )
+  );
 }
