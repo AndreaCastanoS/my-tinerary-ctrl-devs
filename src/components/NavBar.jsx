@@ -47,6 +47,10 @@ export default function NavBar() {
       name: "My Tineraries",
       route: "/mytineraries",
     },
+    {
+      name: "New Show",
+      route: "newshow",
+    }
   ];
   const adminPages = [
     {

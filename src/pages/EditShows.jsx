@@ -5,15 +5,16 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useParams } from "react-router-dom";
 import { Link as NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function EditShows() {
+  const { idUser, user, token } = useSelector((state) => state.user);
   let [shows, setShows] = useState([]);
   let { id } = useParams();
   const notify = () => {
     toast();
   };
   let information = useRef();
-  let nameNewHotel = useRef();
   let hotelId = useRef();
   let name = useRef();
   let description = useRef();
@@ -37,15 +38,18 @@ export default function EditShows() {
     event.preventDefault();
     let newHotel = {
       hotelId: shows.hotelId,
-      name: nameNewHotel.current.value,
+      name: name.current.value,
       description: description.current.value,
       photo: photo.current.value,
       price: price.current.value,
       date: date.current.value,
-      userId: "636d8755f23e35d46c4c0862",
+      userId: idUser,
+      
     };
+    let headers = { headers: { Authorization: `Bearer ${token}` } };
+
     try {
-      let res = await axios.patch(`${apiUrl}api/shows/${id}`, newHotel);
+      let res = await axios.patch(`${apiUrl}api/shows/${id}`,  newHotel, headers);
       console.log(res);
 
       if (res.data.success) {
@@ -83,7 +87,7 @@ export default function EditShows() {
                       type="text"
                       name="nameNewHotel"
                       className="form-control form-sign"
-                      ref={nameNewHotel}
+                      ref={name}
                       onChange={(e) => onInputChange(e)}
                     ></input>
                   </div>
