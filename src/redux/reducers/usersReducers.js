@@ -1,7 +1,7 @@
 import { createReducer } from "@reduxjs/toolkit";
 import usersActions from "../actions/usersActions";
 
-const { enter, reEnter, signOff, getUser, /* updateUser */ } = usersActions;
+const { enter, reEnter, signOff, getUser } = usersActions;
 
 const initialState = {
   name: "",
