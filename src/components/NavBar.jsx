@@ -52,7 +52,7 @@ export default function NavBar() {
       name: "New Tinerary",
       route: "/newtinerary",
     },
-
+    {
       name: "New Show",
       route: "newshow",
     }

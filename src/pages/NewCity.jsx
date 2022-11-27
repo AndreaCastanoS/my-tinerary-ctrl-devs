@@ -3,9 +3,11 @@ import axios from "axios";
 import apiUrl from "../url";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-/* import withReactContent from "sweetalert2-react-content"; */
-export default function NewCity() {
+import { useSelector } from "react-redux";
 
+
+export default function NewCity() {
+  const { idUser, token } = useSelector((state) => state.user);
 
   let information = useRef();
   let nameNewCity = useRef();
@@ -21,10 +23,11 @@ export default function NewCity() {
       zone: zoneCity.current.value,
       photo: photoNewCity.current.value,
       population: populationCity.current.value,
-      userId: "636d82abcedcaf6f80f42e71",
+      userId: idUser,
     };
+    let headers = { headers: { Authorization: `Bearer ${token}` } };
     try {
-      let res = await axios.post(`${apiUrl}api/cities`, newCity);
+      let res = await axios.post(`${apiUrl}api/cities`, newCity, headers);
       console.log(res);
 
       if (res.data.success) {

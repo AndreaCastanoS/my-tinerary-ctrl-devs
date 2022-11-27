@@ -53,7 +53,7 @@ export default function SignIn() {
 
   return (
     <div className="main-full flex justify-center column align-center p-5">
-      <img src="./img/map.png" className="p-absolute h-90" alt="map img" />
+      <img src="./img/map.png" className="p-absolute  w-80" alt="map img" />
       <div className="card1 bg-form">
         <h1 className="text-center  p-1">Sign In</h1>
         <div className="p-2">
