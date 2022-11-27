@@ -11,7 +11,7 @@ export default function Cities() {
   const dispatch = useDispatch();
   const { getMyCities, deleteMyCities } = mycitiesActions;
   const { cities } = useSelector((state) => state.mycities);
-  const { idUser} = useSelector((state) => state.user);
+  const { idUser, token} = useSelector((state) => state.user);
   // eslint-disable-next-line
   const { id, idCity } = useSelector((state) => state.mycities);
 // eslint-disable-next-line
@@ -20,8 +20,7 @@ export default function Cities() {
   };
 
   useEffect(() => {
-    let userId = idUser;
-    dispatch(getMyCities({ id: userId }));
+    dispatch(getMyCities({ id: idUser }));
     // eslint-disable-next-line
   }, [reload]);
 
@@ -35,7 +34,7 @@ export default function Cities() {
       <div className="flex wrap w-100 justify-center align-center g-25 pb-3">
         {cities.cities?.map((item) => {
           function deleteFunc() {
-            if (dispatch(deleteMyCities({ idCity: item._id }))) {
+            if (dispatch(deleteMyCities({ idCity: item._id, token }))) {
               toast.success("the city was deleted successfully", {
                 position: toast.POSITION.TOP_RIGHT,
               });

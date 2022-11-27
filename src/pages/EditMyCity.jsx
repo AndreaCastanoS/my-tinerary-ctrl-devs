@@ -6,9 +6,11 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useParams } from "react-router-dom";
 import { Link as NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function EditMyCity() {
   let [cities, setCities] = useState([]);
+  const { idUser, token } = useSelector((state) => state.user);
 
   const onInputChange = (e) => {
     setCities({ ...cities, [e.target.placeholder]: e.target.value });
@@ -39,12 +41,11 @@ export default function EditMyCity() {
       zone: zoneCity.current.value,
       photo: photoNewCity.current.value,
       population: populationCity.current.value,
-      userId: "636d82abcedcaf6f80f42e71",
+      userId: idUser,
     };
-
+    let headers = { headers: { Authorization: `Bearer ${token}` } };
     try {
-      let res = await axios.put(`${apiUrl}api/cities/${id}`, newCity);
-      console.log(res);
+      let res = await axios.put(`${apiUrl}api/cities/${id}`, newCity, headers);
 
       if (res.data.success) {
         toast.success("the city was successfully modified", {

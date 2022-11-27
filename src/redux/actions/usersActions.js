@@ -77,30 +77,12 @@ const getUser = createAsyncThunk("getUser", async (id) => {
     };
   }
 });
-/* const updateUser = createAsyncThunk("updateUser", async (id) => {
-  let url = `${apiUrl}api/auth/me/${id}`;
-  try{
-    let res = await axios.patch(url);
-      return {
-      success: true,
-      response: res.data.response,
-      }
-
-    }catch(error){
-      console.log(error)
-      return {
-        success: false,
-        response: "ocurrió un error",
-      }
-  }
-}) */
 
 const usersActions = {
   enter,
   reEnter,
   signOff,
   getUser,
- /*  updateUser */
 };
 
 export default usersActions;
