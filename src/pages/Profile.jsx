@@ -94,7 +94,7 @@ export default function Profile() {
             <input
               defaultValue={user.lastName}
               type="text"
-              placeholder="Insert name of the hotel"
+              placeholder="Insert  your name "
               id="name"
               ref={lastName}
             />
@@ -105,8 +105,8 @@ export default function Profile() {
             <input
               defaultValue={user.photo}
               type="text"
-              placeholder="Insert photo URL of the hotel"
-              id="photo1"
+              placeholder="Insert photo URL "
+              id="photo"
               ref={photo}
             />
           </label>
@@ -115,7 +115,7 @@ export default function Profile() {
             <input
               defaultValue={user.age}
               type="text"
-              placeholder="Insert photo URL of the hotel"
+              placeholder="Insert your age"
               id="photo2"
               ref={age}
             />
@@ -125,7 +125,7 @@ export default function Profile() {
             <input
               defaultValue={user.mail}
               type="text"
-              placeholder="Insert photo URL of the hotel"
+              placeholder="Insert your email"
               id="photo3"
               ref={mail}
             />
