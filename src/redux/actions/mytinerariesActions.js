@@ -20,35 +20,26 @@ const getMyTineraries = createAsyncThunk(
 
 const deleteMyTinerary = createAsyncThunk(
   "deleteMyTinerary",
-  async ({ idTinerary }) => {
+  async ({ idTinerary, token }) => {
+    let headers = { headers: { Authorization: `Bearer ${token}` } };
     let url = `${apiUrl}api/itineraries/${idTinerary}`;
     try {
-      const res = await axios.delete(url);
-      console.log(res.data.message);
-      console.log(res.data);
-      if (res.data._id) {
+      const res = await axios.delete(url, headers);
+      
+      return res.data
+    } catch(error){
+        console.log(error)
         return {
-          success: false,
-          response: res.data,
-        };
-      } else {
-        return {
-          success: true,
-          res: res.data.message,
-        };
-      }
-    } catch (error) {
-      console.log(error);
-      return {
-        payload: "Error",
-      };
+            payload: 'Error'
+        }
     }
-  }
-);
+})
+
 
 const mytinerariesActions = {
   deleteMyTinerary,
   getMyTineraries,
+
 };
 
 export default mytinerariesActions;

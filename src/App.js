@@ -24,6 +24,7 @@ import usersActions from "./redux/actions/usersActions";
 import { useEffect } from "react";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Profile from "./pages/Profile";
+import NewTinerary from "./pages/NewTinerary";
 
 function App() {
   let user = useSelector((store) => store.user);
@@ -81,6 +82,7 @@ function App() {
           <Route path="/mytineraries/:id" element={<EditMyTinerary />} />
           <Route path="/myshows" element={<MyShows />} />
           <Route path="/editshows/:id" element={<EditShows />} />
+          <Route path="/newtinerary" element={<NewTinerary />} />
         </Route>
       </Routes>
     </Main>

@@ -1,32 +1,12 @@
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import apiUrl from "../url";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { useParams } from "react-router-dom";
-import { Link as NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import { useSelector } from "react-redux";
 
-export default function EditMyTinerary() {
-  let [itinerary, setItinerary] = useState([]);
+export default function NewTinerary() {
   const { idUser, token } = useSelector((state) => state.user);
-  // let [photos, setPhotos] = useState([]);
-
- 
-  let { id } = useParams();
-  const notify = () => {
-    toast();
-  };
-
-  useEffect(() => {
-    axios
-      .get(`${apiUrl}api/itineraries/${id}`)
-      .then((res) => setItinerary(res.data.response))
-    // eslint-disable-next-line
-  }, []);
-
-console.log(itinerary.photo);
-console.log(itinerary);
   let information = useRef();
   let name = useRef();
   let photo1 = useRef();
@@ -35,36 +15,56 @@ console.log(itinerary);
   let description = useRef();
   let price = useRef();
   let duration = useRef();
+  let cityId = useRef();
+  let navegation = useNavigate();
+  let [citiesSelect, setCitiesSelect] = useState([]);
 
-  async function editTinerary(event) {
+  useEffect(() => {
+    axios
+      .get(`${apiUrl}api/cities`)
+      .then((res) => setCitiesSelect(res.data.response));
+    // eslint-disable-next-line
+  }, []);
+
+  async function NewTinerary(event) {
     event.preventDefault();
-  
-    let editTinerary = {
-      cityId: itinerary.cityId,
+    let NewTinerary = {
       name: name.current.value,
       photo: [photo1.current.value, photo2.current.value, photo3.current.value],
       description: description.current.value,
       price: price.current.value,
       duration: duration.current.value,
+      cityId: cityId.current.value,
       userId: idUser,
-     
     };
     let headers = { headers: { Authorization: `Bearer ${token}` } };
     try {
-      let res = await axios.put(`${apiUrl}api/itineraries/${id}`, editTinerary, headers);
+      let res = await axios.post(`${apiUrl}api/itineraries`, NewTinerary, headers);
       console.log(res);
 
       if (res.data.success) {
-        toast.success("The itinerary was successfully modified", {
-          position: toast.POSITION.TOP_RIGHT,
-        });
-      } else {
-        toast.error(res.data.message.join("&"), {
-          position: toast.POSITION.TOP_RIGHT,
+        Swal.fire({
+          icon: "success",
+          title: res.data.message,
+          showConfirmButton: true,
+          iconColor: "#01344f",
+          confirmButtonColor: "#01344f",
+          confirmButtonText:
+            'See my tinerary <i class="fa fa-arrow-right"></i>',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            navegation(`/mytineraries`);
+          }
         });
       }
     } catch (error) {
-      console.log(error);
+      Swal.fire({
+        icon: "warning",
+        confirmButtonColor: "#01344f",
+        iconColor: "#01344f",
+        title: error.response.data.message.join("<br/>"),
+        showConfirmButton: true,
+      });
     }
   }
 
@@ -75,43 +75,42 @@ console.log(itinerary);
           <div>
             <div className="flex column justify-center">
               <div className="card1 text-center">
-                <h1 className="text-center p-1">EDIT TINERARY</h1>
+                <h1 className="text-center p-1">New Tinerary</h1>
                 <div className="p-2">
                   <form
                     className="new column"
-                    onSubmit={editTinerary}
+                    onSubmit={NewTinerary}
                     ref={information}
                   >
                     <div>
                       <input
-                        defaultValue={itinerary.name}
-                        placeholder="Name of the itinerary"
+                        placeholder="Name of Tinerary"
                         type="text"
                         name="name"
                         className="form-control form-sign"
                         ref={name}
-                    
                       />
                     </div>
                     <div>
                       <input
-                        defaultValue={itinerary.photo&&itinerary.photo[0]}
                         placeholder="URL of the photo"
                         className="form-control form-sign"
                         type="text"
                         name="photo1"
                         ref={photo1}
                       />
+                    </div>
+                    <div>
                       <input
-                        defaultValue={itinerary.photo&&itinerary.photo[1]}
-                        placeholder={"URL of the photo"}
-                        className="form-control form-sign"
+                        placeholder="URL of the photo"
+                        className=" form-control form-sign"
                         type="text"
                         name="photo2"
                         ref={photo2}
                       />
+                    </div>
+                    <div>
                       <input
-                        defaultValue={itinerary.photo&&itinerary.photo[2]}
                         placeholder="URL of the photo"
                         className="form-control form-sign"
                         type="text"
@@ -121,18 +120,15 @@ console.log(itinerary);
                     </div>
                     <div>
                       <input
-                        defaultValue={itinerary.description}
                         placeholder="Description"
                         className="form-control form-sign"
                         type="text"
                         name="description"
                         ref={description}
-                      
                       />
                     </div>
                     <div>
                       <input
-                        defaultValue={itinerary.price}
                         placeholder="Price"
                         type="text"
                         name="price"
@@ -142,7 +138,6 @@ console.log(itinerary);
                     </div>
                     <div>
                       <input
-                        defaultValue={itinerary.duration}
                         placeholder={"Duration"}
                         type="text"
                         name="duration"
@@ -150,19 +145,28 @@ console.log(itinerary);
                         ref={duration}
                       />
                     </div>
-                    <div className="flex justify-center wrap g-25 align-center">
+                    <div>
+                      <select
+                        ref={cityId}
+                        className="form-control form-sign"
+                        id="cityId"
+                      >
+                        <option>Select the city</option>
+                        {citiesSelect.map((city) => (
+                          <option key={city._id} value={city._id}>
+                            {city.name}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                    <div className="flex justify-around  p-1 wrap g-25">
                       <input
                         type="submit"
-                        onClick={notify}
                         className="btn"
                         required
-                        value="EDIT TINERARY"
+                        value="CREATE A NEW TINERARY"
                       />
                     </div>
-                    <NavLink className="w-100 margin-none flex justify-end" to="/mytineraries">
-                    <button className="back">Back my tineraries</button>
-                    </NavLink>
-                    <ToastContainer />
                   </form>
                 </div>
               </div>
