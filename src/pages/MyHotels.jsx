@@ -11,7 +11,7 @@ export default function MyHotels() {
   const { getMyHotels, deleteMyHotels } = myHotelsAction;
   const { hotels} = useSelector((state) => state.myhotels);
   console.log(hotels);
-  const { idUser} = useSelector((state) => state.user);
+  const { idUser, token} = useSelector((state) => state.user);
   // eslint-disable-next-line
   const { id, idHotel } = useSelector((state) => state.myhotels);
   let [reload, setReload] = useState(false)
@@ -36,7 +36,7 @@ export default function MyHotels() {
       <div className="flex wrap w-100 justify-center align-center g-25 pb-3">
         {hotels.hotels?.map((item) => {
           function deleteFunc() {
-            if (dispatch(deleteMyHotels({ idHotel: item._id }))) {
+            if (dispatch(deleteMyHotels({ idHotel: item._id, token }))) {
               toast.success("the hotel was deleted successfully", {
                 position: toast.POSITION.TOP_RIGHT,
               });

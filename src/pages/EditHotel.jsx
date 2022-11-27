@@ -4,10 +4,12 @@ import apiUrl from "../url";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { Link as NavLink } from "react-router-dom";
 
 export default function EditHotel() {
   let [hotels, setHotels] = useState([]);
+  const { idUser, token } = useSelector((state) => state.user);
  /*  let [citiesSelect, setCitiesSelect] = useState *//* ([]); */
   let { id } = useParams();
   const notify = () => {
@@ -41,11 +43,12 @@ export default function EditHotel() {
       photo: [photo1.current.value, photo2.current.value, photo3.current.value],
       capacity: capacityNewHotel.current.value,
       cityId: hotels.cityId,
-      userId: "636d82abcedcaf6f80f42e71",
+      userId: idUser,
       
     };
+    let headers = { headers: { Authorization: `Bearer ${token}` } };
     try {
-      let res = await axios.patch(`${apiUrl}api/hotels/${id}`, newHotel);
+      let res = await axios.patch(`${apiUrl}api/hotels/${id}`, newHotel, headers);
       console.log(res);
 
       if (res.data.success) {
