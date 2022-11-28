@@ -6,15 +6,14 @@ const {
 const { deleteMyTinerary, getMyTineraries } = mytinerariesActions;
 
 const initialState = {
-  tineraries: [],
-  idTinerary: "",
+  tineraries: []
 };
 
 const mytinerariesReducers = createReducer(initialState, (builder) => {
   builder
     .addCase(getMyTineraries.fulfilled, (state, action) => {
       console.log(action.payload);
-      return { ...state, tineraries: action.payload}
+      return { ...state, tineraries: action.payload.tineraries}
 
     })
 
@@ -22,7 +21,7 @@ const mytinerariesReducers = createReducer(initialState, (builder) => {
       let itinerary = state.tineraries.filter(
         (itinerary) => itinerary._id !== action.payload.data._id
       );
-      return { ...state, itinerary: itinerary };
+      return { ...state, tineraries: itinerary };
     });
 });
 

@@ -24,6 +24,7 @@ const deleteMyHotels = createAsyncThunk("deleteMyHotels", async ({ idHotel, toke
     return {
       success: true,
       res: res.data.message,
+      data: res.data.res
     };
   } catch (error) {
     console.log(error);

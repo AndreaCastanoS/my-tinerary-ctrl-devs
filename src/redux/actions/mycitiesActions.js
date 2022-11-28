@@ -21,10 +21,12 @@ const deleteMyCities = createAsyncThunk("deleteMyCities", async ({ idCity, token
   let url = `${apiUrl}api/cities/${idCity}`;
   try {
     const res = await axios.delete(url, headers);
+    console.log(res.data);
     return {
       success: true,
       res: res.data.message,
-    };
+      data: res.data.res
+    }
   } catch (error) {
     console.log(error);
     return {

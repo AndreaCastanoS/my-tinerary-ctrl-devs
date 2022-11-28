@@ -3,18 +3,15 @@ import "react-toastify/dist/ReactToastify.css";
 import { useDispatch, useSelector } from "react-redux";
 import usersAction from "../redux/actions/usersActions";
 import Swal from "sweetalert2";
-import axios from "axios";
-import apiUrl from "../url";
 import { Link as NavLink } from "react-router-dom";
 
 export default function Profile() {
   const dispatch = useDispatch();
   const { idUser, user } = useSelector((state) => state.user);
-  const { getUser /* updateUser */ } = usersAction;
+  const { getUser, editProfile } = usersAction;
 
   useEffect(() => {
     dispatch(getUser(idUser));
-
     // eslint-disable-next-line
   }, []);
   console.log(user);
@@ -46,39 +43,30 @@ export default function Profile() {
       confirmButtonColor: "#01344f",
       confirmButtonText: "Yes",
       showCancelButton: true,
-    });
-    try {
-      let res = await axios.patch(`${apiUrl}api/auth/me/${idUser}`, editUser);
-      console.log(res);
-    } catch (error) {
-      console.log(error);
-    }
+    }).then(async result => {
+      if(result.isConfirmed){
+        try {
+          let data = {
+            id: idUser,
+            edit: editUser
+          }
+         dispatch(editProfile(data))
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    })
   }
 
-  /*   function edit() {
-    Swal.fire({
-      icon: "question",
-      title: "Would do you like close your session?",
-      showConfirmButton: true,
-      iconColor: "#01344f",
-      confirmButtonColor: "#01344f",
-      confirmButtonText: "Yes",
-      showCancelButton: true,
-    }).then((result) => {
-      if (result.isConfirmed) {
-        dispatch(updateUser(idUser, editUser));
-      }
-    });
-  } */
-
-  return (
-    <div className="formHotelAdmin">
-      <div className="flex justify-center column align-center w-100">
-        <h3>{user.name}</h3>
-        <img src={user.photo} className="photo-user-profile" />
+  return (<div className="min-w-100 flex justify-center align-center">
+<div className="w-60 p-2 flex justify-center align-center">
+     <div className="form-profile flex justify-center align-center">
+      <div className="flex justify-center column align-center  min-w-100">
+        <h2>{user.name}</h2>
+        <img src={user.photo} className="photo-user-profile" alt="img-profile"/>
       </div>
       <form onSubmit={editUser} ref={information}>
-        <fieldset className="edithotelfieldset">
+        <fieldset className="edit-profile">
           <label>
             Name
             <input
@@ -154,5 +142,9 @@ export default function Profile() {
         </div>
       </form>
     </div>
+  </div>
+  </div>
+  
+   
   );
 }
