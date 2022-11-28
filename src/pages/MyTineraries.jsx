@@ -9,12 +9,11 @@ import "react-toastify/dist/ReactToastify.css";
 export default function MyTineraries() {
   const { idUser, token } = useSelector((state) => state.user);
   let [count, setCount] = useState(0);
-  let [reload, setReload] = useState(false);
   const dispatch = useDispatch();
   const { deleteMyTinerary, getMyTineraries } = mytinerariesActions;
 
-  // eslint-disable-next-line
-  const { idTinerary, tineraries } = useSelector((state) => state.mytineraries);
+
+  const { tineraries } = useSelector((state) => state.mytineraries);
   // eslint-disable-next-line
   const notify = () => {
     toast();
@@ -24,7 +23,7 @@ export default function MyTineraries() {
 
     dispatch(getMyTineraries({ idTinerary: idUser }));
     // eslint-disable-next-line
-  }, [reload]);
+  }, []);
 
   useEffect(() => {
     let interval = setInterval(() => {
@@ -50,7 +49,7 @@ export default function MyTineraries() {
                 position: toast.POSITION.TOP_RIGHT,
               });
             }
-            setReload(!reload);
+           
           }
           return (
             <CardMyTinerary

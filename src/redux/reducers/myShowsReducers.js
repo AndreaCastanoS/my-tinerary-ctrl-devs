@@ -4,23 +4,21 @@ import myShowsActions from "../actions/myShowsActions";
 const { deleteMyShows, getMyShows } = myShowsActions;
 
 const initialState = {
-  shows: [],
-  /* id: "", */
-  idShow: "",
+  shows: []
 };
 
 const myShowsReducers = createReducer(initialState, (builder) => {
   builder
     .addCase(getMyShows.fulfilled, (state, action) => {
       return {
-        shows: action.payload,
+        ...state, shows: action.payload.shows
       };
     })
     .addCase(deleteMyShows.fulfilled, (state, action) => {
       let newShow = state.shows.filter(
         (newShow) => newShow._id !== action.payload.data._id
       );
-      return { ...state, newShow: newShow };
+      return { ...state, shows: newShow };
     });
 });
 

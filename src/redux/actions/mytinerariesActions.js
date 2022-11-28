@@ -8,7 +8,9 @@ const getMyTineraries = createAsyncThunk(
     let url = `${apiUrl}api/itineraries?userId=${idTinerary}`;
     try {
       const res = await axios.get(url);
-      return res.data.response;
+      return {
+       tineraries: res.data.response
+      }
     } catch (error) {
       console.log(error);
       return {
@@ -26,7 +28,12 @@ const deleteMyTinerary = createAsyncThunk(
     try {
       const res = await axios.delete(url, headers);
       
-      return res.data
+      return {
+        tineraries:res.data,
+        data: res.data.res
+
+      }
+
     } catch(error){
         console.log(error)
         return {

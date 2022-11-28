@@ -78,11 +78,31 @@ const getUser = createAsyncThunk("getUser", async (id) => {
   }
 });
 
+  const editProfile = createAsyncThunk("editProfile", async (data) =>{
+  let url = `${apiUrl}api/auth/me/${data.id}`;
+
+  try{
+  let res = await axios.patch(url, data.edit)
+  return{
+    success:true,
+    response:res.data.data
+  }
+  }catch(error) {
+    console.log(error);
+    return {
+      success: false,
+      response: "ocurrió un error",
+    };
+  }
+
+})
+
 const usersActions = {
   enter,
   reEnter,
   signOff,
   getUser,
+  editProfile
 };
 
 export default usersActions;
