@@ -1,29 +1,59 @@
 import React from "react";
 import { Link as NavLink } from "react-router-dom";
 import { useRef } from "react";
+import Swal from "sweetalert2";
+import { useNavigate } from 'react-router-dom';
+import usersActions from "../redux/actions/usersActions";
+import { useDispatch } from "react-redux";
 
 export default function SignIn() {
-  let email = useRef();
+  let mail = useRef();
+  let dispatch = useDispatch()
+  let {enter} = usersActions
   let password = useRef();
-
   let form = useRef();
+  let navegation = useNavigate()
 
-  function submitLogin(event) {
+  async function submitLogin(event) {
     event.preventDefault();
 
-    let loginUs = {
-      email: email.current.value,
+    let datos = {
+      mail: mail.current.value,
       password: password.current.value,
     };
-    console.log(loginUs);
+    try {
+      let res = await dispatch(enter (datos));
+      console.log(res.payload);
+      if (res.payload.success) {
+        Swal.fire({
+          icon: "success",
+          title: res.payload.res.message,
+          showConfirmButton: true,
+          iconColor: "#01344f",
+          confirmButtonColor: "#01344f",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            navegation(`/index/`);
+          }
+        });
+      }else{
+        Swal.fire({
+          icon: "error",
+          confirmButtonColor: "#01344f",
+          iconColor: "#01344f",
+          title: res.payload.response,
+          showConfirmButton: true,
+        });
 
-    localStorage.setItem("loginUs", JSON.stringify(loginUs));
-    form.current.reset();
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
     <div className="main-full flex justify-center column align-center p-5">
-      <img src="./img/map.png" className="p-absolute h-90" alt="map img" />
+      <img src="./img/map.png" className="p-absolute  w-80" alt="map img" />
       <div className="card1 bg-form">
         <h1 className="text-center  p-1">Sign In</h1>
         <div className="p-2">
@@ -32,9 +62,9 @@ export default function SignIn() {
               <input
                 type="email"
                 className="form-control form-sign"
-                id="emailL"
+                id="mail"
                 placeholder="Email"
-                ref={email}
+                ref={mail}
               />
             </div>
             <div>

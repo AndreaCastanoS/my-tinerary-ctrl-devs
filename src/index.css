@@ -30,6 +30,9 @@
   align-items: center;
   justify-content: center;
 }
+.g-100{
+  gap: 300px;
+}
 
 .justify-end {
   justify-content: end;
@@ -793,7 +796,6 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
   padding: 0.5rem 1rem;
 }
 
@@ -1346,10 +1348,8 @@ a {
 }
 
 .navG {
-  display: flex;
   width: 100%;
   flex-direction: row;
-  justify-content: space-between;
   z-index: 20;
   background-image: url("../public/img/footerbanner.jpg");
 }
@@ -1598,4 +1598,72 @@ width: 4rem;
   font-size: 12px !important;
   font-family: Georgia, serif;
 
+}
+
+.photo-user{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+ 
+}
+.photo-user-profile{
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+ 
+}
+
+
+.card-profile{
+  padding: 10px;
+  height: 60%;
+  width: 60%;
+  background-color: #17c3b2;
+
+}
+
+/* ________PROFILE___ */
+
+.edit-profile {
+  display: flex;
+  flex-wrap: wrap;
+  flex-grow: 1;
+}
+
+.form-profile {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  border-radius: 25px;
+  display: flex;
+  flex-wrap: wrap;
+  min-width: 200px;
+  padding: 30px;
+}
+
+.form-profile label {
+  width: 90%;
+}
+
+.form-profile label input {
+  width: 100%;
+  padding: 5px;
+  margin: 10px 0px;
+}
+
+.form-profile input{
+  border-radius: 7px;
+}
+
+.form-profile form fieldset {
+  border: none;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.img-sign{
+  object-fit: cover;
 }

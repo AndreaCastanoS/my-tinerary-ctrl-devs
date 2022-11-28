@@ -8,6 +8,7 @@ const initialState = {
   value: "",
   zone: "",
   categories: [],
+  checks: []
 };
 
 const citiesReducers = createReducer(initialState, (builder) => {

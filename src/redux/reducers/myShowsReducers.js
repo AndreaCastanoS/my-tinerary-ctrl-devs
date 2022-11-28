@@ -1,37 +1,25 @@
 import { createReducer } from "@reduxjs/toolkit";
 import myShowsActions from "../actions/myShowsActions";
 
-const {deleteMyShows, getMyShows} = myShowsActions;
+const { deleteMyShows, getMyShows } = myShowsActions;
 
 const initialState = {
-  shows:[],
-  id:"",
-  idShow:""
-
+  shows: []
 };
 
 const myShowsReducers = createReducer(initialState, (builder) => {
   builder
-  .addCase(getMyShows.fulfilled, (state, action) => 
-    {
-    
+    .addCase(getMyShows.fulfilled, (state, action) => {
       return {
-        ...state,
-        shows:action.payload,
-        
+        ...state, shows: action.payload.shows
       };
     })
-    .addCase(deleteMyShows.fulfilled, (state, action) => 
-    {
-      
-     let newShow = state.shows.filter(show => show._id !== action.payload)
-      return{...state, messagge: "", shows: newShow}
-        
-    
-      console.log(action.payload);
- 
-  
-    })
+    .addCase(deleteMyShows.fulfilled, (state, action) => {
+      let newShow = state.shows.filter(
+        (newShow) => newShow._id !== action.payload.data._id
+      );
+      return { ...state, shows: newShow };
+    });
 });
 
 export default myShowsReducers;

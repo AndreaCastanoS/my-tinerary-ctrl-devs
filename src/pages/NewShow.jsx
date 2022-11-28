@@ -8,42 +8,48 @@ import Swal from 'sweetalert2';
 import { useSelector } from "react-redux";
 /* import withReactContent from 'sweetalert2-react-content'; */
 
-export default function NewHotel() {
-  const { idUser, token } = useSelector((state) => state.user);
+export default function NewShow() {
+    const { idUser,  token } = useSelector((state) => state.user);
   const notify = () => {
     toast();
   };
+
+  console.log(token);
+
   let information = useRef();
-  let nameNewHotel = useRef();
-  let photo1 = useRef();
-  let photo2 = useRef();
-  let photo3 = useRef();
-  let capacityNewHotel = useRef();
-  let cityId = useRef();
+  let hotelId = useRef();
+  let name = useRef();
+  let description = useRef();
+  let photo = useRef();
+  let price = useRef();
+  let date = useRef();
   let navegation = useNavigate()
   
-  let [citiesSelect, setCitiesSelect] = useState([])
+  let [hotels, setHotels] = useState([])
 
   useEffect(() => {
     axios
-      .get(`${apiUrl}api/cities`)
-      .then((res) => setCitiesSelect(res.data.response));
+      .get(`${apiUrl}api/hotels`)
+      .then((res) => setHotels(res.data.response));
   }, []);
 
 
 
-  async function newHotel(event) {
+  async function newShow(event) {
     event.preventDefault();
-    let newHotel = {
-      name: nameNewHotel.current.value,
-      photo: [photo1.current.value, photo2.current.value, photo3.current.value],
-      capacity: capacityNewHotel.current.value,
-      cityId: cityId.current.value,
+    let newShow = {
+      name: name.current.value,
+      description: description.current.value,
+      photo: photo.current.value,
+      price: price.current.value,
+      date: date.current.value,
+      hotelId: hotelId.current.value,
       userId: idUser,
     };
+
     let headers = { headers: { Authorization: `Bearer ${token}` } };
    try{
-    let res = await axios.post(`${apiUrl}api/hotels`, newHotel, headers);
+    let res = await axios.post(`${apiUrl}api/shows`,  newShow, headers);
     console.log(res);
 
     if (res.data.success) {
@@ -53,10 +59,10 @@ export default function NewHotel() {
         showConfirmButton: true,
         iconColor: "#01344f",
         confirmButtonColor: "#01344f",
-        confirmButtonText: 'See my hotels <i class="fa fa-arrow-right"></i>',
+        confirmButtonText: 'See my shows <i class="fa fa-arrow-right"></i>',
       }).then((result) => {
         if (result.isConfirmed) {
-          navegation(`/hotels/${res.data.response._id}`);
+          navegation(`/myshows`);
         }
       });
     } 
@@ -77,73 +83,71 @@ export default function NewHotel() {
         <div>
           <div className="flex column justify-center">
             <div className="card1 text-center">
-              <h1 className="text-center p-1">NEW HOTEL</h1>
+              <h1 className="text-center p-1">NEW SHOW</h1>
               <div className="p-2">
                 <form
                   className="new column"
-                  onSubmit={newHotel}
+                  onSubmit={newShow}
                   ref={information}
                 >
                   <div>
                     <input
-                      placeholder="Name of hotel"
+                      placeholder="Name of show"
                       type="text"
-                      name="nameNewHotel"
+                      name="name"
                       className="form-control form-sign"
-                      ref={nameNewHotel}
+                      ref={name}
                       
                     ></input>
                   </div>
                   <div>
                     <input
-                      placeholder="Photo 1"
+                      placeholder="Description"
                       className="form-control form-sign"
                       type="text"
-                      name="photo1"
-                      accept="image/png, image/jpeg"
-                      multiple
-                      ref={photo1}
+                      name="Description"
+                      ref={description}
                       
                     />
                   </div>
                   <div>
                     <input
-                      placeholder="Photo 2"
+                      placeholder="Photo"
                       className="form-control form-sign"
                       type="text"
-                      name="photo2"
+                      name="photo"
                       accept="image/png, image/jpeg"
                       multiple
-                      ref={photo2}
+                      ref={photo}
                      
                     />
                   </div>
                   <div>
                     <input
-                      placeholder="Photo 3"
+                      placeholder="Price"
                       className="form-control form-sign"
-                      type="text"
-                      name="photo3"
+                      type="number"
+                      name="Price"
                       accept="image/png, image/jpeg"
                       multiple
-                      ref={photo3}
+                      ref={price}
                     
                     />
                   </div>
                   <div>
                     <input
-                      placeholder="Capacity"
+                      placeholder="Date"
                       className=" form-control form-sign"
-                      type="text"
-                      name="capacity"
-                      ref={capacityNewHotel}
+                      type="date"
+                      name="Date"
+                      ref={date}
                       
                     ></input>
                   </div>
                   <div>
-                    <select ref={cityId} className="form-control form-sign" id= "cityId">
-                      <option>Select the city</option>
-                      {citiesSelect.map(city=>  <option key = {city._id} value = {city._id}>{city.name} </option>)}
+                    <select ref={hotelId} className="form-control form-sign" id= "cityId">
+                      <option>Select the hotel</option>
+                      {hotels.map(hotel=>  <option key = {hotel._id} value = {hotel._id}>{hotel.name} </option>)}
                     </select>
                   </div>
                   <div className="flex justify-around  p-1 wrap g-25">
@@ -151,7 +155,7 @@ export default function NewHotel() {
                      type="submit"
                      onClick={notify}
                      required
-                     className="btn" value = "CREATE A NEW HOTEL" />
+                     className="btn" value = "CREATE A NEW SHOW" />
                   </div>
                   <ToastContainer />
                 </form>
@@ -163,3 +167,4 @@ export default function NewHotel() {
     </div>
   );
 }
+
