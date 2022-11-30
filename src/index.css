@@ -1368,7 +1368,7 @@ a {
   overflow: hidden;
   width: 300px;
   min-height: 200px;
-  padding-bottom: 40px;
+  padding-bottom: 10px;
 }
 .card-header img {
   width: 100%;
@@ -1666,4 +1666,30 @@ width: 4rem;
 
 .img-sign{
   object-fit: cover;
+}
+.fondoCiudad{
+	height: 60vh;
+	background-size: cover;
+	background-position: center;
+  min-width: 100%;
+
+}
+div.tarjetaDeCiudad{
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	width: 100%;
+	justify-content: center;
+	align-items: center;
+}
+div.tituloCiudad h1{
+  color: #2e2d2d;
+	font-size: 43px;
+	border-radius: 15px;
+	background-color: rgba(255, 255, 255, 0.534);
+	padding: 4px;
+}
+.reaction:hover{
+  transform: scale(1.5) translateZ(0);
+
 }
