@@ -26,6 +26,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Profile from "./pages/Profile";
 import NewTinerary from "./pages/NewTinerary";
 import NewShow from "./pages/NewShow.jsx";
+import Comments from "./components/Comments";
 
 
 function App() {
@@ -53,6 +54,7 @@ function App() {
         <Route path="/hotels/:id" element={<HotelDetails />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/signin" element={<SignIn />} />
+        <Route path="/comment" element={<Comments />} />
         <Route
           element={
             <ProtectedRoute

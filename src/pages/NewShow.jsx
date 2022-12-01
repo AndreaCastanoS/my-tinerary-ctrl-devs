@@ -14,7 +14,7 @@ export default function NewShow() {
     toast();
   };
 
-  console.log(token);
+
 
   let information = useRef();
   let hotelId = useRef();
@@ -46,6 +46,7 @@ export default function NewShow() {
       hotelId: hotelId.current.value,
       userId: idUser,
     };
+    console.log(newShow);
 
     let headers = { headers: { Authorization: `Bearer ${token}` } };
    try{

@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { useSelector } from "react-redux";
-/* import withReactContent from 'sweetalert2-react-content'; */
+
 
 export default function NewHotel() {
   const { idUser, token } = useSelector((state) => state.user);
@@ -41,6 +41,8 @@ export default function NewHotel() {
       cityId: cityId.current.value,
       userId: idUser,
     };
+
+    
     let headers = { headers: { Authorization: `Bearer ${token}` } };
    try{
     let res = await axios.post(`${apiUrl}api/hotels`, newHotel, headers);
