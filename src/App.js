@@ -27,7 +27,7 @@ import Profile from "./pages/Profile";
 import NewTinerary from "./pages/NewTinerary";
 import NewShow from "./pages/NewShow.jsx";
 import NewReaction from "./pages/NewReaction.jsx";
-// import MyReactions from "./pages/MyReactions";
+import MyReactions from "./pages/MyReactions";
 
 
 function App() {
@@ -55,16 +55,17 @@ function App() {
         <Route path="/hotels/:id" element={<HotelDetails />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/signin" element={<SignIn />} />
-        {/* <Route path="/myreactions" element={<MyReactions />} /> */}
+   
         <Route
           element={
             <ProtectedRoute
               isAllowed={user.role === "admin" || user.role === "user"}
-              redirect="/profile"
+              redirect="/myreactions"
             />
           }
         >
           <Route path="/profile" element={<Profile />} />
+          <Route path="/myreactions" element={<MyReactions />} />
         </Route>
 
         <Route
