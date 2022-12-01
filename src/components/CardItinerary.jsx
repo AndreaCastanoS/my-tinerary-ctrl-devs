@@ -1,10 +1,8 @@
 import React from "react";
 import Reaction from "../components/Reaction";
 
-
 export default function CardItinerary(props) {
   let { name, price, description, photo, duration, id} = props;
-
   return (
     <div className="card2">
       <div className="card-header">
@@ -21,8 +19,7 @@ export default function CardItinerary(props) {
         </h5>
       </div>
       <div className="flex justify-end w-100 g-25 p-0-5">
-     
-       <Reaction idTinerary={id}  />
+       <Reaction eventId={id} type="itineraryId"  />
       </div>
     </div>
   );

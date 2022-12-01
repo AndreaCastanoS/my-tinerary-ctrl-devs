@@ -48,9 +48,8 @@ export default function MyReactions() {
           }
           return (
             <MyReactionCard
-              name={item.itineraryId.name}
+              event={item.itineraryId || item.showId}
               nameReaction={item.name}
-              photo={item.itineraryId.photo[0]}
               reaction={item.icon}
               onClick={deleteFunc}
             />

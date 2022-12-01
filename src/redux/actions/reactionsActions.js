@@ -21,15 +21,14 @@ const createReaction = createAsyncThunk("createReaction", async ({datos, token})
 });
 
 
-const getReactions = createAsyncThunk("getReactions", async (key) => {
+const getReactions = createAsyncThunk("getReactions", async (data) => {
   let headers = { headers: { Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODRkZTk2ZDhiNmYzNGRhMGYwODY4ZiIsIm5hbWUiOiJFcmljY2MiLCJwaG90byI6Imh0dHBzOi8vYS5jZG4taG90ZWxzLmNvbS9nZGNzL3Byb2R1Y3Rpb245L2QxMjg1LzM0MTA4ZDgwLTliZWItMTFlOC1hOTQyLTAyNDJhYzExMDAwNy5qcGc_aW1wb2xpY3k9ZmNyb3Amdz04MDAmaD01MzMmcT1tZWRpdW0iLCJsb2dnZWQiOnRydWUsImlhdCI6MTY2OTg1MjE1MCwiZXhwIjoxNzAxMzg4MTUwfQ.oTUca2q97QDpCIu1M1e2hYGoPEQ26l18N8NGxjW-NiM` } };
-  let url = `${apiUrl}api/reactions?itineraryId=${key}`;
+  let url = `${apiUrl}api/reactions?${data.type}=${data.eventId}`;
   try {
     const res = await axios.get(url, headers);
     return {
       success: true,
       reactions: res.data,
-      reqId: res.data.id,
 
     };
   } catch (error) {
@@ -44,7 +43,6 @@ const getReactions = createAsyncThunk("getReactions", async (key) => {
 
 const getMyReactions = createAsyncThunk("getMyReactions", async ({idUser, token}) => {
   let headers = { headers: { Authorization: `Bearer ${token}` } };
-  console.log(headers);
   let url = `${apiUrl}api/reactions?userId=${idUser}`;
   try {
     const res = await axios.get(url, headers);
@@ -82,7 +80,7 @@ const deleteMyReactions = createAsyncThunk("deleteMyActions", async ({idReaction
 
 const updateReactions = createAsyncThunk("updateReactions", async (datos) => {
   let headers = { headers: { Authorization: `Bearer ${datos.token}` } };
-  let url = `${apiUrl}api/reactions?itineraryId=${datos.id}&name=${datos.name}`;
+  let url = `${apiUrl}api/reactions?${datos.type}=${datos.eventId}&name=${datos.name}`;
   try {
     const res = await axios.put(url, datos, headers);
     console.log(res);
@@ -99,13 +97,38 @@ const updateReactions = createAsyncThunk("updateReactions", async (datos) => {
     };
   }
 });
-
+const getTineraries = createAsyncThunk("getTineraries", async () => {
+  try {
+    const res = await axios.get(`${apiUrl}api/itineraries`);
+    console.log(res);
+    return  res.data.response
+  } catch (error) {
+    console.log(error);
+    return {
+      payload: "Error",
+    };
+  }
+});
+const getShows = createAsyncThunk("getShows", async () => {
+  try {
+    const res = await axios.get(`${apiUrl}api/shows`);
+    console.log(res);
+    return  res.data.response
+  } catch (error) {
+    console.log(error);
+    return {
+      payload: "Error",
+    };
+  }
+});
 const reactionsActions = {
   createReaction,
   getReactions,
   updateReactions,
   getMyReactions,
-  deleteMyReactions
+  deleteMyReactions,
+  getTineraries,
+  getShows
 };
 
 export default reactionsActions;

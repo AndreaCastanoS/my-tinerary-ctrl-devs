@@ -33,6 +33,8 @@ export default function HotelDetails() {
         name={hotels.name}
         capacity={hotels.capacity}
         id={hotels._id}
+        key={hotels._id}
+    
       />
       <div className="p-2 flex column justify-center align-center">
         <Events className="p-2" idC={id}></Events>
