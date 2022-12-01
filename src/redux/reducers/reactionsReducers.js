@@ -1,11 +1,12 @@
 import { createReducer } from "@reduxjs/toolkit";
 import reactionsActions from "../actions/reactionsActions";
 // eslint-disable-next-line
-const { createReaction, getReactions, updateReactions, getMyReactions, deleteMyReactions} = reactionsActions;
+const { createReaction, getReactions, updateReactions, getMyReactions, deleteMyReactions, getShows, getTineraries} = reactionsActions;
 
 const initialState = {
   myreactions: [],
-  // reqId: ""
+  shows:[],
+  itineraries: []
 };
 
 const reactionsReducers = createReducer(initialState, (builder) => {
@@ -23,38 +24,20 @@ const reactionsReducers = createReducer(initialState, (builder) => {
     );
     console.log(reaction);
     return { ...state, myreactions: reaction };
-  });
-    // .addCase(createReaction.fulfilled, (state, action) => 
-    // {
-    
-    //   return {
-    //     ...state,
-    //     reactionss: action.payload.reactions,
-        
-    //   };
-    // })
-    // .addCase(getReactions.fulfilled, (state, action) => 
-    // {
-    // if(action.payload.success){
-    //   return {
-    //     ...state,
-    //     reactionss: action.payload.reactions,
-    //     reqId: action.payload.reqId
-        
-    //   };
-    // }
-     
-    // })
-    // .addCase(updateReactions.fulfilled, (state, action) => 
-    // {
-    
-    //   return {
-    //     ...state,
-    //     reactionss: action.payload.reactions,
-    //     reactioned: action.payload.reactioned
-        
-    //   };
-    // })
+  })
+  .addCase(getShows.fulfilled, (state, action) => {
+    return {
+      ...state,
+      shows: action.payload,
+    };
+  })
+  .addCase(getTineraries.fulfilled, (state, action) => {
+    return {
+      ...state,
+      itineraries: action.payload,
+    };
+  })
+  
 });
 
 export default reactionsReducers;

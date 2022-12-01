@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function MyReactionCard(props) {
-  let { name, nameReaction, photo, reaction, onClick } = props;
+  let { event, nameReaction,  reaction, onClick } = props;
   return (
     <div
       className={
@@ -12,10 +12,10 @@ export default function MyReactionCard(props) {
       }
     >
       <div className="card-header card-header-reaction">
-        <img src={photo} alt="city" />
+        <img src={event.photo[0]} alt="city" />
       </div>
       <div className="card-body-reaction">
-        <h5>{name}</h5>
+        <h5>{event.name}</h5>
       </div>
       <div className="flex justify-between w-100 align-center g-25 p-2">
         <div className="flex column align-center g-2">

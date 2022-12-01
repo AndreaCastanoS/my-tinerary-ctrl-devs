@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Comments from "./Comments";
+import Reaction from "../components/Reaction";
 
 export default function CardShow(props) {
   const { idUser, token } = useSelector((state) => state.user);
@@ -18,8 +19,7 @@ export default function CardShow(props) {
 
   const dispatch = useDispatch();
   const { comments } = useSelector((state) => state.comment);
-  const { getComment, createComment, deleteComment } =
-    commentsAction;
+  const { getComment, createComment, deleteComment } = commentsAction;
 
   useEffect(() => {
     dispatch(getComment({ id: idShow }));
@@ -30,7 +30,6 @@ export default function CardShow(props) {
   const handleOpen = () => {
     open ? setOpen(false) : setOpen(true);
   };
-
 
   let information = useRef();
   let comment = useRef();
@@ -58,8 +57,8 @@ export default function CardShow(props) {
         /*  let data = {
            headers: token, 
            data: newComment,
-        }; */ 
-         let headers = { headers: { Authorization: `Bearer ${token}` } }; 
+        }; */
+        let headers = { headers: { Authorization: `Bearer ${token}` } };
         try {
           let res = await axios.post(
             `${apiUrl}api/comments`,
@@ -96,7 +95,9 @@ export default function CardShow(props) {
             {date}
           </h5>
         </div>
-
+        <div className="flex justify-end w-100 g-25 p-0-5">
+          <Reaction eventId={idShow} type="showId" />
+        </div>
         <form class=" textarea" onSubmit={newComment} ref={information}>
           <div className="sub">
             <input
@@ -122,37 +123,37 @@ export default function CardShow(props) {
             View Comments
           </h4>
         </div>
-      {open ? (
-        <div>
-          {comments.map((item) => {
-            function deleteFunc() {
-              Swal.fire({
-                icon: "question",
-                title: " Do you want to post a comment?",
-                showConfirmButton: true,
-                iconColor: "#01344f",
-                confirmButtonColor: "#01344f",
-                confirmButtonText: "Yes",
-                showCancelButton: true,
-              }).then(async (result) => {
-                if (result.isConfirmed) {
-                  dispatch(deleteComment({ idComment: item._id, token }));
-                }
-              });
-            }
-            return (
-              <CommentsCard
-                 idComment ={item._id}
-                photo={item.userId?.photo}
-                name={item.userId?.name}
-                comment={item.comment}
-                date={item.date}
-                onClick={() => deleteFunc(item._id)}               
-              ></CommentsCard>
-            );
-          })}
-        </div>
-      ) : null}
+        {open ? (
+          <div>
+            {comments.map((item) => {
+              function deleteFunc() {
+                Swal.fire({
+                  icon: "question",
+                  title: " Do you want to post a comment?",
+                  showConfirmButton: true,
+                  iconColor: "#01344f",
+                  confirmButtonColor: "#01344f",
+                  confirmButtonText: "Yes",
+                  showCancelButton: true,
+                }).then(async (result) => {
+                  if (result.isConfirmed) {
+                    dispatch(deleteComment({ idComment: item._id, token }));
+                  }
+                });
+              }
+              return (
+                <CommentsCard
+                  idComment={item._id}
+                  photo={item.userId?.photo}
+                  name={item.userId?.name}
+                  comment={item.comment}
+                  date={item.date}
+                  onClick={() => deleteFunc(item._id)}
+                ></CommentsCard>
+              );
+            })}
+          </div>
+        ) : null}
       </div>
     </>
   );
