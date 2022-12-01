@@ -18,8 +18,9 @@ export default function Comments(props) {
   const { editComment, getComment } = commentsAction;
   let [hotelsShow, setHotelsShow] = useState([]);
   /* let { id } = useParams(); */
-
+  
   useEffect(() => {
+    
     axios
       .get(`${apiUrl}api/shows`)
       .then((res) => setHotelsShow(res.data.response));
@@ -85,7 +86,7 @@ export default function Comments(props) {
     <form class=" textarea" onSubmit={editComments} ref={information}>
       <div className="div-edit">
         <input
-          /*  defaultValue={comments?.comment}   */
+         defaultValue={comments?.comment}   
           type="text "
           class=" textarea2"
           name="comment"

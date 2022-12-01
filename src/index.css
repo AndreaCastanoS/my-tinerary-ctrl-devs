@@ -1685,6 +1685,16 @@ width: 4rem;
   gap: 10px;
   
 }
+.containerCard-logged{
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  border: solid  #25f30a;
+  border-radius: 24px;
+  height: 70%;
+  gap: 10px;
+  
+}
 
 .img-coment{
   border-radius: 50px;
@@ -1845,6 +1855,11 @@ div.tituloCiudad h1{
 
 .not-like{
   box-shadow: 0 0 20px rgb(100, 101, 102);
+}
+
+.input-comment{
+padding-left: 45px;
+
 }
 
 

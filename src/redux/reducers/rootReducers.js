@@ -6,7 +6,8 @@ import myShowsReducers from "./myShowsReducers";
 import mytinerariesReducers from "./mytinerariesReducers";
 import usersReducers from "./usersReducers";
 import commentsReducers from "./commentsReducers";
-import reactionsReducers from "./reactionsReducers"
+import reactionsReducers from "./reactionsReducers";
+
 
 const rootReducer = {
   cities: citiesReducers,
@@ -19,6 +20,8 @@ const rootReducer = {
   comment: commentsReducers,
   reactions: reactionsReducers,
 };
+
+
 
 
 export default rootReducer;
