@@ -6,17 +6,28 @@ import Comments from "./Comments";
 
 export default function CommentsCard(props) {
   const [open2, setOpen2] = useState(false);
+  const [classLogged, setClassLogged] = useState("");
   let user = useSelector((store) => store.user);
   const { idUser, token } = useSelector((state) => state.user);
   const { comments } = useSelector((state) => state.comment);
-  let { photo, name, comment, date, onClick, idComment } = props;
+  let { photo, name, comment, date, onClick, idComment, logged, userId } = props;
   const handleOpen2 = () => {
     open2 ? setOpen2(false) : setOpen2(true);
   };
 
+  useEffect(() => {
+    console.log(idUser);
+    logged ? setClassLogged("containerCard-logged") : setClassLogged ("containerCard")
+  
+    
+  }, [idComment])
+  
+
+
+
   return (
     <div>
-      <div className="containerCard">
+      <div className= {classLogged }>
         <div className="p-2-5 containerCard2">
           <div>
             <div className="flex g-25 img-name align-center">
@@ -32,10 +43,9 @@ export default function CommentsCard(props) {
                 <h3>{name} </h3>
               </div>
             </div>
-
-            <div className="flex column g-25">
+             <div className="flex column g-25">
               <p class="comment-text">{comment}</p>
-              {/* {idUser === comments?.userId ?  ( */}
+              {(userId === idUser) ?  (
                 <div className="flex justify-end w-100 g-25">
                   <div className="delete edit-B">
                     <h5 onClick={handleOpen2}>
@@ -53,7 +63,7 @@ export default function CommentsCard(props) {
                     />
                   </div>
                 </div>
-             {/*  ) : null} */}
+            ) : null} 
             </div>
           </div>
         </div>
