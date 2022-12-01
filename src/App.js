@@ -29,7 +29,7 @@ import NewShow from "./pages/NewShow.jsx";
 import Comments from "./components/Comments";
 
 import NewReaction from "./pages/NewReaction.jsx";
-// import MyReactions from "./pages/MyReactions";
+import MyReactions from "./pages/MyReactions";
 
 
 
@@ -59,6 +59,7 @@ function App() {
         <Route path="*" element={<NotFound />} />
         <Route path="/signin" element={<SignIn />} />
 
+
         <Route path="/comment" element={<Comments />} />
 
         {/* <Route path="/myreactions" element={<MyReactions />} /> */}
@@ -67,11 +68,12 @@ function App() {
           element={
             <ProtectedRoute
               isAllowed={user.role === "admin" || user.role === "user"}
-              redirect="/profile"
+              redirect="/myreactions"
             />
           }
         >
           <Route path="/profile" element={<Profile />} />
+          <Route path="/myreactions" element={<MyReactions />} />
         </Route>
 
         <Route
