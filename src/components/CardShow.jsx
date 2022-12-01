@@ -3,12 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import commentsAction from "../redux/actions/commentAction";
 import CommentsCard from "./CommentsCard";
-import axios from "axios";
-import apiUrl from "../url";
 import Swal from "sweetalert2";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import Comments from "./Comments";
 
 export default function CardShow(props) {
   const { idUser, token } = useSelector((state) => state.user);
@@ -17,20 +12,19 @@ export default function CardShow(props) {
   let { name, price, description, photo, date, idShow } = props;
 
   const dispatch = useDispatch();
+  let [reload, setReload] = useState (false)
   const { comments } = useSelector((state) => state.comment);
-  const { getComment, createComment, deleteComment } =
-    commentsAction;
+  const { getComment, createComment, deleteComment } = commentsAction;
 
   useEffect(() => {
     dispatch(getComment({ id: idShow }));
 
     // eslint-disable-next-line
-  }, [open]);
+  }, [open, reload]);
 
   const handleOpen = () => {
     open ? setOpen(false) : setOpen(true);
   };
-
 
   let information = useRef();
   let comment = useRef();
@@ -43,7 +37,7 @@ export default function CardShow(props) {
       comment: comment.current.value,
       date: "02-02-2023",
     };
-    console.log(newComment);
+   
 
     Swal.fire({
       icon: "question",
@@ -55,18 +49,13 @@ export default function CardShow(props) {
       showCancelButton: true,
     }).then(async (result) => {
       if (result.isConfirmed) {
-        /*  let data = {
+          let data = {
            headers: token, 
            data: newComment,
-        }; */ 
-         let headers = { headers: { Authorization: `Bearer ${token}` } }; 
+        }; 
         try {
-          let res = await axios.post(
-            `${apiUrl}api/comments`,
-            newComment,
-            headers
-          );
-          /*  await dispatch(createComment(data));  */
+          await dispatch(createComment(data));  
+          setReload(!reload)
         } catch (error) {
           console.log(error);
           Swal.fire({
@@ -100,6 +89,7 @@ export default function CardShow(props) {
         <form class=" textarea" onSubmit={newComment} ref={information}>
           <div className="sub">
             <input
+              placeholder="Leave your comment"
               type="text "
               class=" textarea1"
               name="comment"
@@ -122,37 +112,39 @@ export default function CardShow(props) {
             View Comments
           </h4>
         </div>
-      {open ? (
-        <div>
-          {comments.map((item) => {
-            function deleteFunc() {
-              Swal.fire({
-                icon: "question",
-                title: " Do you want to post a comment?",
-                showConfirmButton: true,
-                iconColor: "#01344f",
-                confirmButtonColor: "#01344f",
-                confirmButtonText: "Yes",
-                showCancelButton: true,
-              }).then(async (result) => {
-                if (result.isConfirmed) {
-                  dispatch(deleteComment({ idComment: item._id, token }));
-                }
-              });
-            }
-            return (
-              <CommentsCard
-                 idComment ={item._id}
-                photo={item.userId?.photo}
-                name={item.userId?.name}
-                comment={item.comment}
-                date={item.date}
-                onClick={() => deleteFunc(item._id)}               
-              ></CommentsCard>
-            );
-          })}
-        </div>
-      ) : null}
+        {open ? (
+          <div className="input-comment">
+            {comments.map((item) => {
+              function deleteFunc() {
+                Swal.fire({
+                  icon: "question",
+                  title: " Do you want delete a comment?",
+                  showConfirmButton: true,
+                  iconColor: "#01344f",
+                  confirmButtonColor: "#01344f",
+                  confirmButtonText: "Yes",
+                  showCancelButton: true,
+                }).then(async (result) => {
+                  if (result.isConfirmed) {
+                    dispatch(deleteComment({ idComment: item._id, token }));
+                  }
+                });
+              }
+              return (
+                <CommentsCard
+                  userId={item.userId?._id}
+                  logged={item.userId?.logged}
+                  idComment={item._id}
+                  photo={item.userId?.photo}
+                  name={item.userId?.name}
+                  comment={item.comment}
+                  date={item.date}
+                  onClick={() => deleteFunc(item._id)}
+                ></CommentsCard>
+              );
+            })}
+          </div>
+        ) : null}
       </div>
     </>
   );

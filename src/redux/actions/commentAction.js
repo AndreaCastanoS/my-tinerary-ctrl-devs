@@ -2,16 +2,17 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import apiUrl from "../../url";
 
-      const createComment = createAsyncThunk("createComment", async ({datos, token}) => {
-        let headers = { headers: { Authorization: `Bearer ${token}` } };
+      const createComment = createAsyncThunk("createComment", async (datos) => {
+        console.log(datos);
+        let headers = { headers: { Authorization: `Bearer ${datos.token}` } };
         let url = `${apiUrl}api/comments`;
         try {
-          const res = await axios.post(url, datos, headers);
-      
+          const res = await axios.post(url, datos.data, headers);
+           console.log(res);
           return {
             success: true,
-            reactions: res.data.response,
-            response: res,
+            comments: res.response.data
+            
           };
         } catch (error) {
       
