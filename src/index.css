@@ -1667,6 +1667,104 @@ width: 4rem;
 .img-sign{
   object-fit: cover;
 }
+
+
+.container{
+  min-width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.containerCard{
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  border: solid  #01344f;
+  border-radius: 20px;
+  height: 70%;
+  gap: 10px;
+  
+}
+
+.img-coment{
+  border-radius: 50px;
+}
+
+.containerCard2{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  
+}
+
+.container-input{
+  display: flex;
+  gap: 25px;
+  width: 100%;
+
+}
+
+ .textarea1{
+  height: 50px;
+  border-color: #01344f6f;
+  border-radius: 10px;
+}  
+
+ .textarea2{
+  height: 50px;
+  border-color: #01344f6f;
+  border-radius: 10px;
+  width: 8rem;
+} 
+
+.sub{
+  display: flex;
+  gap: 10px;
+  padding-left: 5px;
+  align-items: center;
+}
+
+
+
+.btn-view{
+  display: flex;
+  justify-content: center;
+  padding-right: 15px;
+  padding-top: 10px;
+  align-items: center;
+}
+
+.btn-view h4{
+  border-radius: 4px;
+  font-size: 14px;
+  justify-content: center;
+  color: #01344fb9;
+}
+
+.btn-view  :hover{
+  border: solid  #01344fe6 ;
+}
+
+.border-admin{
+  background-color: #17c3b2;
+}
+
+.div-edit{
+  display: flex;
+  padding-right: 7rem;
+  flex-direction: column;
+  padding-right: 60px;
+}
+
+.edit-B{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+
+
 .fondoCiudad{
 	height: 60vh;
 	background-size: cover;
@@ -1693,3 +1791,4 @@ div.tituloCiudad h1{
   transform: scale(1.5) translateZ(0);
 
 }
+
