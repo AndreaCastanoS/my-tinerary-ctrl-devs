@@ -61,7 +61,7 @@ export default function MyTineraries() {
               price={item.price}
               duration={item.duration}
               onClick={deleteFunc}
-            ></CardMyTinerary>
+            />
           );
         })}
       </div>

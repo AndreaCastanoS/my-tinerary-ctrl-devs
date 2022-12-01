@@ -15,7 +15,6 @@ export default function Itinerary() {
     
     // eslint-disable-next-line
   }, []);
-  console.log(activities);
 
   useEffect(() => {
     let interval = setInterval(() => {
@@ -28,9 +27,11 @@ export default function Itinerary() {
 
   return (
     <div className="flex j-center wrap ">
-      {activities.map((item) => (
+      {activities?.length >0 && 
+      activities?.map((item) => (
         <CardItinerary
           key={item._id}
+          id={item._id}
           name={item.name}
           photo={item.photo[count]}
           description={item.description}

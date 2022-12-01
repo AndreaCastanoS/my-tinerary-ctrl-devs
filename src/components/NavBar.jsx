@@ -56,7 +56,11 @@ export default function NavBar() {
     {
       name: "New Show",
       route: "newshow",
-    }
+    },
+    // {
+    //   name: "My Reactions",
+    //   route: "/myreactions",
+    // }
 
   ];
   const adminPages = [
@@ -76,6 +80,14 @@ export default function NavBar() {
       name: "My Hotels",
       route: "/myhotels",
     },
+    {
+      name: "New Reaction",
+      route: "/reactions",
+    },
+    // {
+    //   name: "My Reactions",
+    //   route: "/myreactions",
+    // }
   ];
   const noLogged = [
     {
@@ -86,6 +98,7 @@ export default function NavBar() {
       name: "Sign In",
       route: "/signin",
     },
+   
   ];
 
   return (

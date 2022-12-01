@@ -28,6 +28,10 @@ import NewTinerary from "./pages/NewTinerary";
 import NewShow from "./pages/NewShow.jsx";
 import Comments from "./components/Comments";
 
+import NewReaction from "./pages/NewReaction.jsx";
+// import MyReactions from "./pages/MyReactions";
+
+
 
 function App() {
   let user = useSelector((store) => store.user);
@@ -54,7 +58,11 @@ function App() {
         <Route path="/hotels/:id" element={<HotelDetails />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/signin" element={<SignIn />} />
+
         <Route path="/comment" element={<Comments />} />
+
+        {/* <Route path="/myreactions" element={<MyReactions />} /> */}
+
         <Route
           element={
             <ProtectedRoute
@@ -80,6 +88,7 @@ function App() {
           <Route path="/mycities" element={<MyCities />} />
           <Route path="/mycities/:id" element={<EditMyCity />} />
           <Route path="/edithotel/:id" element={<EditHotel />} />
+          <Route path="/reactions" element={<NewReaction />} />
         </Route>
         <Route element={<ProtectedRoute isAllowed={user.role === "user"} />}>
           <Route path="/mytineraries" element={<MyTineraries />} />
