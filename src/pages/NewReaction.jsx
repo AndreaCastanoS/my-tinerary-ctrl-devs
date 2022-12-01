@@ -22,6 +22,7 @@ export default function NewReaction() {
   useEffect(() => {
     dispatch(getShows());
     dispatch(getTineraries());
+  
     // eslint-disable-next-line
   }, []);
 
@@ -93,7 +94,7 @@ export default function NewReaction() {
                 >
                   <div>
                     <input
-                      placeholder="Name of Reaction"
+                      placeholder="Name of the reaction"
                       type="text"
                       name="name"
                       className="form-control form-sign"
