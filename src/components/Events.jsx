@@ -15,12 +15,13 @@ export default function Events(props) {
 
     // eslint-disable-next-line
   }, []);
-  console.log(idC);
+ 
 
   return (
     <div className="flex j-center wrap ">
       {hotelsShow.map((item) => (
         <CardShow
+          idShow={item._id}
           key={item._id}
           name={item.name}
           photo={item.photo}

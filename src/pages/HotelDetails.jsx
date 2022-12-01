@@ -25,7 +25,7 @@ export default function HotelDetails() {
     // eslint-disable-next-line
   }, []);
 
-  console.log(id);
+ 
   return (
     <>
       <DetailsHotel
@@ -36,7 +36,6 @@ export default function HotelDetails() {
       />
       <div className="p-2 flex column justify-center align-center">
         <Events className="p-2" idC={id}></Events>
-        <button>View Comments</button>
       </div>
     </>
   );
