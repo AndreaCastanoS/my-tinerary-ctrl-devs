@@ -35,7 +35,7 @@ export default function CardShow(props) {
       userId: idUser,
       showId: idShow,
       comment: comment.current.value,
-      date: "02-02-2023",
+      date: "02-12-2022",
     };
    
 
