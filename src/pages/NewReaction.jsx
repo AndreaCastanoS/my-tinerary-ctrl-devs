@@ -93,7 +93,7 @@ export default function NewReaction() {
                 >
                   <div>
                     <input
-                      placeholder="Name of Tinerary"
+                      placeholder="Name of Reaction"
                       type="text"
                       name="name"
                       className="form-control form-sign"
