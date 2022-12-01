@@ -4,18 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import commentsAction from "../redux/actions/commentAction";
 import CommentsCard from "./CommentsCard";
 import Swal from "sweetalert2";
-
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import Comments from "./Comments";
 import Reaction from "../components/Reaction";
 
 export default function CardShow(props) {
   const { idUser, token } = useSelector((state) => state.user);
   const [open, setOpen] = useState(false);
-  const [open2, setOpen2] = useState(false);
   let { name, price, description, photo, date, idShow } = props;
-
   const dispatch = useDispatch();
   let [reload, setReload] = useState (false)
   const { comments } = useSelector((state) => state.comment);
@@ -57,12 +51,7 @@ export default function CardShow(props) {
           let data = {
            headers: token, 
            data: newComment,
-
-        }; */
-        let headers = { headers: { Authorization: `Bearer ${token}` } };
-
-        }; 
-
+        }
         try {
           await dispatch(createComment(data));  
           setReload(!reload)
@@ -77,7 +66,7 @@ export default function CardShow(props) {
           });
         }
       }
-    });
+  });
   }
 
   return (
@@ -125,20 +114,12 @@ export default function CardShow(props) {
           </h4>
         </div>
         {open ? (
-
-          <div>
-
           <div className="input-comment">
-
             {comments.map((item) => {
               function deleteFunc() {
                 Swal.fire({
                   icon: "question",
-
                   title: " Do you want to post a comment?",
-
-                  title: " Do you want delete a comment?",
-
                   showConfirmButton: true,
                   iconColor: "#01344f",
                   confirmButtonColor: "#01344f",
@@ -152,11 +133,8 @@ export default function CardShow(props) {
               }
               return (
                 <CommentsCard
-
-
                   userId={item.userId?._id}
                   logged={item.userId?.logged}
-
                   idComment={item._id}
                   photo={item.userId?.photo}
                   name={item.userId?.name}
