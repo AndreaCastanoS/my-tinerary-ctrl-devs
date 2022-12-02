@@ -23,12 +23,6 @@ export default function Footer() {
           <NavLink to="/hotels" className='text-decoration  list-none'>
             <li>Hotels</li>
           </NavLink>
-          <NavLink to="/signup" className='text-decoration list-none'>
-            <li>Sign Up</li>
-          </NavLink>
-          <NavLink to="/signin" className='text-decoration list-none'>
-            <li>Sing In</li>
-          </NavLink>
         </ul>
         </div>
         <div className='text-center'>
