@@ -37,7 +37,6 @@ export default function CitiesDetails() {
   
       <div className="p-2 flex column justify-center align-center">
       <Itinerary className="p-2" id={cities._id}></Itinerary>
-     <button>View Comments</button>
       </div>
     
     </>

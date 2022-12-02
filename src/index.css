@@ -1675,26 +1675,27 @@ width: 4rem;
   justify-content: center;
 }
 
-.containerCard{
-  width: 80%;
+.containerCard3{
+  width: 90%;
   display: flex;
   justify-content: center;
   border: solid  #01344f;
   border-radius: 20px;
-  height: 70%;
-  gap: 10px;
+  height: 10rem;
+  flex-direction: row;
+  /* gap: 10px; */
   
 }
-.containerCard-logged{
+ .containerCard-logged{
   width: 80%;
   display: flex;
   justify-content: center;
   border: solid  #25f30a;
   border-radius: 24px;
-  height: 70%;
+  height: 30%;
   gap: 10px;
   
-}
+} 
 
 .img-coment{
   border-radius: 50px;
@@ -1702,9 +1703,14 @@ width: 4rem;
 
 .containerCard2{
   display: flex;
-  flex-direction: column;
+  padding-top: 4px;
+  /* flex-direction: column; */
   gap: 15px;
   
+}
+.iconC{
+  width: 15px;
+  height: 15px;
 }
 
 .container-input{
@@ -1715,13 +1721,13 @@ width: 4rem;
 }
 
  .textarea1{
-  height: 50px;
+  height: 30px;
   border-color: #01344f6f;
   border-radius: 10px;
 }  
 
  .textarea2{
-  height: 50px;
+  height: 20px;
   border-color: #01344f6f;
   border-radius: 10px;
   width: 8rem;
@@ -1865,6 +1871,16 @@ padding-left: 45px;
 
 .surprise{
   box-shadow: 0 0 20px rgb(193, 196, 30);
+
+}
+
+.btn-Comment{
+  width: 4rem;
+  font-size: 12px;
+  background-color: #01344f4d;
+  border: solid  #01344fba;
+  height: 20px;
+  border-radius: 8px;
 
 }
 

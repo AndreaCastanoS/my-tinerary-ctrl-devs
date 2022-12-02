@@ -1,5 +1,6 @@
 import React from "react";
 import Reaction from "../components/Reaction";
+import CommentsCard from "./CommentsCard";
 
 export default function CardItinerary(props) {
   let { name, price, description, photo, duration, id} = props;
@@ -21,6 +22,9 @@ export default function CardItinerary(props) {
       <div className="flex justify-end w-100 g-25 p-0-5">
        <Reaction eventId={id} type="itineraryId"  />
       </div>
+      <div className="input-comment">
+          <CommentsCard eventId={id}></CommentsCard>
+        </div>
     </div>
   );
 }
