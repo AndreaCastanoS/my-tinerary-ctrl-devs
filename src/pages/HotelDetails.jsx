@@ -8,6 +8,7 @@ import apiUrl from "../url";
 
 export default function HotelDetails() {
   let [hotels, setHotels] = useState([]);
+  // eslint-disable-next-line
   let[filter, setFilter] = useState([])
   let { id } = useParams();
 
@@ -19,8 +20,6 @@ export default function HotelDetails() {
       axios
       .get(`${apiUrl}api/hotels/${id}`)
       .then((res) => setFilter(res.data.response.find((x)=>x._id === id)))
-
-      
 
     // eslint-disable-next-line
   }, []);
@@ -36,8 +35,8 @@ export default function HotelDetails() {
         key={hotels._id}
     
       />
-      <div className="p-2 flex column justify-center align-center">
-        <Events className="p-2" idC={id}></Events>
+      <div className=" flex column justify-center align-center">
+        <Events  idC={id}></Events>
       </div>
     </>
   );
