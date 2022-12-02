@@ -9,9 +9,9 @@ const initialState = {
 
 const commentReducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(getComment.fulfilled, (state, action) => {
+   /*  .addCase(getComment.fulfilled, (state, action) => {
       return { ...state, comments: action.payload.comments };
-    })
+    }) */
 
     .addCase(createComment.fulfilled, (state, action) => {
       return {
