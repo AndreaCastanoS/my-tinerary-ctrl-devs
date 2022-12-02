@@ -81,7 +81,7 @@ export default function NewReaction() {
 
   return (
     <div className="w-100 h-100 flex justify-center column align-center p-5 bg-form">
-      <div className="p-1 div-new">
+      <div className=" div-new">
         <div>
           <div className="flex column justify-center">
             <div className="card1 text-center">

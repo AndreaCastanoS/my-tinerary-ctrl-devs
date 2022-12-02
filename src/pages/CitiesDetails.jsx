@@ -35,8 +35,8 @@ export default function CitiesDetails() {
         population={cities.population}
       /> */}
   
-      <div className="p-2 flex column justify-center align-center">
-      <Itinerary className="p-2" id={cities._id}></Itinerary>
+      <div className="flex column justify-center align-center">
+      <Itinerary  id={cities._id}></Itinerary>
       </div>
     
     </>
