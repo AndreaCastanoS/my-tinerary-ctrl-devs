@@ -70,9 +70,8 @@ export default function NewTinerary() {
 
   return (
     <>
-      <div className="w-100 h-100 flex justify-center column align-center p-5 bg-form">
+      <div className="w-100 h-100 flex justify-center column align-center p-5 bg-form pt-10">
         <div className="div-new">
-          <div>
             <div className="flex column justify-center">
               <div className="card1 text-center">
                 <h1 className="text-center p-1">New Tinerary</h1>
@@ -172,7 +171,6 @@ export default function NewTinerary() {
               </div>
             </div>
           </div>
-        </div>
       </div>
     </>
   );

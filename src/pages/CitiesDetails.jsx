@@ -11,36 +11,37 @@ export default function CitiesDetails() {
   let { id } = useParams();
 
   useEffect(() => {
-    axios.get(`${apiUrl}api/cities/${id}`)
+    axios
+      .get(`${apiUrl}api/cities/${id}`)
       .then((res) => setCities(res.data.response));
     // eslint-disable-next-line
   }, []);
 
   return (
     <>
-<div className="fondoCiudad" style={{backgroundImage: `url('${cities.photo}')`}}>
-				<div className="tarjetaDeCiudad">	
-					<div className="tituloCiudad">
-					<h1>Welcome to {cities.name}</h1>
-					</div>	
-          <div className="tituloCiudad">
-         <h3>Zone: {cities.zone}</h3> 
-         <h3>Population: {cities.population}</h3>
+      <div
+        className="fondoCiudad"
+        style={{ backgroundImage: `url('${cities.photo}')` }}
+      >
+        <div className="blur">
+          <div className="boxDetail">
+            <div className="contentDetail">
+              <img
+                className="img-detail img-fluid"
+                src={cities.photo}
+                alt={cities.name}
+              
+              />
+              <div className="contentDetail2">
+                <h1>Welcome to {cities.name}</h1>
+                <p>Population:{cities.population}</p>
+                <p>Zone:{cities.zone}</p>
+                <Itinerary id={cities._id}></Itinerary>
+              </div>
+            </div>
           </div>
-				</div>
-			</div>
-    {/* <Details
-       
-        zone={cities.zone}
-        population={cities.population}
-      /> */}
-  
-      <div className="flex column justify-center align-center">
-      <Itinerary  id={cities._id}></Itinerary>
+        </div>
       </div>
-    
     </>
-     
- 
   );
 }

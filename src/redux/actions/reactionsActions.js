@@ -22,7 +22,7 @@ const createReaction = createAsyncThunk("createReaction", async ({datos, token})
 
 
 const getReactions = createAsyncThunk("getReactions", async (data) => {
-  let headers = { headers: { Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODRkZTk2ZDhiNmYzNGRhMGYwODY4ZiIsIm5hbWUiOiJFcmljY2MiLCJwaG90byI6Imh0dHBzOi8vYS5jZG4taG90ZWxzLmNvbS9nZGNzL3Byb2R1Y3Rpb245L2QxMjg1LzM0MTA4ZDgwLTliZWItMTFlOC1hOTQyLTAyNDJhYzExMDAwNy5qcGc_aW1wb2xpY3k9ZmNyb3Amdz04MDAmaD01MzMmcT1tZWRpdW0iLCJsb2dnZWQiOnRydWUsImlhdCI6MTY2OTg1MjE1MCwiZXhwIjoxNzAxMzg4MTUwfQ.oTUca2q97QDpCIu1M1e2hYGoPEQ26l18N8NGxjW-NiM` } };
+  let headers = { headers: { Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYmQ5ZTQ2YzRiOWYwZDZiZTc5YjVkZCIsIm5hbWUiOiJhbnRvbmVsbGEiLCJwaG90byI6Imh0dHBzOi8vaW1hZ2VzLnBleGVscy5jb20vcGhvdG9zLzExNjQ2NzQvcGV4ZWxzLXBob3RvLTExNjQ2NzQuanBlZz9hdXRvPWNvbXByZXNzJmNzPXRpbnlzcmdiJnc9NjAwIiwibG9nZ2VkIjp0cnVlLCJpYXQiOjE2NzMzNzEyNTgsImV4cCI6MTcwNDkwNzI1OH0.KpkWad8X5pB0b-uemIAiUwsoAeZP6H_7daUOgOBvUeY` } };
   let url = `${apiUrl}api/reactions?${data.type}=${data.eventId}`;
   try {
     const res = await axios.get(url, headers);

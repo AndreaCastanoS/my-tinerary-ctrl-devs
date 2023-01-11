@@ -79,12 +79,12 @@ export default function NewShow() {
   }
 
   return (
-    <div className="w-100 h-100 flex justify-center column align-center p-5">
+    <div className="w-100 h-100 flex justify-center column align-center pt-10 p-5 bg-form">
       <div className="p-1 div-new">
-        <div>
+        
           <div className="flex column justify-center">
             <div className="card1 text-center">
-              <h1 className="text-center p-1">NEW SHOW</h1>
+              <h1 className="text-center p-1">New Show</h1>
               <div className="p-2">
                 <form
                   className="new column"
@@ -164,7 +164,6 @@ export default function NewShow() {
             </div>
           </div>
         </div>
-      </div>
     </div>
   );
 }

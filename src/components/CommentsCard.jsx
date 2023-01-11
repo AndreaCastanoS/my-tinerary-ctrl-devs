@@ -6,10 +6,11 @@ import Swal from "sweetalert2";
 
 export default function CommentsCard(props) {
   const [open2, setOpen2] = useState(false);
+  // eslint-disable-next-line
  const [classLogged, setClassLogged] = useState(""); 
   const { idUser, token } = useSelector((state) => state.user);
   let { logged, eventId } = props;
-  const [open, setOpen] = useState(false);
+ 
   const dispatch = useDispatch();
   let [reload, setReload] = useState(true);
   const { getComment, createComment, deleteComment, editComment } =
@@ -25,6 +26,7 @@ export default function CommentsCard(props) {
     logged
       ? setClassLogged("containerCard-logged")
       : setClassLogged("containerCard"); 
+      // eslint-disable-next-line
   }, [reload]);
 
   async function getMyComments() {
@@ -33,10 +35,7 @@ export default function CommentsCard(props) {
     console.log(comments);
   }
 
-  const handleOpen = () => {
-    open ? setOpen(false) : setOpen(true);
-  };
-
+  
   let information = useRef();
   let comment = useRef();
 
@@ -59,7 +58,7 @@ export default function CommentsCard(props) {
     }).then(async (result) => {
       if (result.isConfirmed) {
         let data = {
-          headers: token,
+          token: token,
           data: newComment,
         };
         try {
@@ -125,12 +124,13 @@ export default function CommentsCard(props) {
 
   return (
     <div>
-      <form class=" textarea" onSubmit={newComment} ref={information}>
+        <div>
+          <form class=" textarea" onSubmit={newComment} ref={information}>
         <div className="sub">
           <input
             placeholder="Leave your comment"
-            type="text "
-            class=" textarea1"
+            type="text"
+            class="create-comment"
             name="comment"
             ref={comment}
           />
@@ -145,14 +145,6 @@ export default function CommentsCard(props) {
           </div>
         </div>
       </form>
-      <div className="btn-view">
-        <h4 onClick={handleOpen}>
-          {open ? "Close " : ""}
-          View Comments
-        </h4>
-      </div>
-      {open ? (
-        <div>
           {comments?.map((item) => {
             function deleteFunc() {
               Swal.fire({
@@ -183,6 +175,7 @@ export default function CommentsCard(props) {
                           width="30px"
                           height="30px"
                           className="img-coment"
+                          alt="img"
                         />
                         <h3>{item.userId?.name} </h3>
                       </div>
@@ -222,7 +215,7 @@ export default function CommentsCard(props) {
                                     </div>
                                   </div>
                                 </form>
-                              ) : /*  <Comments idC={idComment} /> */
+                              ) : 
 
                               null}
                             </div>
@@ -244,7 +237,7 @@ export default function CommentsCard(props) {
             );
           })}
         </div>
-      ) : null}
+    
     </div>
   );
 }

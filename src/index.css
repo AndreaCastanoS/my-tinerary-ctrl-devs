@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  /* cursor: pointer; */
 }
 
 /* Display flex */
@@ -30,7 +31,7 @@
   align-items: center;
   justify-content: center;
 }
-.g-100{
+.g-100 {
   gap: 300px;
 }
 
@@ -44,7 +45,6 @@
 .align-center {
   align-items: center;
 }
-
 
 .justify-between {
   justify-content: space-between;
@@ -156,12 +156,12 @@
 }
 
 .card-body {
-  padding: 1rem;
-  min-height: 200px;
+  padding: 10px;
+  min-height: 210px;
 }
 
 .card-header {
-  padding: 1rem;
+  padding: 10px;
 }
 
 .card-footer {
@@ -1009,6 +1009,9 @@
 .pt-1 {
   padding-top: 1em;
 }
+.pt-10 {
+  padding-top: 10em;
+}
 
 .p-absolute {
   position: absolute;
@@ -1027,14 +1030,15 @@
   text-shadow: 5px 5px 3px rgb(0 0 0 / 71%);
   padding: 9px;
   color: rgb(218, 212, 212);
+  z-index: 1;
 }
 .shadow1 {
-  font-family: "Zilla Slab Highlight", cursive;
   color: #f9eeee;
   text-align: center;
   text-shadow: 3px 3px 3px rgb(0 0 0 / 71%);
   font-size: 4vmin;
   padding: 20px;
+  z-index: 1;
 }
 .vh-80 {
   height: 80vh;
@@ -1105,9 +1109,11 @@
   text-align: end;
   color: rgb(245, 244, 247);
   font-size: 50px;
-  bottom: 0;
   right: 10px;
   position: fixed;
+  bottom: 0;
+  padding-bottom: 10px;
+  padding-right: 10px;
 }
 
 .buttonCar {
@@ -1120,7 +1126,7 @@
 }
 
 .footer {
-  background-image: url("../public/img/footerbanner.jpg");
+  background-color: #000000;
 }
 
 .g-5 {
@@ -1219,20 +1225,20 @@ a:hover {
   justify-content: space-around;
 }
 ::-webkit-scrollbar {
-  width: 12px;
+  width: 10px;
 }
 ::-webkit-scrollbar-track {
   box-shadow: inset 0 0 3px rgb(0, 0, 0);
   background-color: white;
 }
 ::-webkit-scrollbar-thumb {
-  background: #01344f;
+  background: black;
   border: 2px solid #fcfdfd;
   border-radius: 12px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #01344f;
+  background: black;
 }
 
 .card {
@@ -1241,7 +1247,7 @@ a:hover {
   height: 360px;
   border-radius: 5px;
   background-size: cover;
-  box-shadow: 3px 5px 5px rgba(3, 32, 51, 0.8);
+  box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.8);
   overflow: hidden;
 
   /* background-image: url(https://ak.picdn.net/shutterstock/videos/12657851/thumb/1.jpg); */
@@ -1352,13 +1358,13 @@ a {
   width: 100%;
   flex-direction: row;
   z-index: 20;
-  background-image: url("../public/img/footerbanner.jpg");
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
 }
 
 .btnN {
   display: flex;
   align-items: center;
-  padding: 10px;
 }
 
 .card2 {
@@ -1367,13 +1373,13 @@ a {
   border-radius: 10px;
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
   overflow: hidden;
-  width: 300px;
+  width: 250px;
   min-height: 200px;
   padding-bottom: 10px;
 }
 .card-header img {
   width: 100%;
-  height: 150px;
+  height: 120px;
   object-fit: cover;
 }
 .card-body {
@@ -1391,6 +1397,9 @@ a {
   object-fit: cover;
   width: 100%;
   height: 320px;
+}
+.g-15{
+  gap: 15px;
 }
 .container-card {
   width: 80%;
@@ -1412,7 +1421,6 @@ a {
   color: #7e7d7d;
 }
 .button {
-  padding: 0.8em 1.8em;
   color: white;
   border: 1px solid #ffffff;
   position: relative;
@@ -1557,9 +1565,8 @@ a {
   background-color: transparent;
 }
 .back:hover {
- background-color: #c0bebe;
+  background-color: #c0bebe;
   color: black;
-
 }
 .delete button {
   background-color: transparent;
@@ -1590,37 +1597,32 @@ a {
   color: #c0bebe;
 }
 
-.bt-nav-c1{
-width: 4rem;
+.bt-nav-c1 {
+  width: 4rem;
 }
 .swal2-popup {
   font-size: 12px !important;
   font-family: Georgia, serif;
-
 }
 
-.photo-user{
+.photo-user {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   object-fit: cover;
- 
 }
-.photo-user-profile{
+.photo-user-profile {
   width: 180px;
   height: 180px;
   border-radius: 50%;
   object-fit: cover;
- 
 }
 
-
-.card-profile{
+.card-profile {
   padding: 10px;
   height: 60%;
   width: 60%;
   background-color: #17c3b2;
-
 }
 
 /* ________PROFILE___ */
@@ -1633,7 +1635,7 @@ width: 4rem;
 
 .form-profile {
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
-  rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
   border-radius: 25px;
   display: flex;
   flex-wrap: wrap;
@@ -1651,7 +1653,7 @@ width: 4rem;
   margin: 10px 0px;
 }
 
-.form-profile input{
+.form-profile input {
   border-radius: 7px;
 }
 
@@ -1663,85 +1665,78 @@ width: 4rem;
   margin-top: 30px;
 }
 
-.img-sign{
+.img-sign {
   object-fit: cover;
 }
 
-
-.container{
+.container {
   min-width: 100%;
   display: flex;
   justify-content: center;
 }
 
-.containerCard3{
+.containerCard3 {
   width: 90%;
   display: flex;
   justify-content: center;
-  border: solid  #01344f;
+  border: solid #01344f;
   border-radius: 20px;
   height: 10rem;
   flex-direction: row;
   /* gap: 10px; */
-  
 }
- .containerCard-logged{
+.containerCard-logged {
   width: 80%;
   display: flex;
   justify-content: center;
-  border: solid  #25f30a;
+  border: solid #25f30a;
   border-radius: 24px;
   height: 30%;
   gap: 10px;
-  
-} 
+}
 
-.img-coment{
+.img-coment {
   border-radius: 50px;
 }
 
-.containerCard2{
+.containerCard2 {
   display: flex;
   padding-top: 4px;
   /* flex-direction: column; */
   gap: 15px;
-  
 }
-.iconC{
+.iconC {
   width: 15px;
   height: 15px;
 }
 
-.container-input{
+.container-input {
   display: flex;
   gap: 25px;
   width: 100%;
-
 }
 
- .textarea1{
+.create-comment {
   height: 30px;
   border-color: #01344f6f;
   border-radius: 10px;
-}  
+}
 
- .textarea2{
+.textarea2 {
   height: 20px;
   border-color: #01344f6f;
   border-radius: 10px;
   width: 8rem;
-} 
+}
 
-.sub{
+.sub {
   display: flex;
   gap: 10px;
   padding-left: 5px;
   align-items: center;
 }
 
-
-
-.btn-view{
+.btn-view {
   display: flex;
   justify-content: center;
   padding-right: 15px;
@@ -1749,64 +1744,82 @@ width: 4rem;
   align-items: center;
 }
 
-.btn-view h4{
+.btn-view h4 {
   border-radius: 4px;
   font-size: 14px;
   justify-content: center;
   color: #01344fb9;
 }
 
-.btn-view  :hover{
-  border: solid  #01344fe6 ;
+.btn-view :hover {
+  border: solid #01344fe6;
 }
 
-.border-admin{
+.border-admin {
   background-color: #17c3b2;
 }
 
-.div-edit{
+.div-edit {
   display: flex;
   padding-right: 7rem;
   flex-direction: column;
   padding-right: 60px;
 }
 
-.edit-B{
+.edit-B {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: 10px;
 }
-
-
-
-.fondoCiudad{
-	height: 60vh;
-	background-size: cover;
-	background-position: center;
+.fondoCiudad {
+  background-size: cover;
+  background-position: center;
   min-width: 100%;
-
+  min-height: 100%;
 }
-div.tarjetaDeCiudad{
-	display: flex;
-	flex-direction: column;
-	height: 100%;
-	width: 100%;
-	justify-content: center;
-	align-items: center;
+.blur {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  width: 100%;
+  min-height: 100vh;
 }
-div.tituloCiudad h1{
-  color: #2e2d2d;
-	font-size: 43px;
-	border-radius: 15px;
-	background-color: rgba(255, 255, 255, 0.534);
-	padding: 4px;
+.boxDetail {
+  padding: 8em;
+  min-height: 300px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.reaction:hover{
+.contentDetail {
+  min-height: 600px;
+  min-width: 800px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 30px;
+  background-color: white;
+}
+.contentDetail2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+  width: 60%;
+}
+.img-detail {
+  height: 100%;
+  min-width: 40%;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+  object-fit: cover;
+}
+.reaction:hover {
   transform: scale(1.3) translateZ(0);
-
 }
-.box-reaction{
+.box-reaction {
   border: solid 2px rgb(16, 71, 116);
   border-radius: 10px;
   min-height: 300px;
@@ -1816,71 +1829,97 @@ div.tituloCiudad h1{
   box-shadow: 0 0 0.5rem 0.3rem rgba(32, 32, 32, 0.1);
   margin-bottom: 15px;
 }
-
-
-.mb-30{
+.mb-30 {
   margin-bottom: 30px;
 }
-
-  
 .cardReaction {
   margin: 10px;
   background-color: #fff;
-  border-radius: 8mm 0mm 8mm 0mm;;
+  border-radius: 8mm 0mm 8mm 0mm;
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
   overflow: hidden;
   width: 220px;
   min-height: 200px;
   padding-bottom: 10px;
 }
-.card-body-reaction{
-    padding: 1rem;
-   height: 40px;
-
+.card-body-reaction {
+  padding: 1rem;
+  height: 40px;
 }
-.h-50px{
+.h-50px {
   height: 50px;
 }
-.love{
+.love {
   box-shadow: 0 0 20px rgb(206, 69, 69);
 }
 .card-header-reaction img {
   width: 100%;
   height: 100px;
   object-fit: cover;
-  border-radius: 8mm 0mm 8mm 0mm;;
+  border-radius: 8mm 0mm 8mm 0mm;
 }
-.h{
+.h {
   height: 200px;
 }
-.like{
+.like {
   box-shadow: 0 0 20px rgb(6, 126, 238);
-  
 }
 
-.not-like{
+.not-like {
   box-shadow: 0 0 20px rgb(100, 101, 102);
 }
 
-.input-comment{
-padding-left: 45px;
-
+.input-comment {
+  padding-left: 45px;
 }
 
-
-.surprise{
+.surprise {
   box-shadow: 0 0 20px rgb(193, 196, 30);
-
 }
 
-.btn-Comment{
+.btn-Comment {
   width: 4rem;
   font-size: 12px;
   background-color: #01344f4d;
-  border: solid  #01344fba;
+  border: solid #01344fba;
   height: 20px;
   border-radius: 8px;
-
+}
+.p-relative {
+  position: relative;
 }
 
+.videoHome {
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+  position: absolute;
+  height: 100vh;
+}
 
+.mt-10 {
+  margin-top: 50px;
+}
+@media screen and (max-width: 368px) {
+  .home {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+@media screen and (max-width: 538px) {
+  .videoHome {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+  }
+  .scrollToTop {
+    width: 10%;
+  }
+  .shadow {
+    font-size: 30px;
+  }
+  .shadow1 {
+    font-size: 20px;
+  }
+}

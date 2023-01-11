@@ -1,12 +1,12 @@
 import React from "react";
-import { Link as NavLink, useHref } from "react-router-dom";
+import { Link as NavLink } from "react-router-dom";
 import { useRef } from "react";
 import Swal from "sweetalert2";
 import axios from "axios";
 import apiUrl from "../url";
 
 export default function SignUp(props) {
-  let {role} = props
+  let { role } = props;
   let name = useRef();
   let lastName = useRef();
   let photo = useRef();
@@ -16,10 +16,9 @@ export default function SignUp(props) {
   // let confirmPassword = useRef();
   let form = useRef();
 
-
   async function newUser(event) {
     event.preventDefault();
-    
+
     let newUser = {
       name: name.current.value,
       lastName: lastName.current.value,
@@ -42,10 +41,9 @@ export default function SignUp(props) {
           showConfirmButton: true,
           iconColor: "#01344f",
           confirmButtonColor: "#01344f",
-        })
+        });
         form.current.reset();
-      } 
-    
+      }
     } catch (error) {
       Swal.fire({
         icon: "error",
@@ -55,10 +53,8 @@ export default function SignUp(props) {
         showConfirmButton: true,
       });
     }
-   
   }
-  
- 
+
   return (
     <div className="main-full flex justify-center column align-center p-5">
       <img src="./img/map.png" className="p-absolute w-80" alt="map img" />
@@ -81,14 +77,14 @@ export default function SignUp(props) {
                 placeholder="Last Name"
                 ref={lastName}
               />
-               <input
+              <input
                 type="text"
                 className="form-control form-sign"
                 id="photo"
                 placeholder="URL photo"
                 ref={photo}
               />
-                <input
+              <input
                 type="number"
                 className="form-control form-sign"
                 id="age"
