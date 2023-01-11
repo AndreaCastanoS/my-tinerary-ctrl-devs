@@ -21,7 +21,7 @@ export default function MyReactions() {
   }, []);
 
   return (
-    <div className="vh-100 w-100 flex column justify-center">
+    <div className="vh-100 w-100 flex column justify-center pt-10">
       <div className="h flex justify-center">
         <h1 className="tittle-find text-center p-2">My Reactions</h1>
       </div>

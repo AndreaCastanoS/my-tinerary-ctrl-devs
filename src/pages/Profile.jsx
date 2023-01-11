@@ -7,14 +7,14 @@ import { Link as NavLink } from "react-router-dom";
 
 export default function Profile() {
   const dispatch = useDispatch();
-  const { idUser, user } = useSelector((state) => state.user);
+  const { idUser, user, token } = useSelector((state) => state.user);
   const { getUser, editProfile } = usersAction;
 
   useEffect(() => {
     dispatch(getUser(idUser));
     // eslint-disable-next-line
   }, []);
-  console.log(user);
+console.log(token);
 
   let information = useRef();
   let name = useRef();

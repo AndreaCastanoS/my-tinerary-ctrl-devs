@@ -99,7 +99,7 @@ export default function Carousel() {
   return (
     <div className="flex justify-center column ">
       <div className="flex justify-center">
-        {<h1 className="tittle-find pb-2 text-center">Popular My Tineraries</h1>}
+        <h1 className="tittle-find pb-2 text-center">Popular My Tinerary</h1>
       </div>
       <div>
         <div className="flex justify-center align-center w-100 ">

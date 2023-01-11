@@ -10,7 +10,7 @@ export default function NavBar() {
   let [mostrar, setMostrar] = useState(false);
   let dispatch = useDispatch();
   const { signOff } = usersActions;
-  const { photo, name,token } = useSelector((state) => state.user);
+  const { photo, name, token } = useSelector((state) => state.user);
   let user = useSelector((store) => store.user);
   let hide = () => {
     setMostrarOcultar(!mostrarOcultar);
@@ -21,22 +21,21 @@ export default function NavBar() {
     setMostrarOcultar(false);
   };
 
-     function signout () {
-      Swal.fire({
-        icon: "question",
-        title: "Would do you like close your session?",
-        showConfirmButton: true,
-        iconColor: "#01344f",
-        confirmButtonColor: "#01344f",
-        confirmButtonText: 'Yes',
-        showCancelButton: true,
-
-      }).then((result) => {
-        if (result.isConfirmed) {
-          dispatch(signOff(token))
-        } 
-      })
-    }
+  function signout() {
+    Swal.fire({
+      icon: "question",
+      title: "Would do you like close your session?",
+      showConfirmButton: true,
+      iconColor: "#01344f",
+      confirmButtonColor: "#01344f",
+      confirmButtonText: "Yes",
+      showCancelButton: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(signOff(token));
+      }
+    });
+  }
 
   const userPages = [
     {
@@ -48,7 +47,6 @@ export default function NavBar() {
       route: "/mytineraries",
     },
     {
-
       name: "New Tinerary",
       route: "/newtinerary",
     },
@@ -60,8 +58,7 @@ export default function NavBar() {
     {
       name: "My Reactions",
       route: "/myreactions",
-    }
-
+    },
   ];
   const adminPages = [
     {
@@ -87,7 +84,7 @@ export default function NavBar() {
     {
       name: "My Reactions",
       route: "/myreactions",
-    }
+    },
   ];
   const noLogged = [
     {
@@ -98,22 +95,18 @@ export default function NavBar() {
       name: "Sign In",
       route: "/signin",
     },
-   
   ];
 
   return (
     <header className="navG  flex justify-between p-1">
       <img className="logo" src="../img/logo.png" alt="logo" />
       <div className="btnN g-25 ">
-        <div>
-          <h4 className="bt-nav" onClick={hide}>
-            Home
-            <img src="../img/desplegable.png" width="14px" alt="img-flecha" />
-          </h4>
+        <div className="flex justify-center">
+          <img onClick={hide} src="../img/home.png" width="57%" className="home" alt="home" />
 
           {mostrarOcultar ? (
             <>
-              <div className="flex column justify-center align-center p-absolute btnDespl">
+              <div className="flex column justify-center align-center p-absolute btnDespl mt-10">
                 <NavLink to="/index" className="text-decoration">
                   <h3 className="bt-nav-c bt-nav-c1">Home</h3>
                 </NavLink>
@@ -170,15 +163,17 @@ export default function NavBar() {
           )}
           {mostrar ? (
             <>
-              <div className="flex column justify-center align-center p-absolute btnDespl">
+              <div className="flex column justify-center align-center p-absolute btnDespl ">
                 {(user.role === "admin" || user.role === "user") && (
                   <>
                     <NavLink to="/profile" className="text-decoration">
                       <h3 className="bt-nav-c ">My Profile</h3>
                     </NavLink>
                     <div to="/signin" className="text-decoration">
-                    <h3 className="bt-nav-c " onClick={signout} >  Sign Off</h3>
-                     </div>
+                      <h3 className="bt-nav-c " onClick={signout}>
+                        Sign Off
+                      </h3>
+                    </div>
                   </>
                 )}
                 {user.role !== "admin" &&
@@ -202,5 +197,3 @@ export default function NavBar() {
     </header>
   );
 }
-
-
